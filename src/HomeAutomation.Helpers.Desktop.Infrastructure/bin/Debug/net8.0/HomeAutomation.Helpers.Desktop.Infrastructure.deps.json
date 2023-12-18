@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "HomeAutomation.Helpers.Desktop.Infrastructure/1.0.0": {
+        "runtime": {
+          "HomeAutomation.Helpers.Desktop.Infrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HomeAutomation.Helpers.Desktop.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

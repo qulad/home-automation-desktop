@@ -1,0 +1,12 @@
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\bin\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.deps.json
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\bin\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.dll
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\bin\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.pdb
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.AssemblyInfoInputs.cache
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.AssemblyInfo.cs
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.csproj.CoreCompileInputs.cache
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.sourcelink.json
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.dll
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\refint\HomeAutomation.Helpers.Desktop.Core.dll
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\HomeAutomation.Helpers.Desktop.Core.pdb
+C:\Users\ahmet\OneDrive\Belgeler\KOD\bitirme\home-automation-desktop\src\HomeAutomation.Helpers.Desktop.Core\obj\Debug\net8.0\ref\HomeAutomation.Helpers.Desktop.Core.dll
