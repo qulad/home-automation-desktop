@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desktop.Infrastructure", "src\HomeAutomation.Helpers.Desktop.Infrastructure\HomeAutomation.Helpers.Desktop.Infrastructure.csproj", "{B4DAE706-F3C2-4896-9DD7-AFDEFAD0093E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desktop.UserInterface", "src\HomeAutomation.Helpers.Desktop.UserInterface\HomeAutomation.Helpers.Desktop.UserInterface.csproj", "{D519B118-3AAD-4BDC-A479-66F47DCA91D6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,15 +32,10 @@ Global
 		{B4DAE706-F3C2-4896-9DD7-AFDEFAD0093E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4DAE706-F3C2-4896-9DD7-AFDEFAD0093E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4DAE706-F3C2-4896-9DD7-AFDEFAD0093E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D519B118-3AAD-4BDC-A479-66F47DCA91D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D519B118-3AAD-4BDC-A479-66F47DCA91D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D519B118-3AAD-4BDC-A479-66F47DCA91D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D519B118-3AAD-4BDC-A479-66F47DCA91D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A1101B8-C2D2-427A-8C7B-C0F1942590EF} = {CDF34588-3086-44E0-9F5E-6A86AAEC0EB3}
 		{AE866869-A73D-4771-B4A0-0C3841E7D448} = {CDF34588-3086-44E0-9F5E-6A86AAEC0EB3}
 		{B4DAE706-F3C2-4896-9DD7-AFDEFAD0093E} = {CDF34588-3086-44E0-9F5E-6A86AAEC0EB3}
-		{D519B118-3AAD-4BDC-A479-66F47DCA91D6} = {CDF34588-3086-44E0-9F5E-6A86AAEC0EB3}
 	EndGlobalSection
 EndGlobal
