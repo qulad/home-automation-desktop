@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-HomeAutomation.Helpers.Desktop.Application-229f94fc-aaa2-4777-80a2-a0c54336e706</UserSecretsId>
@@ -9,5 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeAutomation.Helpers.Desktop.UserInterface\HomeAutomation.Helpers.Desktop.UserInterface.csproj" />
   </ItemGroup>
 </Project>
