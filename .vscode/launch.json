@@ -10,11 +10,11 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/HomeAutomation.Helpers.Desktop.Application/bin/Debug/net8.0-windows/HomeAutomation.Helpers.Desktop.Application.dll",
+            "program": "${workspaceFolder}/src/HomeAutomation.Helpers.Desktop/bin/Debug/net8.0-windows/HomeAutomation.Helpers.Desktop.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/HomeAutomation.Helpers.Desktop.Application",
+            "cwd": "${workspaceFolder}/src/HomeAutomation.Helpers.Desktop",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopAtEntry": false
         }
     ]
