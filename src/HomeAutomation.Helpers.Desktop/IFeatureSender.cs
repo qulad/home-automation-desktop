@@ -1,4 +1,4 @@
-namespace HomeAutomation.Helpers.Desktop.Features;
+namespace HomeAutomation.Helpers.Desktop;
 
 public interface IFeatureSender
 {
