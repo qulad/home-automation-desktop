@@ -1,6 +1,6 @@
 using System;
-using HomeAutomation.Helpers.Desktop.Features;
-using HomeAutomation.Helpers.Desktop.Features.Handlers;
+using HomeAutomation.Helpers.Desktop.Application.Features;
+using HomeAutomation.Helpers.Desktop.Application.Features.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Application;
@@ -14,9 +14,9 @@ public class FeatureSender : IFeatureSender
         _serviceProvider = serviceProvider;
     }
 
-    public void Send<TCommand>(TCommand command)
+    public void Send<TFeature>(TFeature feature) where TFeature : IFeature
     {
-        var handler = _serviceProvider.GetRequiredService<IFeatureHandler<TCommand>>();
-        handler.Handle(command);
+        var handler = _serviceProvider.GetRequiredService<IFeatureHandler<TFeature>>();
+        handler.Handle(feature);
     }
 }
