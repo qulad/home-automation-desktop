@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HomeAutomation.Helpers.Desktop.UserInterface;
+namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
 
 public static class Extensions
 {

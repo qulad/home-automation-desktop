@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomation.Helpers.Desktop.UserInterface;
+using HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desktop.Infrastructure", "src\HomeAutomation.Helpers.Desktop.Infrastructure\HomeAutomation.Helpers.Desktop.Infrastructure.csproj", "{B4DAE706-F3C2-4896-9DD7-AFDEFAD0093E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desktop.UserInterface", "src\HomeAutomation.Helpers.Desktop.UserInterface\HomeAutomation.Helpers.Desktop.UserInterface.csproj", "{79FEFAD8-41FD-40B9-9E44-563A622A2DBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desktop.GraphicalUserInterface", "src\HomeAutomation.Helpers.Desktop.GraphicalUserInterface\HomeAutomation.Helpers.Desktop.GraphicalUserInterface.csproj", "{79FEFAD8-41FD-40B9-9E44-563A622A2DBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Helpers.Desktop", "src\HomeAutomation.Helpers.Desktop\HomeAutomation.Helpers.Desktop.csproj", "{7A717253-1B87-4BFE-9E2E-8A84BE458EBE}"
 EndProject

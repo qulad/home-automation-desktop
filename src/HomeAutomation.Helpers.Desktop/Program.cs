@@ -1,6 +1,6 @@
 ﻿using HomeAutomation.Helpers.Desktop.Application;
 using HomeAutomation.Helpers.Desktop.Infrastructure;
-using HomeAutomation.Helpers.Desktop.UserInterface;
+using HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
 using Microsoft.Extensions.Hosting;
 
 namespace HomeAutomation.Helpers.Desktop;
