@@ -1,6 +1,6 @@
 namespace HomeAutomation.Helpers.Desktop.Features.Handlers;
 
-public interface IFeatureHandler<in TCommand>
+public interface IFeatureHandler
 {
-    void Handle(TCommand command);
+    void Handle<TFeature>(TFeature feature) where TFeature : IFeature;
 }
