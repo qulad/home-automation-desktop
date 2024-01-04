@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomation.Helpers.Desktop.Core.Context;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,15 +28,13 @@ public class HostedService : IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Hosted service running at: {time}", DateTimeOffset.Now);
+        PrintWelcomeMessage();
 
-        //? Print 'Starting App' etc. to make the pause less annoying.
+        RemoveConsole();
 
-        FreeConsole();
+        StartDatabase();
 
-        var homePage = _serviceProvider.GetRequiredService<HomePage>();
-
-        System.Windows.Forms.Application.Run(homePage);
+        StartGraphicalUserInterface();
 
         return Task.CompletedTask;
     }
@@ -43,5 +42,46 @@ public class HostedService : IHostedService
     public Task StopAsync(CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
+    }
+
+    private void PrintWelcomeMessage()
+    {
+        Console.WriteLine("""
+              _   _                           _         _                        _   _               ____            _                _   _      _                 
+             | | | | ___  _ __ ___   ___     / \  _   _| |_ ___  _ __ ___   __ _| |_(_) ___  _ __   |  _ \  ___  ___| |_ ___  _ __   | | | | ___| |_ __   ___ _ __ 
+             | |_| |/ _ \| '_ ` _ \ / _ \   / _ \| | | | __/ _ \| '_ ` _ \ / _` | __| |/ _ \| '_ \  | | | |/ _ \/ __| __/ _ \| '_ \  | |_| |/ _ \ | '_ \ / _ \ '__|
+             |  _  | (_) | | | | | |  __/  / ___ \ |_| | || (_) | | | | | | (_| | |_| | (_) | | | | | |_| |  __/\__ \ || (_) | |_) | |  _  |  __/ | |_) |  __/ |   
+             |_| |_|\___/|_| |_| |_|\___| /_/   \_\__,_|\__\___/|_| |_| |_|\__,_|\__|_|\___/|_| |_| |____/ \___||___/\__\___/| .__/  |_| |_|\___|_| .__/ \___|_|   
+                                                                                                                             |_|                  |_|              
+            """);
+
+        Console.WriteLine("Starting Home Automation Desktop Helper");
+
+        _logger.LogInformation("Printed welcome message");
+    }
+
+    private void RemoveConsole()
+    {
+        FreeConsole();
+
+        _logger.LogInformation("Removed console");
+    }
+
+    private void StartDatabase()
+    {
+        var dbContext = _serviceProvider.GetRequiredService<HomeAutomationDesktopHelper>();
+
+        dbContext.Database.EnsureCreated();
+
+        _logger.LogInformation("Ensured database creation");
+    }
+
+    private void StartGraphicalUserInterface()
+    {
+        var homePage = _serviceProvider.GetRequiredService<HomePage>();
+
+        System.Windows.Forms.Application.Run(homePage);
+
+        _logger.LogInformation("Started graphical user interface");
     }
 }
