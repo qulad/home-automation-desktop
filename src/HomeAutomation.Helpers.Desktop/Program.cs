@@ -18,6 +18,6 @@ public static class Program
             .UseInfrastructure()
             .UseCore();
 
-        app.Build().Run();
+        app.Build().RunAsync();
     }
 }
