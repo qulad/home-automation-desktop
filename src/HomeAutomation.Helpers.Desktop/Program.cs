@@ -2,6 +2,7 @@
 using HomeAutomation.Helpers.Desktop.Infrastructure;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
 using Microsoft.Extensions.Hosting;
+using HomeAutomation.Helpers.Desktop.Core;
 
 namespace HomeAutomation.Helpers.Desktop;
 
@@ -14,7 +15,8 @@ public static class Program
         app.Services
             .UseApplication()
             .UseGraphicalUserInterface()
-            .UseInfrastructure();
+            .UseInfrastructure()
+            .UseCore();
 
         app.Build().Run();
     }
