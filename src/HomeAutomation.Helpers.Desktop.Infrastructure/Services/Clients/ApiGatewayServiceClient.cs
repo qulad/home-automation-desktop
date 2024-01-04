@@ -1,3 +1,4 @@
+using System;
 using HomeAutomation.Helpers.Desktop.Application.Services.Clients;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Services.Clients;

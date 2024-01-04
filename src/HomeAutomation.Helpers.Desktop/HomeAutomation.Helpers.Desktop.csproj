@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
     <UserSecretsId>dotnet-HomeAutomation.Helpers.Desktop-229f94fc-aaa2-4777-80a2-a0c54336e706</UserSecretsId>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
