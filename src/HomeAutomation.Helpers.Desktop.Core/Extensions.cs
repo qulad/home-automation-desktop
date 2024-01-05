@@ -1,4 +1,5 @@
 using HomeAutomation.Helpers.Desktop.Core.Context;
+using HomeAutomation.Helpers.Desktop.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +9,9 @@ public static class Extensions
 {
     public static IServiceCollection UseCore(this IServiceCollection services)
     {
-        services.UseDbContext();
+        services
+            .UseDbContext()
+            .UseRepositories();
 
         return services;
     }
@@ -17,6 +20,13 @@ public static class Extensions
     {
         services.AddDbContext<HomeAutomationDesktopHelper>(options =>
             options.UseSqlite("Data Source=sqlite.db"));
+
+        return services;
+    }
+
+    public static IServiceCollection UseRepositories(this IServiceCollection services)
+    {
+        services.AddTransient<ConnectionRepository>();
 
         return services;
     }
