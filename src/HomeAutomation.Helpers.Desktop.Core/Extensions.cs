@@ -1,4 +1,5 @@
 using HomeAutomation.Helpers.Desktop.Core.Context;
+using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ public static class Extensions
     {
         services
             .UseDbContext()
+            .UseEntities()
             .UseRepositories();
 
         return services;
@@ -24,9 +26,20 @@ public static class Extensions
         return services;
     }
 
+    public static IServiceCollection UseEntities(this IServiceCollection services)
+    {
+        services
+            .AddSingleton<ConnectionEntity>()
+            .AddSingleton<LabelEntity>();
+
+        return services;
+    }
+
     public static IServiceCollection UseRepositories(this IServiceCollection services)
     {
-        services.AddTransient<ConnectionRepository>();
+        services
+            .AddTransient<ConnectionRepository>()
+            .AddTransient<LabelRepository>();
 
         return services;
     }

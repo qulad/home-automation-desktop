@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using HomeAutomation.Helpers.Desktop.Core.Entities.Base;
+using HomeAutomation.Helpers.Desktop.Core.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Core.Entities;
 
-public class Connection : BaseEntity
+public class ConnectionEntity : BaseEntity
 {
     public string IpAddress { get; private set; }
     public int Port { get; private set; }
     public string Name { get; set; }
-    public IList<string> Labels { get; set; }
+    public IList<Guid> LabelIds { get; set; }
 
-    protected Connection(Guid id) : base(id)
+    public ConnectionEntity(Guid id) : base(id)
     {
     }
 
@@ -34,6 +37,11 @@ public class Connection : BaseEntity
         }
 
         Port = port;
+    }
+
+    public void SetLabels(IList<Guid> labelIds)
+    {
+        LabelIds = labelIds;
     }
 
     private static bool IsIpAddressValid(string ipAddress)
