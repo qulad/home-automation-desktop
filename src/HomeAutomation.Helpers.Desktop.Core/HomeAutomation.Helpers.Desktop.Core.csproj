@@ -5,12 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore.Design" Version="8.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameWorkCore.Sqlite" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeAutomation.Helpers.Desktop.Application\HomeAutomation.Helpers.Desktop.Application.csproj" />
   </ItemGroup>
 
 </Project>

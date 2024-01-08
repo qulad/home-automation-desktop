@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomation.Helpers.Desktop.GraphicalUserInterface\HomeAutomation.Helpers.Desktop.GraphicalUserInterface.csproj" />
-    <ProjectReference Include="..\HomeAutomation.Helpers.Desktop.Core\HomeAutomation.Helpers.Desktop.Core.csproj" />
   </ItemGroup>
 
 </Project>

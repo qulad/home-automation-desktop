@@ -2,32 +2,46 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HomeAutomation.Helpers.Desktop.Core.Entities.Base;
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.Base;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace HomeAutomation.Helpers.Desktop.Core.Repositories.Base;
 
-public abstract class BaseRepositery<TEntity> where TEntity : BaseEntity
+public abstract class BaseRepositery<TEntity, TDto> where TEntity : BaseEntity where TDto : BaseDataTransferObject
 {
     protected readonly DbContext _dbContext;
+
+    private readonly IMapper _singleMapper;
+    private readonly IMapper _listMapper;
 
     protected BaseRepositery(DbContext dbContext)
     {
         _dbContext = dbContext;
+
+        var singleConfiguration = new MapperConfiguration(mc =>
+            mc.CreateMap<TEntity, TDto>());
+
+        var listConfiguration = new MapperConfiguration(mc =>
+            mc.CreateMap<IList<TEntity>, IList<TDto>>());
+
+        _singleMapper = singleConfiguration.CreateMapper();
+        _listMapper = listConfiguration.CreateMapper();
     }
 
-    public virtual IEnumerable<TEntity> GetAll()
+    public virtual IEnumerable<TDto> GetAll()
     {
-        return _dbContext.Set<TEntity>().ToList();
+        return _listMapper.Map<IList<TEntity>, IList<TDto>>(_dbContext.Set<TEntity>().ToList());
     }
 
-    public virtual IEnumerable<TEntity> GetByPredicate(Func<TEntity, bool> predicate)
+    public virtual IEnumerable<TDto> GetByPredicate(Func<TEntity, bool> predicate)
     {
-        return _dbContext.Set<TEntity>().Where(predicate).ToList();
+        return _listMapper.Map<IList<TEntity>, IList<TDto>>(_dbContext.Set<TEntity>().Where(predicate).ToList());
     }
 
-    public virtual TEntity GetById(Guid id)
+    public virtual TDto GetById(Guid id)
     {
-        return _dbContext.Set<TEntity>().Find(id);
+        return _singleMapper.Map<TEntity, TDto>(_dbContext.Set<TEntity>().Find(id));
     }
     public virtual void Add(TEntity entity)
     {
