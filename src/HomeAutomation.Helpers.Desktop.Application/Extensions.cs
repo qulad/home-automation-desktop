@@ -7,16 +7,7 @@ public static class Extensions
 {
     public static IServiceCollection UseApplication(this IServiceCollection services)
     {
-        services
-            .UseHostedService()
-            .UseFeatureSender();
-
-        return services;
-    }
-
-    public static IServiceCollection UseHostedService(this IServiceCollection services)
-    {
-        services.AddHostedService<HostedService>();
+        services.UseFeatureSender();
 
         return services;
     }

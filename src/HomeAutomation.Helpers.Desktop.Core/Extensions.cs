@@ -1,3 +1,5 @@
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
 using HomeAutomation.Helpers.Desktop.Core.Context;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.Core.Repositories;
@@ -29,8 +31,8 @@ public static class Extensions
     public static IServiceCollection UseEntities(this IServiceCollection services)
     {
         services
-            .AddSingleton<ConnectionEntity>()
-            .AddSingleton<LabelEntity>();
+            .AddTransient<ConnectionEntity>()
+            .AddTransient<LabelEntity>();
 
         return services;
     }
@@ -38,8 +40,8 @@ public static class Extensions
     public static IServiceCollection UseRepositories(this IServiceCollection services)
     {
         services
-            .AddTransient<ConnectionRepository>()
-            .AddTransient<LabelRepository>();
+            .AddTransient<IConnectionRepository<ConnectionEntity, ConnectionDto>, ConnectionRepository>()
+            .AddTransient<ILabelRepository<LabelEntity, LabelDto>, LabelRepository>();
 
         return services;
     }
