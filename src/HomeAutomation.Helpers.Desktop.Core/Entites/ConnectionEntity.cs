@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using HomeAutomation.Helpers.Desktop.Core.Entities.Base;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Core.Entities;
 

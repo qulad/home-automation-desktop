@@ -4,9 +4,9 @@ using HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
 using Microsoft.Extensions.Hosting;
 using HomeAutomation.Helpers.Desktop.Core;
 using System.Runtime.InteropServices;
-using HomeAutomation.Helpers.Desktop.Core.Context;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Helpers.Desktop;
 
@@ -63,7 +63,7 @@ public static class Program
 
     private static void StartDatabase(IServiceProvider services)
     {
-        var dbContext = services.GetRequiredService<HomeAutomationDesktopHelper>();
+        var dbContext = services.GetRequiredService<DbContext>();
 
         dbContext.Database.EnsureCreated();
     }

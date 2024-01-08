@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using HomeAutomation.Helpers.Desktop.Application.Features;
 
 namespace HomeAutomation.Helpers.Desktop.Application;
 

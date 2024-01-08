@@ -22,7 +22,7 @@ public static class Extensions
 
     public static IServiceCollection UseDbContext(this IServiceCollection services)
     {
-        services.AddDbContext<HomeAutomationDesktopHelper>(options =>
+        services.AddDbContext<DbContext, HomeAutomationDesktopHelper>(options =>
             options.UseSqlite("Data Source=sqlite.db"));
 
         return services;

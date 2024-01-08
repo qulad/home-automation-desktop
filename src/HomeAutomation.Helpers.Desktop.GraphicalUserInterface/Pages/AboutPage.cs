@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages
+namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
+
+public partial class AboutPage : Form
 {
-    public partial class AboutPage : Form
+    public AboutPage()
     {
-        public AboutPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
