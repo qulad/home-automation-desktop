@@ -1,5 +1,7 @@
 using HomeAutomation.Helpers.Desktop.Application.Services;
 using HomeAutomation.Helpers.Desktop.Application.Services.Clients;
+using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
+using HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Services;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Services.Clients;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +14,23 @@ public static class Extensions
     {
         services
             .UseServices()
+            .UseCommandHandlers()
+            .UseCommands()
             .UseServiceClients();
+
+        return services;
+    }
+
+    private static IServiceCollection UseCommandHandlers(this IServiceCollection services)
+    {
+        services.AddSingleton<GetMultipleLabelsHandler>();
+
+        return services;
+    }
+
+    private static IServiceCollection UseCommands(this IServiceCollection services)
+    {
+        services.AddTransient<GetMultipleLabels>();
 
         return services;
     }
