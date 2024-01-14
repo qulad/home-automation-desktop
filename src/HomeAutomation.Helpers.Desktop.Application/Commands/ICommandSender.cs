@@ -1,4 +1,4 @@
-namespace HomeAutomation.Helpers.Desktop.Application.Commands.Base;
+namespace HomeAutomation.Helpers.Desktop.Application.Commands;
 
 public interface ICommandSender
 {
