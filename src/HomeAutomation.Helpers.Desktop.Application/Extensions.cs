@@ -1,3 +1,4 @@
+using HomeAutomation.Helpers.Desktop.Application.Commands.Base;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Application;
