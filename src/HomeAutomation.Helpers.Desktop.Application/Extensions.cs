@@ -6,14 +6,14 @@ public static class Extensions
 {
     public static IServiceCollection UseApplication(this IServiceCollection services)
     {
-        services.UseFeatureSender();
+        services.UseCommandSender();
 
         return services;
     }
 
-    public static IServiceCollection UseFeatureSender(this IServiceCollection services)
+    public static IServiceCollection UseCommandSender(this IServiceCollection services)
     {
-        services.AddSingleton<IFeatureSender, FeatureSender>();
+        services.AddSingleton<ICommandSender, CommandSender>();
 
         return services;
     }
