@@ -17,14 +17,14 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseBasePage(this IServiceCollection services)
+    private static IServiceCollection UseBasePage(this IServiceCollection services)
     {
         services.AddTransient<BasePage>();
 
         return services;
     }
 
-    public static IServiceCollection UsePages(this IServiceCollection services)
+    private static IServiceCollection UsePages(this IServiceCollection services)
     {
         services
             .AddSingleton<AboutPage>()
@@ -35,7 +35,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseWindows(this IServiceCollection services)
+    private static IServiceCollection UseWindows(this IServiceCollection services)
     {
         services.AddTransient<MainWindow>();
 

@@ -20,7 +20,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseDbContext(this IServiceCollection services)
+    private static IServiceCollection UseDbContext(this IServiceCollection services)
     {
         services.AddDbContext<DbContext, HomeAutomationDesktopHelper>(options =>
             options.UseSqlite("Data Source=sqlite.db"));
@@ -28,7 +28,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseEntities(this IServiceCollection services)
+    private static IServiceCollection UseEntities(this IServiceCollection services)
     {
         services
             .AddTransient<ConnectionEntity>()
@@ -37,7 +37,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseRepositories(this IServiceCollection services)
+    private static IServiceCollection UseRepositories(this IServiceCollection services)
     {
         services
             .AddTransient<IConnectionRepository<ConnectionEntity, ConnectionDto>, ConnectionRepository>()

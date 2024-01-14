@@ -17,7 +17,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseServices(this IServiceCollection services)
+    private static IServiceCollection UseServices(this IServiceCollection services)
     {
         services
             .AddSingleton<IPlatformIoService, PlatformIoService>()
@@ -26,7 +26,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseServiceClients(this IServiceCollection services)
+    private static IServiceCollection UseServiceClients(this IServiceCollection services)
     {
         services
             .AddTransient<IApiGatewayServiceClient, ApiGatewayServiceCLient>()

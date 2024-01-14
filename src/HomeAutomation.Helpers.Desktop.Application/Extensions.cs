@@ -15,14 +15,14 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection UseCommandSender(this IServiceCollection services)
+    private static IServiceCollection UseCommandSender(this IServiceCollection services)
     {
         services.AddSingleton<ICommandSender, CommandSender>();
 
         return services;
     }
 
-    public static IServiceCollection UseDataTransferObjects(this IServiceCollection services)
+    private static IServiceCollection UseDataTransferObjects(this IServiceCollection services)
     {
         services
             .AddTransient<ConnectionDto>()
