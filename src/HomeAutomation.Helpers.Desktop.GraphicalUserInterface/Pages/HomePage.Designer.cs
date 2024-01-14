@@ -1,4 +1,4 @@
-﻿namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
+﻿namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 partial class HomePage
 {

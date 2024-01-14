@@ -1,11 +1,12 @@
 using System.Windows.Forms;
 
-namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
+namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
-public partial class HomePage : Form
+public partial class HomePage : UserControl
 {
     public HomePage()
     {
         InitializeComponent();
     }
+
 }

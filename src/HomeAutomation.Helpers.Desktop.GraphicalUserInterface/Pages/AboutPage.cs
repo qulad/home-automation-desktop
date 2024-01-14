@@ -2,7 +2,7 @@
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
-public partial class AboutPage : Form
+public partial class AboutPage : UserControl
 {
     public AboutPage()
     {

@@ -2,7 +2,7 @@
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
-public partial class AddPage : Form
+public partial class AddPage : UserControl
 {
     public AddPage()
     {

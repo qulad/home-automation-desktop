@@ -2,7 +2,7 @@
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
-public partial class MonitorPage : Form
+public partial class MonitorPage : UserControl
 {
     public MonitorPage()
     {

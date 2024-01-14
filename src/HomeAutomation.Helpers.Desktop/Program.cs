@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.EntityFrameworkCore;
+using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
 
 namespace HomeAutomation.Helpers.Desktop;
 
@@ -70,8 +71,8 @@ public static class Program
 
     private static void StartGraphicalUserInterface(IServiceProvider services)
     {
-        var homePage = services.GetRequiredService<HomePage>();
+        var mainWindow = services.GetRequiredService<MainWindow>();
 
-        System.Windows.Forms.Application.Run(homePage);
+        System.Windows.Forms.Application.Run(mainWindow);
     }
 }
