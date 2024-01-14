@@ -9,6 +9,20 @@ partial class AddPage
     private IContainer components = null;
 
     private Button HomePageButton;
+    private GroupBox ExistingLabelsGroupBox;
+    private Label ConnectionNameLabel;
+    private Label ConnectionPortLabel;
+    private GroupBox NewLabelsGroupBox;
+    private Button AddConnectionButton;
+    private MaskedTextBox ConnectionPortMaskedTextBox;
+    private TextBox ConnectionNameTextBox;
+    private GroupBox LabelsGroupBox;
+    private Label AddConnectionPageLabel;
+    private CheckedListBox ExistingLabelsCheckedListBox;
+    private Button AddNewLabelButton;
+    private TextBox NewLabelTextBox;
+    private ListBox NewLabelListBox;
+    private Label NewLabelLabel;
 
     protected override void Dispose(bool disposing)
     {
@@ -201,19 +215,4 @@ partial class AddPage
         ResumeLayout(false);
         PerformLayout();
     }
-
-    private GroupBox ExistingLabelsGroupBox;
-    private Label ConnectionNameLabel;
-    private Label ConnectionPortLabel;
-    private GroupBox NewLabelsGroupBox;
-    private Button AddConnectionButton;
-    private MaskedTextBox ConnectionPortMaskedTextBox;
-    private TextBox ConnectionNameTextBox;
-    private GroupBox LabelsGroupBox;
-    private Label AddConnectionPageLabel;
-    private CheckedListBox ExistingLabelsCheckedListBox;
-    private Button AddNewLabelButton;
-    private TextBox NewLabelTextBox;
-    private ListBox NewLabelListBox;
-    private Label NewLabelLabel;
 }
