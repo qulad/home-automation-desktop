@@ -17,15 +17,30 @@ public class CommandSender : ICommandSender
         _serviceProvider = serviceProvider;
     }
 
-    public TDto SendGetSingle<TCommand, TDto>(TCommand command) where TCommand : ICommand where TDto : BaseDataTransferObject
+    public void SendAddMultiple<TCommand>(IList<TCommand> commands) where TCommand : ICommand
     {
-        var handler = _serviceProvider.GetRequiredService<IGetSingleCommandHandler<TCommand, TDto>>();
-        return handler.Handle(command);
+        var handler = _serviceProvider.GetRequiredService<IAddMultipleCommandHandler<TCommand>>();
+
+        handler.Handle(commands);
+    }
+
+
+    public void SendAddSingle<TCommand>(TCommand command) where TCommand : ICommand
+    {
+        var handler = _serviceProvider.GetRequiredService<IAddSingleCommandHandler<TCommand>>();
+
+        handler.Handle(command);
     }
 
     public List<TDto> SendGetMultiple<TCommand, TDto>(TCommand command) where TCommand : ICommand where TDto : BaseDataTransferObject
     {
         var handler = _serviceProvider.GetRequiredService<IGetMultipleCommandHandler<TCommand, TDto>>();
+        return handler.Handle(command);
+    }
+
+    public TDto SendGetSingle<TCommand, TDto>(TCommand command) where TCommand : ICommand where TDto : BaseDataTransferObject
+    {
+        var handler = _serviceProvider.GetRequiredService<IGetSingleCommandHandler<TCommand, TDto>>();
         return handler.Handle(command);
     }
 }
