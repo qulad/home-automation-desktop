@@ -26,7 +26,8 @@ public static class Extensions
         services
             .AddSingleton<AddMultipleLabelsHandler>()
             .AddSingleton<AddSingleLabelHandler>()
-            .AddSingleton<GetMultipleLabelsHandler>();
+            .AddSingleton<GetMultipleLabelsHandler>()
+            .AddSingleton<GetSingleLabelHandler>();
 
         return services;
     }
@@ -36,7 +37,8 @@ public static class Extensions
         services
             .AddTransient<AddMultipleLabels>()
             .AddTransient<AddSingleLabel>()
-            .AddTransient<GetMultipleLabels>();
+            .AddTransient<GetMultipleLabels>()
+            .AddTransient<GetSingleLabel>();
 
         return services;
     }
