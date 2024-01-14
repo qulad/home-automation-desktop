@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.EntityFrameworkCore;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
+using System.Threading.Tasks;
+using WindowsFormsLifetime;
 
 namespace HomeAutomation.Helpers.Desktop;
 
@@ -16,21 +18,27 @@ public static class Program
     [DllImport("kernel32.dll")]
     static extern void FreeConsole();
 
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        var app = Host.CreateApplicationBuilder(args);
+        var app = Host.CreateDefaultBuilder(args);
 
-        app.Services
-            .UseApplication()
-            .UseCore()
-            .UseGraphicalUserInterface()
-            .UseInfrastructure()
-            .DoStartupChecks();
+        app.UseWindowsFormsLifetime<MainWindow>();
 
-        app.Build().RunAsync();
+        app.ConfigureServices((hostContext, services) =>
+        {
+            services
+                .UseApplication()
+                .UseCore()
+                .UseGraphicalUserInterface()
+                .UseInfrastructure();
+            
+            DoStartupChecks(services);
+        });
+
+        await app.Build().RunAsync();
     }
 
-    private static void DoStartupChecks(this IServiceCollection serviceCollection)
+    private static void DoStartupChecks(IServiceCollection serviceCollection)
     {
         var services = serviceCollection.BuildServiceProvider();
 
@@ -39,8 +47,6 @@ public static class Program
         RemoveConsole();
 
         StartDatabase(services);
-
-        StartGraphicalUserInterface(services);
     }
 
     private static void PrintWelcomeMessage()
@@ -67,12 +73,5 @@ public static class Program
         var dbContext = services.GetRequiredService<DbContext>();
 
         dbContext.Database.EnsureCreated();
-    }
-
-    private static void StartGraphicalUserInterface(IServiceProvider services)
-    {
-        var mainWindow = services.GetRequiredService<MainWindow>();
-
-        System.Windows.Forms.Application.Run(mainWindow);
     }
 }

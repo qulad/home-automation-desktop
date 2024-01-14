@@ -1,4 +1,5 @@
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
+using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,8 +10,16 @@ public static class Extensions
     public static IServiceCollection UseGraphicalUserInterface(this IServiceCollection services)
     {
         services
+            .UseBasePage()
             .UsePages()
             .UseWindows();
+
+        return services;
+    }
+
+    public static IServiceCollection UseBasePage(this IServiceCollection services)
+    {
+        services.AddTransient<BasePage>();
 
         return services;
     }
@@ -18,10 +27,10 @@ public static class Extensions
     public static IServiceCollection UsePages(this IServiceCollection services)
     {
         services
-            .AddTransient<HomePage>()
-            .AddTransient<AboutPage>()
-            .AddTransient<MonitorPage>()
-            .AddTransient<AddPage>();
+            .AddSingleton<AboutPage>()
+            .AddSingleton<AddPage>()
+            .AddSingleton<HomePage>()
+            .AddSingleton<MonitorPage>();
 
         return services;
     }
