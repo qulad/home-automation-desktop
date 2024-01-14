@@ -23,14 +23,20 @@ public static class Extensions
 
     private static IServiceCollection UseCommandHandlers(this IServiceCollection services)
     {
-        services.AddSingleton<GetMultipleLabelsHandler>();
+        services
+            .AddSingleton<AddMultipleLabelsHandler>()
+            .AddSingleton<AddSingleLabelHandler>()
+            .AddSingleton<GetMultipleLabelsHandler>();
 
         return services;
     }
 
     private static IServiceCollection UseCommands(this IServiceCollection services)
     {
-        services.AddTransient<GetMultipleLabels>();
+        services
+            .AddTransient<AddMultipleLabels>()
+            .AddTransient<AddSingleLabel>()
+            .AddTransient<GetMultipleLabels>();
 
         return services;
     }
