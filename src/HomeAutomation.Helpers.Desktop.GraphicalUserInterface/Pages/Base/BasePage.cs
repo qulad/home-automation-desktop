@@ -26,4 +26,11 @@ public class BasePage
 
         page.Hide();
     }
+
+    public UserControl Get<TPage>() where TPage : UserControl
+    {
+        var page = _serviceProvider.GetRequiredService<TPage>();
+
+        return page;
+    }
 }

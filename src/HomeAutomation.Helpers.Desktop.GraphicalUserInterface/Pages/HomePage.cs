@@ -1,24 +1,16 @@
 using System;
 using System.Windows.Forms;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 public partial class HomePage : UserControl
 {
-    private readonly AboutPage _aboutPage;
-    private readonly AddPage _addPage;
-    private readonly MonitorPage _monitorPage;
+    private readonly BasePage _basePage;
 
-    public HomePage(
-        AboutPage aboutPage,
-        AddPage addPage,
-        MonitorPage monitorPage)
+    public HomePage(BasePage basePage)
     {
-        _aboutPage = aboutPage;
-        _addPage = addPage;
-        _monitorPage = monitorPage;
+        _basePage = basePage;
 
         InitializeComponent();
     }
@@ -27,20 +19,20 @@ public partial class HomePage : UserControl
     {
         Hide();
 
-        _aboutPage.Show();
+        _basePage.Show<AboutPage>();
     }
 
     private void AddButtonClick(object sender, EventArgs e)
     {
         Hide();
 
-        _addPage.Show();
+        _basePage.Show<AddPage>();
     }
 
     private void MonitorButtonClick(object sender, EventArgs e)
     {
         Hide();
 
-        _monitorPage.Show();
+        _basePage.Show<MonitorPage>();
     }
 }

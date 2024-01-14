@@ -1,39 +1,50 @@
-﻿namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages
+﻿using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
+
+partial class AddPage
 {
-    partial class AddPage
+    private IContainer components = null;
+
+    private Button HomePageButton;
+
+    protected override void Dispose(bool disposing)
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        if (disposing && (components != null))
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            components.Dispose();
         }
+        base.Dispose(disposing);
+    }
 
-        #region Windows Form Designer generated code
+    private void InitializeComponent()
+    {
+        HomePageButton = new Button();
+        SuspendLayout();
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "AddPage";
-        }
+        this.components = new Container();
+        this.AutoScaleMode = AutoScaleMode.Font;
+        this.ClientSize = new Size(800, 450);
+        this.Text = "AddPage";
 
-        #endregion
+        HomePageButton.Location = new Point(288, 313);
+        HomePageButton.Name = "HomePage";
+        HomePageButton.Size = new Size(160, 83);
+        HomePageButton.TabIndex = 3;
+        HomePageButton.Text = "Ana sayfa";
+        HomePageButton.UseVisualStyleBackColor = true;
+        HomePageButton.Click += HomePageButtonClick;
+
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(800, 450);
+        Controls.Add(HomePageButton);
+
+        Name = "A";
+        Text = "AAA!";
+        ResumeLayout(false);
+        PerformLayout();
     }
 }

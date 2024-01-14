@@ -8,16 +8,19 @@ namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
 
 public partial class MainWindow : Form
 {
-    public MainWindow(
-        AboutPage aboutPage,
-        AddPage addPage,
-        HomePage homePage)
+    public MainWindow(BasePage basePage)
     {
+        var aboutPage = basePage.Get<AboutPage>();
+        var addPage = basePage.Get<AddPage>();
+        var homePage = basePage.Get<HomePage>();
+        var monitorPage = basePage.Get<MonitorPage>();
+
         InitializeComponent();
 
         Controls.Add(aboutPage);
         Controls.Add(addPage);
         Controls.Add(homePage);
+        Controls.Add(monitorPage);
 
         ShowPage(homePage);
     }
