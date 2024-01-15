@@ -27,14 +27,13 @@ public partial class SelectConnectionPage : UserControl
     {
         var query = new GetMultipleConnections();
 
-        var connectionNames = _querySender.SendGetMultiple<GetMultipleConnections, ConnectionDto>(query).Select(x => x.Name).ToList();
+        var connectionNames = _querySender.SendGetMultiple<GetMultipleConnections, ConnectionDto>(query).Select(x => x.Name).ToArray();
 
-        ConnectionsListBox.Items.Add(connectionNames);
+        ConnectionsListBox.Items.AddRange(connectionNames);
     }
 
     private void SelectConnectionButtonClick(object sender, EventArgs e)
     {
-        // seçili olan bağlantıyı al
         var selectedConnectionName = ConnectionsListBox.SelectedItem.ToString();
 
         if (string.IsNullOrEmpty(Name))
@@ -46,7 +45,6 @@ public partial class SelectConnectionPage : UserControl
             return;
         }
 
-        // bağlantıyı veritabanında bul
         var query = new GetMultipleConnections();
 
         var connections = _querySender.SendGetMultiple<GetMultipleConnections, ConnectionDto>(query);
@@ -61,11 +59,10 @@ public partial class SelectConnectionPage : UserControl
 
             return;
         }
-        // monitörleme ekranını aç ve bağlantıyı ver
 
         Hide();
 
-        
+        _basePage.Show<MonitorPage>();
     }
 
     public void HomePageButtonClick(object sender, EventArgs e)

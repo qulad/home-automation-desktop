@@ -14,6 +14,7 @@ public partial class MainWindow : Form
         var addPage = basePage.Get<AddConnectionPage>();
         var homePage = basePage.Get<HomePage>();
         var monitorPage = basePage.Get<MonitorPage>();
+        var selectConnectionPage = basePage.Get<SelectConnectionPage>();
 
         InitializeComponent();
 
@@ -21,6 +22,7 @@ public partial class MainWindow : Form
         Controls.Add(addPage);
         Controls.Add(homePage);
         Controls.Add(monitorPage);
+        Controls.Add(selectConnectionPage);
 
         ShowPage(homePage);
     }

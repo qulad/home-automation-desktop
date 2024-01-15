@@ -35,7 +35,7 @@ public class GetMultipleConnectionsHandler : IGetMultipleQueryHandler<GetMultipl
     {
         Func<ConnectionEntity, bool> predicate = null;
 
-        if (command.Ids.Count > 0)
+        if (command.Ids is not null && command.Ids.Count > 0)
         {
             if (command.Ids.Count == 1)
             {
