@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Helpers.Desktop.Core.Context;
 
-public class HomeAutomationDesktopHelper : DbContext
+public class HomeAutomationDesktopHelperDbContext : DbContext
 {
     public DbSet<ConnectionEntity> Connections { get; set; }
     public DbSet<LabelEntity> Labels { get; set; }
 
-    public HomeAutomationDesktopHelper(DbContextOptions<HomeAutomationDesktopHelper> opitons) : base(opitons)
+    public HomeAutomationDesktopHelperDbContext(DbContextOptions<HomeAutomationDesktopHelperDbContext> opitons) : base(opitons)
     {
     }
 }

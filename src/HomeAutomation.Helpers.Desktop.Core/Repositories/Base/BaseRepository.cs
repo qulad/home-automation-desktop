@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HomeAutomation.Helpers.Desktop.Core.Context;
 using HomeAutomation.Helpers.Desktop.Core.Entities.Base;
-using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Helpers.Desktop.Core.Repositories.Base;
 
 public abstract class BaseRepositery<TEntity> where TEntity : BaseEntity
 {
-    protected readonly DbContext _dbContext;
+    protected readonly HomeAutomationDesktopHelperDbContext _dbContext;
 
-    protected BaseRepositery(DbContext dbContext)
+    protected BaseRepositery(HomeAutomationDesktopHelperDbContext dbContext)
     {
         _dbContext = dbContext;
     }

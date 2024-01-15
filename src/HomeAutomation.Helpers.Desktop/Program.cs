@@ -3,13 +3,14 @@ using HomeAutomation.Helpers.Desktop.Infrastructure;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface;
 using Microsoft.Extensions.Hosting;
 using HomeAutomation.Helpers.Desktop.Core;
+using HomeAutomation.Helpers.Desktop.Core.Context;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Microsoft.EntityFrameworkCore;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
 using System.Threading.Tasks;
 using WindowsFormsLifetime;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Helpers.Desktop;
 
@@ -70,8 +71,8 @@ public static class Program
 
     private static void StartDatabase(IServiceProvider services)
     {
-        var dbContext = services.GetRequiredService<DbContext>();
+        var dbContext = services.GetRequiredService<HomeAutomationDesktopHelperDbContext>();
 
-        dbContext.Database.EnsureCreated();
+        dbContext.Database.Migrate();
     }
 }
