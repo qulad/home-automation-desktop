@@ -29,7 +29,9 @@ public static class Extensions
     {
         services
             .AddSingleton<AddMultipleLabelsHandler>()
-            .AddSingleton<AddSingleLabelHandler>();
+            .AddSingleton<AddSingleLabelHandler>()
+            .AddSingleton<DeleteSingleLabelHandler>()
+            .AddSingleton<UpdateSingleLabelHandler>();
 
         return services;
     }
@@ -38,7 +40,9 @@ public static class Extensions
     {
         services
             .AddTransient<AddMultipleLabels>()
-            .AddTransient<AddSingleLabel>();
+            .AddTransient<AddSingleLabel>()
+            .AddTransient<DeleteSingleLabel>()
+            .AddTransient<UpdateSingleLabel>();
 
         return services;
     }
