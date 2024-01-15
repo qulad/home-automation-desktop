@@ -31,4 +31,18 @@ public class CommandSender : ICommandSender
 
         handler.Handle(command);
     }
+
+    public void SendDeleteSingle<TCommand>(TCommand command) where TCommand : ICommand
+    {
+        var handler = _serviceProvider.GetRequiredService<IDeleteSingleCommandHandler<TCommand>>();
+
+        handler.Handle(command);
+    }
+
+    public void SendUpdateSingle<TCommand, TEntity>(TCommand command, TEntity existingEntity) where TCommand : ICommand
+    {
+        var handler = _serviceProvider.GetRequiredService<IUpdateSingleCommandHandler<TCommand, TEntity>>();
+
+        handler.Handle(command, existingEntity);
+    }
 }
