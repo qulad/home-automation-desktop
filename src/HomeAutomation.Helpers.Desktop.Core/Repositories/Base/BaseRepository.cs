@@ -2,10 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HomeAutomation.Helpers.Desktop.Core.Entities.Base;
-using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.Base;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
-using HomeAutomation.Helpers.Desktop.Application.Repositories.Base;
 
 namespace HomeAutomation.Helpers.Desktop.Core.Repositories.Base;
 
