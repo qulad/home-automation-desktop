@@ -114,6 +114,7 @@ partial class AddConnectionPage
         AddConnectionButton.TabIndex = 8;
         AddConnectionButton.Text = "Bağlantıyı Ekle";
         AddConnectionButton.UseVisualStyleBackColor = true;
+        AddConnectionButton.Click += AddConnectionButtonClick;
         // 
         // ConnectionPortMaskedTextBox
         // 
