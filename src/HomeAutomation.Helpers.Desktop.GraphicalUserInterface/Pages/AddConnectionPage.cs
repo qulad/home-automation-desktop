@@ -4,11 +4,11 @@ using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
-public partial class AddPage : UserControl
+public partial class AddConnectionPage : UserControl
 {
     private readonly BasePage _basePage;
 
-    public AddPage(BasePage basePage)
+    public AddConnectionPage(BasePage basePage)
     {
         _basePage = basePage;
 

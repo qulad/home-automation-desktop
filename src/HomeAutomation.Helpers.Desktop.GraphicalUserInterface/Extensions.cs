@@ -28,7 +28,7 @@ public static class Extensions
     {
         services
             .AddSingleton<AboutPage>()
-            .AddSingleton<AddPage>()
+            .AddSingleton<AddConnectionPage>()
             .AddSingleton<HomePage>()
             .AddSingleton<MonitorPage>();
 

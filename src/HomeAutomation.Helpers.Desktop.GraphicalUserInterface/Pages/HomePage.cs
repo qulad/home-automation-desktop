@@ -26,7 +26,7 @@ public partial class HomePage : UserControl
     {
         Hide();
 
-        _basePage.Show<AddPage>();
+        _basePage.Show<AddConnectionPage>();
     }
 
     private void MonitorButtonClick(object sender, EventArgs e)

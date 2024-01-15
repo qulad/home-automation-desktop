@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
-partial class AddPage
+partial class AddConnectionPage
 {
     private IContainer components = null;
 
@@ -194,7 +194,7 @@ partial class AddPage
         NewLabelLabel.TabIndex = 3;
         NewLabelLabel.Text = "Yeni etiket adı";
         // 
-        // AddPage
+        // AddConnectionPage
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -206,7 +206,7 @@ partial class AddPage
         Controls.Add(ConnectionPortLabel);
         Controls.Add(ConnectionNameLabel);
         Controls.Add(HomePageButton);
-        Name = "AddPage";
+        Name = "AddConnectionPage";
         Size = new Size(800, 450);
         ExistingLabelsGroupBox.ResumeLayout(false);
         NewLabelsGroupBox.ResumeLayout(false);

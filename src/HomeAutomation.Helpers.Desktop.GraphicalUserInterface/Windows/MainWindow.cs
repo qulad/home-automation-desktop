@@ -11,7 +11,7 @@ public partial class MainWindow : Form
     public MainWindow(BasePage basePage)
     {
         var aboutPage = basePage.Get<AboutPage>();
-        var addPage = basePage.Get<AddPage>();
+        var addPage = basePage.Get<AddConnectionPage>();
         var homePage = basePage.Get<HomePage>();
         var monitorPage = basePage.Get<MonitorPage>();
 
