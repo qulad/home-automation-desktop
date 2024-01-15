@@ -6,7 +6,6 @@ namespace HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 
 public class ConnectionDto : BaseDataTransferObject
 {
-    public string IpAddress { get; set; }
     public int Port { get; set; }
     public string Name { get; set; }
     public IList<Guid> LabelIds { get; set; }
