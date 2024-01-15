@@ -29,8 +29,11 @@ public static class Extensions
     {
         services
             .AddSingleton<AddMultipleLabelsHandler>()
+            .AddSingleton<AddSingleConnectionHandler>()
             .AddSingleton<AddSingleLabelHandler>()
+            .AddSingleton<DeleteSingleConnectionHandler>()
             .AddSingleton<DeleteSingleLabelHandler>()
+            .AddSingleton<UpdateSingleConnectionHandler>()
             .AddSingleton<UpdateSingleLabelHandler>();
 
         return services;
@@ -40,8 +43,11 @@ public static class Extensions
     {
         services
             .AddTransient<AddMultipleLabels>()
+            .AddTransient<AddSingleConnection>()
             .AddTransient<AddSingleLabel>()
+            .AddTransient<DeleteSingleConnection>()
             .AddTransient<DeleteSingleLabel>()
+            .AddTransient<UpdateSingleConnection>()
             .AddTransient<UpdateSingleLabel>();
 
         return services;
@@ -50,7 +56,9 @@ public static class Extensions
     private static IServiceCollection UseQueries(this IServiceCollection services)
     {
         services
+            .AddTransient<GetMultipleConnections>()
             .AddTransient<GetMultipleLabels>()
+            .AddTransient<GetSingleConnection>()
             .AddTransient<GetSingleLabel>();
 
         return services;
@@ -59,7 +67,9 @@ public static class Extensions
     private static IServiceCollection UseQueryHandlers(this IServiceCollection services)
     {
         services
+            .AddSingleton<GetMultipleConnectionsHandler>()
             .AddSingleton<GetMultipleLabelsHandler>()
+            .AddSingleton<GetSingleConnectionHandler>()
             .AddSingleton<GetSingleLabelHandler>();
 
         return services;
