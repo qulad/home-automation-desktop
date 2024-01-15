@@ -29,10 +29,10 @@ public partial class HomePage : UserControl
         _basePage.Show<AddConnectionPage>();
     }
 
-    private void MonitorButtonClick(object sender, EventArgs e)
+    private void SelectConnectionButtonClick(object sender, EventArgs e)
     {
         Hide();
 
-        _basePage.Show<MonitorPage>();
+        _basePage.Show<SelectConnectionPage>();
     }
 }

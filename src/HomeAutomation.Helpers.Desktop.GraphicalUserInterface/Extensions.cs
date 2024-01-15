@@ -30,7 +30,7 @@ public static class Extensions
             .AddSingleton<AboutPage>()
             .AddSingleton<AddConnectionPage>()
             .AddSingleton<HomePage>()
-            .AddSingleton<MonitorPage>();
+            .AddSingleton<SelectConnectionPage>();
 
         return services;
     }

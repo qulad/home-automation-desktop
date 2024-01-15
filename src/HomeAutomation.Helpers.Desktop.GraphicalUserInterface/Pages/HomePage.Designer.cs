@@ -8,7 +8,7 @@ partial class HomePage
 {
     private IContainer components = null;
 
-    private Button MonitorButton;
+    private Button SelectConnectionButton;
     private Button AddButton;
     private Label ApplicationNameLabel;
     private Button AboutButton;
@@ -24,19 +24,19 @@ partial class HomePage
 
     private void InitializeComponent()
     {
-        MonitorButton = new Button();
+        SelectConnectionButton = new Button();
         AddButton = new Button();
         ApplicationNameLabel = new Label();
         AboutButton = new Button();
         SuspendLayout();
 
-        MonitorButton.Location = new Point(84, 161);
-        MonitorButton.Name = "MonitorButton";
-        MonitorButton.Size = new Size(160, 83);
-        MonitorButton.TabIndex = 0;
-        MonitorButton.Text = "Monitörle";
-        MonitorButton.UseVisualStyleBackColor = true;
-        MonitorButton.Click += MonitorButtonClick;
+        SelectConnectionButton.Location = new Point(84, 161);
+        SelectConnectionButton.Name = "SelectConnectionButton";
+        SelectConnectionButton.Size = new Size(160, 83);
+        SelectConnectionButton.TabIndex = 0;
+        SelectConnectionButton.Text = "Bağlantı seç";
+        SelectConnectionButton.UseVisualStyleBackColor = true;
+        SelectConnectionButton.Click += SelectConnectionButtonClick;
 
         AddButton.Location = new Point(494, 161);
         AddButton.Name = "AddButton";
@@ -68,7 +68,7 @@ partial class HomePage
         Controls.Add(AboutButton);
         Controls.Add(ApplicationNameLabel);
         Controls.Add(AddButton);
-        Controls.Add(MonitorButton);
+        Controls.Add(SelectConnectionButton);
         Name = "HomePage";
         Text = "Hoşgeldin!";
         ResumeLayout(false);
