@@ -1,5 +1,6 @@
 using HomeAutomation.Helpers.Desktop.Application.Commands;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Application;
@@ -28,7 +29,7 @@ public static class Extensions
     {
         services
             .AddSingleton<ICommandSender, CommandSender>()
-            .AddSingleton<ICommandSender, CommandSender>();
+            .AddSingleton<IQuerySender, QuerySender>();
 
         return services;
     }
