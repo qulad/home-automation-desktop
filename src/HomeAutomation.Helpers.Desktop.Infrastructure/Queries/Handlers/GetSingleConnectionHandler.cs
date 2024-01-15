@@ -1,14 +1,15 @@
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
+using HomeAutomation.Helpers.Desktop.Core.Entities;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Queries.Handlers;
 
 public class GetSingleConnectionHandler : IGetSingleQueryHandler<GetSingleConnection, ConnectionDto>
 {
-    private readonly ConnectionRepository _connectionRepository;
+    private readonly IConnectionRepository<ConnectionEntity, ConnectionDto> _connectionRepository;
 
-    public GetSingleConnectionHandler(ConnectionRepository connectionRepository)
+    public GetSingleConnectionHandler(IConnectionRepository<ConnectionEntity, ConnectionDto> connectionRepository)
     {
         _connectionRepository = connectionRepository;
     }

@@ -183,6 +183,7 @@ partial class AddConnectionPage
         AddNewLabelButton.TabIndex = 2;
         AddNewLabelButton.Text = "Yeni etiket ekle";
         AddNewLabelButton.UseVisualStyleBackColor = true;
+        AddNewLabelButton.Click += AddNewLabelButtonClick;
         // 
         // NewLabelLabel
         // 

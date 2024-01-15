@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Queries.Handlers;
 
 public class GetMultipleConnectionsHandler : IGetMultipleQueryHandler<GetMultipleConnections, ConnectionDto>
 {
-    private readonly ConnectionRepository _connectionRepository;
+    private readonly IConnectionRepository<ConnectionEntity, ConnectionDto> _connectionRepository;
 
-    public GetMultipleConnectionsHandler(ConnectionRepository connectionRepository)
+    public GetMultipleConnectionsHandler(IConnectionRepository<ConnectionEntity, ConnectionDto> connectionRepository)
     {
         _connectionRepository = connectionRepository;
     }

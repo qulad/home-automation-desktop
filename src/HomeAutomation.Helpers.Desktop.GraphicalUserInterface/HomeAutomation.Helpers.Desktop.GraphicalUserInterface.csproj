@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomation.Helpers.Desktop.Application\HomeAutomation.Helpers.Desktop.Application.csproj" />
+    <ProjectReference Include="..\HomeAutomation.Helpers.Desktop.Infrastructure\HomeAutomation.Helpers.Desktop.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

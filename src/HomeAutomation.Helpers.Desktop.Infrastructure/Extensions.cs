@@ -1,3 +1,5 @@
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.Services;
 using HomeAutomation.Helpers.Desktop.Application.Services.Clients;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
@@ -67,10 +69,10 @@ public static class Extensions
     private static IServiceCollection UseQueryHandlers(this IServiceCollection services)
     {
         services
-            .AddSingleton<GetMultipleConnectionsHandler>()
-            .AddSingleton<GetMultipleLabelsHandler>()
-            .AddSingleton<GetSingleConnectionHandler>()
-            .AddSingleton<GetSingleLabelHandler>();
+            .AddSingleton<IGetMultipleQueryHandler<GetMultipleConnections, ConnectionDto>, GetMultipleConnectionsHandler>()
+            .AddSingleton<IGetMultipleQueryHandler<GetMultipleLabels, LabelDto>, GetMultipleLabelsHandler>()
+            .AddSingleton<IGetSingleQueryHandler<GetSingleConnection, ConnectionDto>, GetSingleConnectionHandler>()
+            .AddSingleton<IGetSingleQueryHandler<GetSingleLabel, LabelDto>, GetSingleLabelHandler>();
 
         return services;
     }

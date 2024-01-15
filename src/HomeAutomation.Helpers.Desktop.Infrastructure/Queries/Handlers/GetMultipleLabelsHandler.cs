@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Queries.Handlers;
 
 public class GetMultipleLabelsHandler : IGetMultipleQueryHandler<GetMultipleLabels, LabelDto>
 {
-    private readonly LabelRepository _labelRepository;
+    private readonly ILabelRepository<LabelEntity, LabelDto> _labelRepository;
 
-    public GetMultipleLabelsHandler(LabelRepository labelRepository)
+    public GetMultipleLabelsHandler(ILabelRepository<LabelEntity, LabelDto> labelRepository)
     {
         _labelRepository = labelRepository;
     }
@@ -35,7 +35,7 @@ public class GetMultipleLabelsHandler : IGetMultipleQueryHandler<GetMultipleLabe
     {
         Func<LabelEntity, bool> predicate = null;
 
-        if (command.Ids.Count > 0)
+        if (command.Ids is not null && command.Ids.Count > 0)
         {
             if (command.Ids.Count == 1)
             {
@@ -49,7 +49,7 @@ public class GetMultipleLabelsHandler : IGetMultipleQueryHandler<GetMultipleLabe
             }
         }
 
-        if (command.Texts.Count > 0)
+        if (command.Texts is not null && command.Texts.Count > 0)
         {
             if (command.Texts.Count == 1)
             {
