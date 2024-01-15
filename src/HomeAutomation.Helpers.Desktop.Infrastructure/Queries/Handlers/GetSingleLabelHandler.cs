@@ -1,10 +1,10 @@
-using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
 using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
-namespace HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
+namespace HomeAutomation.Helpers.Desktop.Infrastructure.Queries.Handlers;
 
-public class GetSingleLabelHandler : IGetSingleCommandHandler<GetSingleLabel, LabelDto>
+public class GetSingleLabelHandler : IGetSingleQueryHandler<GetSingleLabel, LabelDto>
 {
     private readonly LabelRepository _labelRepository;
 

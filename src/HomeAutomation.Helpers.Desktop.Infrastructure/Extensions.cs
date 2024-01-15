@@ -2,6 +2,8 @@ using HomeAutomation.Helpers.Desktop.Application.Services;
 using HomeAutomation.Helpers.Desktop.Application.Services.Clients;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
+using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
+using HomeAutomation.Helpers.Desktop.Infrastructure.Queries.Handlers;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Services;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Services.Clients;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,8 @@ public static class Extensions
             .UseServices()
             .UseCommandHandlers()
             .UseCommands()
+            .UseQueries()
+            .UseQueryHandlers()
             .UseServiceClients();
 
         return services;
@@ -25,9 +29,7 @@ public static class Extensions
     {
         services
             .AddSingleton<AddMultipleLabelsHandler>()
-            .AddSingleton<AddSingleLabelHandler>()
-            .AddSingleton<GetMultipleLabelsHandler>()
-            .AddSingleton<GetSingleLabelHandler>();
+            .AddSingleton<AddSingleLabelHandler>();
 
         return services;
     }
@@ -36,9 +38,25 @@ public static class Extensions
     {
         services
             .AddTransient<AddMultipleLabels>()
-            .AddTransient<AddSingleLabel>()
+            .AddTransient<AddSingleLabel>();
+
+        return services;
+    }
+
+    private static IServiceCollection UseQueries(this IServiceCollection services)
+    {
+        services
             .AddTransient<GetMultipleLabels>()
             .AddTransient<GetSingleLabel>();
+
+        return services;
+    }
+
+    private static IServiceCollection UseQueryHandlers(this IServiceCollection services)
+    {
+        services
+            .AddSingleton<GetMultipleLabelsHandler>()
+            .AddSingleton<GetSingleLabelHandler>();
 
         return services;
     }

@@ -9,15 +9,8 @@ public static class Extensions
     public static IServiceCollection UseApplication(this IServiceCollection services)
     {
         services
-            .UseCommandSender()
-            .UseDataTransferObjects();
-
-        return services;
-    }
-
-    private static IServiceCollection UseCommandSender(this IServiceCollection services)
-    {
-        services.AddSingleton<ICommandSender, CommandSender>();
+            .UseDataTransferObjects()
+            .UseSenders();
 
         return services;
     }
@@ -27,6 +20,15 @@ public static class Extensions
         services
             .AddTransient<ConnectionDto>()
             .AddTransient<LabelDto>();
+
+        return services;
+    }
+
+    private static IServiceCollection UseSenders(this IServiceCollection services)
+    {
+        services
+            .AddSingleton<ICommandSender, CommandSender>()
+            .AddSingleton<ICommandSender, CommandSender>();
 
         return services;
     }

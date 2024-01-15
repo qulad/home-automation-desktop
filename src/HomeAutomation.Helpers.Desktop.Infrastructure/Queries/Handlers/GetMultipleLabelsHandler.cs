@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
-namespace HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
+namespace HomeAutomation.Helpers.Desktop.Infrastructure.Queries.Handlers;
 
-public class GetMultipleLabelsHandler : IGetMultipleCommandHandler<GetMultipleLabels, LabelDto>
+public class GetMultipleLabelsHandler : IGetMultipleQueryHandler<GetMultipleLabels, LabelDto>
 {
     private readonly LabelRepository _labelRepository;
 
