@@ -19,6 +19,19 @@ public partial class AddConnectionPage : UserControl
         _querySender = querySender;
 
         InitializeComponent();
+
+        LoadExistingLabelsCheckedListBox();
+    }
+
+    private void LoadExistingLabelsCheckedListBox()
+    {
+        var query = new GetMultipleLabels();
+
+        var labels = _querySender.SendGetMultiple<GetMultipleLabels, LabelDto>(query);
+
+        var labelTexts = labels.Select(x => x.Text).ToArray();
+
+        ExistingLabelsCheckedListBox.Items.AddRange(labelTexts);
     }
 
     private void HomePageButtonClick(object sender, EventArgs e)
@@ -43,9 +56,9 @@ public partial class AddConnectionPage : UserControl
 
         var query = new GetMultipleLabels();
 
-        var allLabels = _querySender.SendGetMultiple<GetMultipleLabels, LabelDto>(query);
+        var labels = _querySender.SendGetMultiple<GetMultipleLabels, LabelDto>(query);
 
-        if (allLabels.Select(x => x.Text).Contains(labelText))
+        if (labels.Select(x => x.Text).Contains(labelText))
         {
             MessageBox.Show("Bu etiket zaten eklenmiş!");
 
