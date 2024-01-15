@@ -1,7 +1,9 @@
+using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.Services;
 using HomeAutomation.Helpers.Desktop.Application.Services.Clients;
+using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
@@ -30,13 +32,13 @@ public static class Extensions
     private static IServiceCollection UseCommandHandlers(this IServiceCollection services)
     {
         services
-            .AddSingleton<AddMultipleLabelsHandler>()
-            .AddSingleton<AddSingleConnectionHandler>()
-            .AddSingleton<AddSingleLabelHandler>()
-            .AddSingleton<DeleteSingleConnectionHandler>()
-            .AddSingleton<DeleteSingleLabelHandler>()
-            .AddSingleton<UpdateSingleConnectionHandler>()
-            .AddSingleton<UpdateSingleLabelHandler>();
+            .AddTransient<IAddMultipleCommandHandler<AddMultipleLabels>, AddMultipleLabelsHandler>()
+            .AddTransient<IAddSingleCommandHandler<AddSingleConnection>, AddSingleConnectionHandler>()
+            .AddTransient<IAddSingleCommandHandler<AddSingleLabel>, AddSingleLabelHandler>()
+            .AddTransient<IDeleteSingleCommandHandler<DeleteSingleConnection>, DeleteSingleConnectionHandler>()
+            .AddTransient<IDeleteSingleCommandHandler<DeleteSingleLabel>, DeleteSingleLabelHandler>()
+            .AddTransient<IUpdateSingleCommandHandler<UpdateSingleConnection, ConnectionEntity>, UpdateSingleConnectionHandler>()
+            .AddTransient<IUpdateSingleCommandHandler<UpdateSingleLabel, LabelEntity>, UpdateSingleLabelHandler>();
 
         return services;
     }
@@ -69,10 +71,10 @@ public static class Extensions
     private static IServiceCollection UseQueryHandlers(this IServiceCollection services)
     {
         services
-            .AddSingleton<IGetMultipleQueryHandler<GetMultipleConnections, ConnectionDto>, GetMultipleConnectionsHandler>()
-            .AddSingleton<IGetMultipleQueryHandler<GetMultipleLabels, LabelDto>, GetMultipleLabelsHandler>()
-            .AddSingleton<IGetSingleQueryHandler<GetSingleConnection, ConnectionDto>, GetSingleConnectionHandler>()
-            .AddSingleton<IGetSingleQueryHandler<GetSingleLabel, LabelDto>, GetSingleLabelHandler>();
+            .AddTransient<IGetMultipleQueryHandler<GetMultipleConnections, ConnectionDto>, GetMultipleConnectionsHandler>()
+            .AddTransient<IGetMultipleQueryHandler<GetMultipleLabels, LabelDto>, GetMultipleLabelsHandler>()
+            .AddTransient<IGetSingleQueryHandler<GetSingleConnection, ConnectionDto>, GetSingleConnectionHandler>()
+            .AddTransient<IGetSingleQueryHandler<GetSingleLabel, LabelDto>, GetSingleLabelHandler>();
 
         return services;
     }

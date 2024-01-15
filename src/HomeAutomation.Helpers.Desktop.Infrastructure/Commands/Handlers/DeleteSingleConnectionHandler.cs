@@ -1,14 +1,15 @@
 using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
 
 public class DeleteSingleConnectionHandler : IDeleteSingleCommandHandler<DeleteSingleConnection>
 {
-    private readonly ConnectionRepository _connectionRepository;
+    private readonly IConnectionRepository<ConnectionEntity, ConnectionDto> _connectionRepository;
 
-    public DeleteSingleConnectionHandler(ConnectionRepository connectionRepository)
+    public DeleteSingleConnectionHandler(IConnectionRepository<ConnectionEntity, ConnectionDto> connectionRepository)
     {
         _connectionRepository = connectionRepository;
     }

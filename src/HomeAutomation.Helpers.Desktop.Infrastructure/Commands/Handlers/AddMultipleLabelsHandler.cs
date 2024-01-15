@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
 using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
 
 public class AddMultipleLabelsHandler : IAddMultipleCommandHandler<AddMultipleLabels>
 {
-    private readonly LabelRepository _labelRepository;
+    private readonly ILabelRepository<LabelEntity, LabelDto> _labelRepository;
 
-    public AddMultipleLabelsHandler(LabelRepository labelRepository)
+    public AddMultipleLabelsHandler(ILabelRepository<LabelEntity, LabelDto> labelRepository)
     {
         _labelRepository = labelRepository;
     }

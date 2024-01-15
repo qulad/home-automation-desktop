@@ -1,15 +1,16 @@
 using System;
 using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
 
 public class UpdateSingleConnectionHandler : IUpdateSingleCommandHandler<UpdateSingleConnection, ConnectionEntity>
 {
-    private readonly ConnectionRepository _connectionRepository;
+    private readonly IConnectionRepository<ConnectionEntity, ConnectionDto> _connectionRepository;
 
-    public UpdateSingleConnectionHandler(ConnectionRepository connectionRepository)
+    public UpdateSingleConnectionHandler(IConnectionRepository<ConnectionEntity, ConnectionDto> connectionRepository)
     {
         _connectionRepository = connectionRepository;
     }

@@ -1,14 +1,15 @@
 using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.Repositories;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
-using HomeAutomation.Helpers.Desktop.Core.Repositories;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
 
 public class UpdateSingleLabelHandler : IUpdateSingleCommandHandler<UpdateSingleLabel, LabelEntity>
 {
-    private readonly LabelRepository _labelRepository;
+    private readonly ILabelRepository<LabelEntity, LabelDto> _labelRepository;
 
-    public UpdateSingleLabelHandler(LabelRepository labelRepository)
+    public UpdateSingleLabelHandler(ILabelRepository<LabelEntity, LabelDto> labelRepository)
     {
         _labelRepository = labelRepository;
     }
