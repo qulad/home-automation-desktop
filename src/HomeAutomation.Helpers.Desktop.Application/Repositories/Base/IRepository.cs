@@ -5,8 +5,8 @@ namespace HomeAutomation.Helpers.Desktop.Application.Repositories.Base;
 
 public interface IRepository<TEntity, TDto>
 {
-    public IEnumerable<TDto> GetAll();
-    public IEnumerable<TDto> GetByPredicate(Func<TEntity, bool> predicate);
+    public IList<TDto> GetAll();
+    public IList<TDto> GetByPredicate(Func<TEntity, bool> predicate);
     public TDto GetById(Guid id);
     public void AddSingle(TEntity entity);
     public void AddMultiple(IList<TEntity> entities);

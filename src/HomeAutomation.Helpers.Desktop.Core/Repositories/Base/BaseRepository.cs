@@ -9,25 +9,13 @@ using HomeAutomation.Helpers.Desktop.Application.Repositories.Base;
 
 namespace HomeAutomation.Helpers.Desktop.Core.Repositories.Base;
 
-public abstract class BaseRepositery<TEntity, TDto> : IRepository<TEntity, TDto> where TEntity : BaseEntity where TDto : BaseDataTransferObject
+public abstract class BaseRepositery<TEntity> where TEntity : BaseEntity
 {
     protected readonly DbContext _dbContext;
-
-    private readonly IMapper _singleMapper;
-    private readonly IMapper _listMapper;
 
     protected BaseRepositery(DbContext dbContext)
     {
         _dbContext = dbContext;
-
-        var singleConfiguration = new MapperConfiguration(mc =>
-            mc.CreateMap<TEntity, TDto>());
-
-        var listConfiguration = new MapperConfiguration(mc =>
-            mc.CreateMap<IList<TEntity>, IList<TDto>>());
-
-        _singleMapper = singleConfiguration.CreateMapper();
-        _listMapper = listConfiguration.CreateMapper();
     }
 
     public virtual void AddMultiple(IList<TEntity> entities)
@@ -42,19 +30,19 @@ public abstract class BaseRepositery<TEntity, TDto> : IRepository<TEntity, TDto>
         _dbContext.SaveChanges();
     }
 
-    public virtual IEnumerable<TDto> GetAll()
+    public virtual IEnumerable<TEntity> GetAllEntites()
     {
-        return _listMapper.Map<IList<TEntity>, IList<TDto>>(_dbContext.Set<TEntity>().ToList());
+        return _dbContext.Set<TEntity>();
     }
 
-    public virtual IEnumerable<TDto> GetByPredicate(Func<TEntity, bool> predicate)
+    public virtual IEnumerable<TEntity> GetEntitesByPredicate(Func<TEntity, bool> predicate)
     {
-        return _listMapper.Map<IList<TEntity>, IList<TDto>>(_dbContext.Set<TEntity>().Where(predicate).ToList());
+        return _dbContext.Set<TEntity>().Where(predicate);
     }
 
-    public virtual TDto GetById(Guid id)
+    public virtual TEntity GetEntityById(Guid id)
     {
-        return _singleMapper.Map<TEntity, TDto>(_dbContext.Set<TEntity>().Find(id));
+        return _dbContext.Set<TEntity>().Find(id);
     }
 
     public virtual void Update(TEntity entity)
