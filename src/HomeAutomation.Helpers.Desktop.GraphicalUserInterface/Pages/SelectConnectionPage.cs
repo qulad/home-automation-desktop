@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
+using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
@@ -25,6 +26,8 @@ public partial class SelectConnectionPage : UserControl
 
     private void LoadConnectionListBox()
     {
+        ConnectionsListBox.Items.Clear();
+
         var query = new GetMultipleConnections();
 
         var connectionNames = _querySender.SendGetMultiple<GetMultipleConnections, ConnectionDto>(query).Select(x => x.Name).ToArray();
@@ -34,9 +37,9 @@ public partial class SelectConnectionPage : UserControl
 
     private void SelectConnectionButtonClick(object sender, EventArgs e)
     {
-        var selectedConnectionName = ConnectionsListBox.SelectedItem.ToString();
+        var selectedConnectionName = (ConnectionsListBox.SelectedItem ?? "").ToString();
 
-        if (string.IsNullOrEmpty(Name))
+        if (string.IsNullOrEmpty(selectedConnectionName))
         {
             MessageBox.Show("Lütfen bir adet bağlantı seçiniz");
 
@@ -61,6 +64,8 @@ public partial class SelectConnectionPage : UserControl
         }
 
         Hide();
+
+        (ParentForm as MainWindow).SendConnectionToMonitorPage(selectedConnection);
 
         _basePage.Show<MonitorPage>();
     }
