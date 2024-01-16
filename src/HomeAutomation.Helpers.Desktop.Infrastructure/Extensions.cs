@@ -2,14 +2,12 @@ using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.Services;
-using HomeAutomation.Helpers.Desktop.Application.Services.Clients;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries.Handlers;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Services;
-using HomeAutomation.Helpers.Desktop.Infrastructure.Services.Clients;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure;
@@ -23,8 +21,7 @@ public static class Extensions
             .UseCommandHandlers()
             .UseCommands()
             .UseQueries()
-            .UseQueryHandlers()
-            .UseServiceClients();
+            .UseQueryHandlers();
 
         return services;
     }
@@ -83,15 +80,6 @@ public static class Extensions
     {
         services
             .AddSingleton<IRemoteAccessService, RemoteAccessService>();
-
-        return services;
-    }
-
-    private static IServiceCollection UseServiceClients(this IServiceCollection services)
-    {
-        services
-            .AddTransient<IApiGatewayServiceClient, ApiGatewayServiceCLient>()
-            .AddTransient<ICommandLineServiceClient, CommandLineServiceClient>();
 
         return services;
     }
