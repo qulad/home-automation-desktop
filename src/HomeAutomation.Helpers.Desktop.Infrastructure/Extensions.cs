@@ -82,7 +82,6 @@ public static class Extensions
     private static IServiceCollection UseServices(this IServiceCollection services)
     {
         services
-            .AddSingleton<IPlatformIoService, PlatformIoService>()
             .AddSingleton<IRemoteAccessService, RemoteAccessService>();
 
         return services;
