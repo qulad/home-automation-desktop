@@ -78,8 +78,7 @@ public static class Extensions
 
     private static IServiceCollection UseServices(this IServiceCollection services)
     {
-        services
-            .AddSingleton<IRemoteAccessService, RemoteAccessService>();
+        services.AddSingleton<IRespApiService, RespApiService>();
 
         return services;
     }
