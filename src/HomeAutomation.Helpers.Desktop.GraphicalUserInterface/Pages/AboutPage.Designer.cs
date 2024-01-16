@@ -6,9 +6,10 @@ namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 partial class AboutPage
 {
-    private System.ComponentModel.IContainer components = null;
+    private IContainer components = null;
 
     private Button HomePageButton;
+    private Label AboutLabel;
 
     protected override void Dispose(bool disposing)
     {
@@ -22,6 +23,8 @@ partial class AboutPage
     private void InitializeComponent()
     {
         HomePageButton = new Button();
+        AboutLabel = new Label();
+
         SuspendLayout();
 
         this.components = new Container();
@@ -37,10 +40,18 @@ partial class AboutPage
         HomePageButton.UseVisualStyleBackColor = true;
         HomePageButton.Click += HomePageButtonClick;
 
+        AboutLabel.AutoSize = true;
+        AboutLabel.Location = new Point(430, 84);
+        AboutLabel.Name = "AboutLabel";
+        AboutLabel.Size = new Size(98, 20);
+        AboutLabel.TabIndex = 5;
+        AboutLabel.Text = "Bağlantı ismi:";
+
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
         Controls.Add(HomePageButton);
+        Controls.Add(AboutLabel);
 
         Name = "A";
         Text = "AAA!";

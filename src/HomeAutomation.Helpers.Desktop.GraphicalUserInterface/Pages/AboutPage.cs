@@ -13,6 +13,13 @@ public partial class AboutPage : UserControl
         _basePage = basePage;
 
         InitializeComponent();
+
+        LoadAboutLabelText();
+    }
+
+    private void LoadAboutLabelText()
+    {
+        AboutLabel.Text = "Bu uygulama bitirme projemizin bir parçaşıdır.\nAhmet Ertuğrul KAYA ve Eren AY";
     }
 
     private void HomePageButtonClick(object sender, EventArgs e)
