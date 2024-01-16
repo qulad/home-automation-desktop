@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
 
@@ -12,7 +9,7 @@ public partial class MainWindow : Form
 {
     private readonly BasePage _basePage;
 
-    public MainWindow(BasePage basePage, IServiceProvider serviceProvider)
+    public MainWindow(BasePage basePage)
     {
         _basePage = basePage;
 

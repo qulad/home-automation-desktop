@@ -6,7 +6,7 @@ namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 partial class MonitorPage
 {
-    private System.ComponentModel.IContainer components = null;
+    private IContainer components = null;
 
     private Button HomePageButton;
 
