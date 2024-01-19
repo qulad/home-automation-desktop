@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using HomeAutomation.Helpers.Desktop.Application.Commands;
+using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
@@ -17,6 +18,8 @@ public partial class AddConnectionPage : UserControl
     private readonly BasePage _basePage;
     private readonly ICommandSender _commandSender;
     private readonly IQuerySender _querySender;
+
+    private const string PortPattern = @"^(?:0|6553[0-5]|655[0-2]\d|65[0-4]\d{2}|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3})$";
 
     public AddConnectionPage(
         BasePage basePage,
@@ -38,10 +41,10 @@ public partial class AddConnectionPage : UserControl
 
         if (string.IsNullOrEmpty(connectionName))
         {
-            MessageBox.Show("Bağlantı ismi boş olamaz");
+            MessageBox.Show(AddConnectionPageTexts.EmptyConnectionName);
 
-            ConnectionNameTextBox.Text = "";
-            ConnectionPortMaskedTextBox.Text = "";
+            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
 
             return;
         }
@@ -50,10 +53,10 @@ public partial class AddConnectionPage : UserControl
 
         if (!IsPortValid(port))
         {
-            MessageBox.Show("Port hatalı");
+            MessageBox.Show(AddConnectionPageTexts.InvalidPort);
 
-            ConnectionNameTextBox.Text = "";
-            ConnectionPortMaskedTextBox.Text = "";
+            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
 
             return;
         }
@@ -107,8 +110,8 @@ public partial class AddConnectionPage : UserControl
 
         _commandSender.SendAddSingle(addConnectionCommand);
 
-        ConnectionNameTextBox.Text = "";
-        ConnectionPortMaskedTextBox.Text = "";
+        ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
+        ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
         LoadExistingLabelsCheckedListBox();
     }
 
@@ -138,9 +141,9 @@ public partial class AddConnectionPage : UserControl
 
         if (string.IsNullOrEmpty(labelText))
         {
-            MessageBox.Show("Etiket ismi boş olamaz!");
+            MessageBox.Show(AddConnectionPageTexts.EmptyLabelName);
 
-            NewLabelTextBox.Text = "";
+            NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
 
             return;
         }
@@ -151,31 +154,30 @@ public partial class AddConnectionPage : UserControl
 
         if (labels.Select(x => x.Text).Contains(labelText))
         {
-            MessageBox.Show("Bu etiket zaten eklenmiş!");
+            MessageBox.Show(AddConnectionPageTexts.ExistingLabel);
 
-            NewLabelTextBox.Text = "";
+            NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
 
             return;
         }
 
         if (NewLabelListBox.Items.Contains(labelText))
         {
-            MessageBox.Show("Bu etiket zaten eklenmiş!");
+            MessageBox.Show(AddConnectionPageTexts.ExistingLabel);
 
-            NewLabelTextBox.Text = "";
+            NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
 
             return;
         }
 
         NewLabelListBox.Items.Add(labelText);
 
-        NewLabelTextBox.Text = "";
+        NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
     }
 
     private static bool IsPortValid(int port)
     {
-        var portPattern = @"^(?:0|6553[0-5]|655[0-2]\d|65[0-4]\d{2}|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3})$";
-        var portValid = Regex.IsMatch(port.ToString(), portPattern);
+        var portValid = Regex.IsMatch(port.ToString(), PortPattern);
 
         return portValid;
     }
