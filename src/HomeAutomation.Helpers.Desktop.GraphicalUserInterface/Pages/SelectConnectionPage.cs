@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
@@ -41,7 +42,7 @@ public partial class SelectConnectionPage : UserControl
 
         if (string.IsNullOrEmpty(selectedConnectionName))
         {
-            MessageBox.Show("Lütfen bir adet bağlantı seçiniz");
+            MessageBox.Show(SelectConnectionPageTexts.SelectConnection);
 
             LoadConnectionListBox();
 
@@ -56,7 +57,7 @@ public partial class SelectConnectionPage : UserControl
 
         if (selectedConnection is null)
         {
-            MessageBox.Show("Seçili bağlantı ismi veritabanında bulunamadı");
+            MessageBox.Show(SelectConnectionPageTexts.ConnectionNotFound);
 
             LoadConnectionListBox();
 
