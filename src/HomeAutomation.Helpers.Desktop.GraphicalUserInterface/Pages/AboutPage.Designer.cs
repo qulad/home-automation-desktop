@@ -37,7 +37,7 @@ partial class AboutPage
         HomePageButton.Name = "HomePage";
         HomePageButton.Size = new Size(160, 83);
         HomePageButton.TabIndex = 3;
-        HomePageButton.Text = AboutPageTexts.HomePageButton;
+        HomePageButton.Text = "Ana sayfa";
         HomePageButton.UseVisualStyleBackColor = true;
         HomePageButton.Click += HomePageButtonClick;
 
