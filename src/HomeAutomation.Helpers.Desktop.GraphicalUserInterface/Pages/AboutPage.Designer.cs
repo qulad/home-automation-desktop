@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using HomeAutomation.Helpers.Desktop.Application.Constants;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
@@ -36,7 +37,7 @@ partial class AboutPage
         HomePageButton.Name = "HomePage";
         HomePageButton.Size = new Size(160, 83);
         HomePageButton.TabIndex = 3;
-        HomePageButton.Text = "Ana sayfa";
+        HomePageButton.Text = AboutPageTexts.HomePageButton;
         HomePageButton.UseVisualStyleBackColor = true;
         HomePageButton.Click += HomePageButtonClick;
 
@@ -45,7 +46,6 @@ partial class AboutPage
         AboutLabel.Name = "AboutLabel";
         AboutLabel.Size = new Size(98, 20);
         AboutLabel.TabIndex = 5;
-        AboutLabel.Text = "Bağlantı ismi:";
 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;

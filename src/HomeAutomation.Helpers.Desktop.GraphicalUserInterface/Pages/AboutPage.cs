@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
@@ -19,7 +20,7 @@ public partial class AboutPage : UserControl
 
     private void LoadAboutLabelText()
     {
-        AboutLabel.Text = "Bu uygulama bitirme projemizin bir parçaşıdır.\nAhmet Ertuğrul KAYA ve Eren AY";
+        AboutLabel.Text = AboutPageTexts.AboutText;
     }
 
     private void HomePageButtonClick(object sender, EventArgs e)
