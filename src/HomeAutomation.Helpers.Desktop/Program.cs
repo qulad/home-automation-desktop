@@ -23,18 +23,18 @@ public static class Program
     {
         var app = Host.CreateDefaultBuilder(args);
 
-        app.UseWindowsFormsLifetime<MainWindow>();
+        app
+            .UseWindowsFormsLifetime<MainWindow>()
+            .ConfigureServices((hostContext, services) =>
+            {
+                services
+                    .UseApplication()
+                    .UseCore()
+                    .UseGraphicalUserInterface()
+                    .UseInfrastructure();
 
-        app.ConfigureServices((hostContext, services) =>
-        {
-            services
-                .UseApplication()
-                .UseCore()
-                .UseGraphicalUserInterface()
-                .UseInfrastructure();
-            
-            DoStartupChecks(services);
-        });
+                DoStartupChecks(services);
+            });
 
         await app.Build().RunAsync();
     }
