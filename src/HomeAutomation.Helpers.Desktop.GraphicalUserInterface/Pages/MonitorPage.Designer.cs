@@ -84,6 +84,7 @@ partial class MonitorPage
         DevicesVerticalScrollBar.Name = "DevicesVerticalScrollBar";
         DevicesVerticalScrollBar.Size = new Size(26, 204);
         DevicesVerticalScrollBar.TabIndex = 5;
+        DevicesVerticalScrollBar.Scroll += DevicesVerticalScrollBarScroll;
         // 
         // MonitorPageLabel
         // 
