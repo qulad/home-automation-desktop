@@ -103,7 +103,6 @@ partial class MonitorPage
         NoSelectedDeviceLabel.Size = new Size(109, 20);
         NoSelectedDeviceLabel.TabIndex = 7;
         NoSelectedDeviceLabel.Text = "Seçili cihaz yok";
-        NoSelectedDeviceLabel.Click += NoSelectedDeviceLabel_Click;
         // 
         // SelectDeviceButton
         // 
