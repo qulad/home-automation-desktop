@@ -11,7 +11,7 @@ namespace HomeAutomation.Helpers.Desktop.Infrastructure.Services;
 
 public class TcpService : ITcpService
 {
-    private const int Digital = 0;
+    private const string Digital = "0";
     private readonly TcpClient _tcpClient;
 
     public TcpService(TcpClient tcpClient)
@@ -47,20 +47,25 @@ public class TcpService : ITcpService
 
             var deviceReading = new DeviceReadingDto
             {
-                MacAddress = datas[0],
-                DeviceType = Convert.ToInt32(datas[1])
+                MacAddress = datas[0]
             };
 
-            if (deviceReading.DeviceType == Digital)
+            if (datas[1] == Digital)
             {
+                deviceReading.DeviceType = DeviceTypes.Digital;
+
                 deviceReading.DigitalSwitch = Convert.ToBoolean(datas[2]);
             }
             else
             {
+                deviceReading.DeviceType = DeviceTypes.Analog;
+
                 deviceReading.AnalogRed = Convert.ToInt32(datas[2]);
                 deviceReading.AnalogGreen = Convert.ToInt32(datas[3]);
                 deviceReading.AnalogBlue = Convert.ToInt32(datas[4]);
             }
+
+            deviceReadings.Add(deviceReading);
         }
 
         _tcpClient.Close();
@@ -95,14 +100,17 @@ public class TcpService : ITcpService
             var datas = readData.Split(",").ToList();
 
             deviceReading.MacAddress = datas[0];
-            deviceReading.DeviceType = Convert.ToInt32(datas[1]);
 
-            if (deviceReading.DeviceType == Digital)
+            if (datas[1] == Digital)
             {
+                deviceReading.DeviceType = DeviceTypes.Digital;
+
                 deviceReading.DigitalSwitch = Convert.ToBoolean(datas[2]);
             }
             else
             {
+                deviceReading.DeviceType = DeviceTypes.Analog;
+
                 deviceReading.AnalogRed = Convert.ToInt32(datas[2]);
                 deviceReading.AnalogGreen = Convert.ToInt32(datas[3]);
                 deviceReading.AnalogBlue = Convert.ToInt32(datas[4]);

@@ -6,7 +6,7 @@ namespace HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.Externa
 public class DeviceReadingDto
 {
     public string MacAddress { get; set; }
-    public int DeviceType { get; set; }
+    public string DeviceType { get; set; }
     public bool DigitalSwitch { get; set; }
     public int AnalogRed { get; set; }
     public int AnalogGreen { get; set; }
