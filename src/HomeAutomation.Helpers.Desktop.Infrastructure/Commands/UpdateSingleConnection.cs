@@ -8,6 +8,7 @@ public class UpdateSingleConnection : ICommand
 {
     public Guid Id { get; set; }
 
+    public string IpAddress { get; set; }
     public int Port { get; set; }
 
     public string Name { get; set; }

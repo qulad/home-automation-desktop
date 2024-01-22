@@ -10,6 +10,16 @@ public partial class ConnectionEntity
     {
     }
 
+    public void SetIpAddress(string ipAddress)
+    {
+        if (!IsIpAddressValid(IpAddress))
+        {
+            throw new ArgumentException("Invalid ip address");
+        }
+
+        IpAddress = ipAddress;
+    }
+
     public void SetPort(int port)
     {
         if (!IsPortValid(port))
@@ -23,6 +33,14 @@ public partial class ConnectionEntity
     public void SetLabels(IList<Guid> labelIds)
     {
         LabelIds = labelIds;
+    }
+
+    private static bool IsIpAddressValid(string ipAddress)
+    {
+        var ipAddressPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
+        var ipAddressValid = Regex.IsMatch(ipAddress, ipAddressPattern);
+
+        return ipAddressValid;
     }
 
     private static bool IsPortValid(int port)

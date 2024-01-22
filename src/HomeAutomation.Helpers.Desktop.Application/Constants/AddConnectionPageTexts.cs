@@ -7,4 +7,5 @@ public static class AddConnectionPageTexts
     public const string EmptyLabelName = "Etiket ismi boş olamaz!";
     public const string EmptyText = "";
     public const string InvalidPort = "Port hatalı";
+    public const string InvalidIpAddress = "Ip hatalı";
 }

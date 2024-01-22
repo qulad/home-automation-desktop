@@ -73,6 +73,6 @@ public static class Program
     {
         var dbContext = services.GetRequiredService<HomeAutomationDesktopHelperDbContext>();
 
-        dbContext.Database.Migrate();
+        dbContext.Database.EnsureCreated();
     }
 }

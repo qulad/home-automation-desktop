@@ -21,7 +21,7 @@ public class AddSingleConnectionHandler : IAddSingleCommandHandler<AddSingleConn
         {
             Name = command.Name
         };
-    
+        entity.SetIpAddress(command.IpAddress);
         entity.SetPort(command.Port);
         entity.SetLabels(command.LabelIds);
 

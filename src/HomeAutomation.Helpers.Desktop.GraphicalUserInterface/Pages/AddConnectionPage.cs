@@ -19,6 +19,7 @@ public partial class AddConnectionPage : UserControl
     private readonly ICommandSender _commandSender;
     private readonly IQuerySender _querySender;
 
+    private const string IpAddressPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
     private const string PortPattern = @"^(?:0|6553[0-5]|655[0-2]\d|65[0-4]\d{2}|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3})$";
 
     public AddConnectionPage(
@@ -45,6 +46,7 @@ public partial class AddConnectionPage : UserControl
 
             ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
             ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
 
             return;
         }
@@ -57,6 +59,20 @@ public partial class AddConnectionPage : UserControl
 
             ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
             ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+
+            return;
+        }
+
+        var ipAddress = ConnectionIpAddressMaskedTextBox.Text;
+
+        if (!IsIpAddressValid(ipAddress))
+        {
+            MessageBox.Show(AddConnectionPageTexts.InvalidIpAddress);
+
+            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
 
             return;
         }
@@ -95,6 +111,7 @@ public partial class AddConnectionPage : UserControl
 
         var addConnectionCommand = new AddSingleConnection
         {
+            IpAddress = ipAddress,
             Port = port,
             Name = connectionName
         };
@@ -112,6 +129,8 @@ public partial class AddConnectionPage : UserControl
 
         ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
         ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+        ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+
         LoadExistingLabelsCheckedListBox();
     }
 
@@ -173,6 +192,13 @@ public partial class AddConnectionPage : UserControl
         NewLabelListBox.Items.Add(labelText);
 
         NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
+    }
+
+    private static bool IsIpAddressValid(string ipAddress)
+    {
+        var ipAddressValid = Regex.IsMatch(ipAddress, IpAddressPattern);
+
+        return ipAddressValid;
     }
 
     private static bool IsPortValid(int port)

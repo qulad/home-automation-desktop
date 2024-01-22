@@ -22,6 +22,7 @@ public class UpdateSingleConnectionHandler : IUpdateSingleCommandHandler<UpdateS
             Name = command.Name
         };
     
+        entity.SetIpAddress(command.IpAddress);
         entity.SetPort(command.Port);
         entity.SetLabels(command.LabelIds);
 

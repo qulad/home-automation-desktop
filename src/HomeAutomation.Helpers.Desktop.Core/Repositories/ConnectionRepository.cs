@@ -24,6 +24,7 @@ public class ConnectionRepository : BaseRepositery<ConnectionEntity>, IConnectio
         {
             var dto = new ConnectionDto(entity.Id)
             {
+                IpAddress = entity.IpAddress,
                 Port = entity.Port,
                 Name = entity.Name,
                 LabelIds = entity.LabelIds

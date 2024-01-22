@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Net;
 using System.Windows.Forms;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
@@ -37,19 +38,21 @@ partial class AddConnectionPage
     {
         HomePageButton = new Button();
         ExistingLabelsGroupBox = new GroupBox();
+        ExistingLabelsCheckedListBox = new CheckedListBox();
         ConnectionNameLabel = new Label();
         ConnectionPortLabel = new Label();
         NewLabelsGroupBox = new GroupBox();
+        NewLabelLabel = new Label();
+        AddNewLabelButton = new Button();
+        NewLabelTextBox = new TextBox();
+        NewLabelListBox = new ListBox();
         AddConnectionButton = new Button();
         ConnectionPortMaskedTextBox = new MaskedTextBox();
         ConnectionNameTextBox = new TextBox();
         LabelsGroupBox = new GroupBox();
         AddConnectionPageLabel = new Label();
-        ExistingLabelsCheckedListBox = new CheckedListBox();
-        NewLabelListBox = new ListBox();
-        NewLabelTextBox = new TextBox();
-        AddNewLabelButton = new Button();
-        NewLabelLabel = new Label();
+        ConnectionIpAddressMaskedTextBox = new MaskedTextBox();
+        ConnectionIpAddressLabel = new Label();
         ExistingLabelsGroupBox.SuspendLayout();
         NewLabelsGroupBox.SuspendLayout();
         LabelsGroupBox.SuspendLayout();
@@ -75,10 +78,18 @@ partial class AddConnectionPage
         ExistingLabelsGroupBox.TabStop = false;
         ExistingLabelsGroupBox.Text = "Var Olan Etiketler";
         // 
+        // ExistingLabelsCheckedListBox
+        // 
+        ExistingLabelsCheckedListBox.FormattingEnabled = true;
+        ExistingLabelsCheckedListBox.Location = new Point(6, 21);
+        ExistingLabelsCheckedListBox.Name = "ExistingLabelsCheckedListBox";
+        ExistingLabelsCheckedListBox.Size = new Size(376, 136);
+        ExistingLabelsCheckedListBox.TabIndex = 0;
+        // 
         // ConnectionNameLabel
         // 
         ConnectionNameLabel.AutoSize = true;
-        ConnectionNameLabel.Location = new Point(430, 84);
+        ConnectionNameLabel.Location = new Point(275, 95);
         ConnectionNameLabel.Name = "ConnectionNameLabel";
         ConnectionNameLabel.Size = new Size(98, 20);
         ConnectionNameLabel.TabIndex = 5;
@@ -87,7 +98,7 @@ partial class AddConnectionPage
         // ConnectionPortLabel
         // 
         ConnectionPortLabel.AutoSize = true;
-        ConnectionPortLabel.Location = new Point(430, 130);
+        ConnectionPortLabel.Location = new Point(463, 133);
         ConnectionPortLabel.Name = "ConnectionPortLabel";
         ConnectionPortLabel.Size = new Size(110, 20);
         ConnectionPortLabel.TabIndex = 6;
@@ -105,6 +116,41 @@ partial class AddConnectionPage
         NewLabelsGroupBox.TabIndex = 7;
         NewLabelsGroupBox.TabStop = false;
         NewLabelsGroupBox.Text = "Yeni Etiketler";
+        // 
+        // NewLabelLabel
+        // 
+        NewLabelLabel.AutoSize = true;
+        NewLabelLabel.Font = new Font("Segoe UI", 13F);
+        NewLabelLabel.Location = new Point(207, 26);
+        NewLabelLabel.Name = "NewLabelLabel";
+        NewLabelLabel.Size = new Size(147, 30);
+        NewLabelLabel.TabIndex = 3;
+        NewLabelLabel.Text = "Yeni etiket adı";
+        // 
+        // AddNewLabelButton
+        // 
+        AddNewLabelButton.Location = new Point(207, 107);
+        AddNewLabelButton.Name = "AddNewLabelButton";
+        AddNewLabelButton.Size = new Size(151, 43);
+        AddNewLabelButton.TabIndex = 2;
+        AddNewLabelButton.Text = "Yeni etiket ekle";
+        AddNewLabelButton.UseVisualStyleBackColor = true;
+        AddNewLabelButton.Click += AddNewLabelButtonClick;
+        // 
+        // NewLabelTextBox
+        // 
+        NewLabelTextBox.Location = new Point(207, 59);
+        NewLabelTextBox.Name = "NewLabelTextBox";
+        NewLabelTextBox.Size = new Size(151, 27);
+        NewLabelTextBox.TabIndex = 1;
+        // 
+        // NewLabelListBox
+        // 
+        NewLabelListBox.FormattingEnabled = true;
+        NewLabelListBox.Location = new Point(6, 26);
+        NewLabelListBox.Name = "NewLabelListBox";
+        NewLabelListBox.Size = new Size(173, 124);
+        NewLabelListBox.TabIndex = 0;
         // 
         // AddConnectionButton
         // 
@@ -127,7 +173,7 @@ partial class AddConnectionPage
         // 
         // ConnectionNameTextBox
         // 
-        ConnectionNameTextBox.Location = new Point(601, 77);
+        ConnectionNameTextBox.Location = new Point(266, 127);
         ConnectionNameTextBox.Name = "ConnectionNameTextBox";
         ConnectionNameTextBox.Size = new Size(125, 27);
         ConnectionNameTextBox.TabIndex = 10;
@@ -153,53 +199,30 @@ partial class AddConnectionPage
         AddConnectionPageLabel.TabIndex = 12;
         AddConnectionPageLabel.Text = "BAĞLANTI EKLE";
         // 
-        // ExistingLabelsCheckedListBox
+        // ConnectionIpAddressMaskedTextBox
         // 
-        ExistingLabelsCheckedListBox.FormattingEnabled = true;
-        ExistingLabelsCheckedListBox.Location = new Point(6, 21);
-        ExistingLabelsCheckedListBox.Name = "ExistingLabelsCheckedListBox";
-        ExistingLabelsCheckedListBox.Size = new Size(376, 136);
-        ExistingLabelsCheckedListBox.TabIndex = 0;
+        ConnectionIpAddressMaskedTextBox.Location = new Point(601, 88);
+        ConnectionIpAddressMaskedTextBox.Mask = "###.###.###.###";
+        ConnectionIpAddressMaskedTextBox.Name = "ConnectionIpAddressMaskedTextBox";
+        ConnectionIpAddressMaskedTextBox.Size = new Size(125, 27);
+        ConnectionIpAddressMaskedTextBox.TabIndex = 14;
+        ConnectionIpAddressMaskedTextBox.ValidatingType = typeof(IPAddress);
         // 
-        // NewLabelListBox
+        // ConnectionIpAddressLabel
         // 
-        NewLabelListBox.FormattingEnabled = true;
-        NewLabelListBox.Location = new Point(6, 26);
-        NewLabelListBox.Name = "NewLabelListBox";
-        NewLabelListBox.Size = new Size(173, 124);
-        NewLabelListBox.TabIndex = 0;
-        // 
-        // NewLabelTextBox
-        // 
-        NewLabelTextBox.Location = new Point(207, 59);
-        NewLabelTextBox.Name = "NewLabelTextBox";
-        NewLabelTextBox.Size = new Size(151, 27);
-        NewLabelTextBox.TabIndex = 1;
-        // 
-        // AddNewLabelButton
-        // 
-        AddNewLabelButton.Location = new Point(207, 107);
-        AddNewLabelButton.Name = "AddNewLabelButton";
-        AddNewLabelButton.Size = new Size(151, 43);
-        AddNewLabelButton.TabIndex = 2;
-        AddNewLabelButton.Text = "Yeni etiket ekle";
-        AddNewLabelButton.UseVisualStyleBackColor = true;
-        AddNewLabelButton.Click += AddNewLabelButtonClick;
-        // 
-        // NewLabelLabel
-        // 
-        NewLabelLabel.AutoSize = true;
-        NewLabelLabel.Font = new Font("Segoe UI", 13F);
-        NewLabelLabel.Location = new Point(207, 26);
-        NewLabelLabel.Name = "NewLabelLabel";
-        NewLabelLabel.Size = new Size(147, 30);
-        NewLabelLabel.TabIndex = 3;
-        NewLabelLabel.Text = "Yeni etiket adı";
+        ConnectionIpAddressLabel.AutoSize = true;
+        ConnectionIpAddressLabel.Location = new Point(463, 91);
+        ConnectionIpAddressLabel.Name = "ConnectionIpAddressLabel";
+        ConnectionIpAddressLabel.Size = new Size(97, 20);
+        ConnectionIpAddressLabel.TabIndex = 13;
+        ConnectionIpAddressLabel.Text = "Bağlantı ip'si:";
         // 
         // AddConnectionPage
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(ConnectionIpAddressMaskedTextBox);
+        Controls.Add(ConnectionIpAddressLabel);
         Controls.Add(AddConnectionPageLabel);
         Controls.Add(LabelsGroupBox);
         Controls.Add(ConnectionNameTextBox);
@@ -217,4 +240,7 @@ partial class AddConnectionPage
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private MaskedTextBox ConnectionIpAddressMaskedTextBox;
+    private Label ConnectionIpAddressLabel;
 }
