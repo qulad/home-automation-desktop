@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Services;
 
@@ -113,8 +114,61 @@ public class TcpService : ITcpService
         return deviceReading;
     }
 
-    public void SetSingleDevice(string ipAddress, int port, string mac, bool digitalSwitch, int analogRed, int analogGreen, int analogBlue)
+    public void SetSingleDevice(
+        string ipAddress,
+        int port,
+        string mac,
+        string deviceType,
+        bool? digitalSwitch,
+        int? analogRed,
+        int? analogGreen,
+        int? analogBlue)
     {
-        throw new System.NotImplementedException();
+        _tcpClient.Connect(ipAddress, port);
+
+        var stream = _tcpClient.GetStream();
+
+        var message = "2" + mac;
+
+        if (deviceType == DeviceTypes.Digital)
+        {
+            if (!digitalSwitch.HasValue)
+            {
+                throw new ArgumentNullException(nameof(digitalSwitch));
+            }
+
+            if (digitalSwitch.Value)
+            {
+                message += "1";
+            }
+            else
+            {
+                message += "0";
+            }
+        }
+        else
+        {
+            if (!analogRed.HasValue)
+            {
+                throw new ArgumentNullException(nameof(analogRed));
+            }
+
+            if (!analogGreen.HasValue)
+            {
+                throw new ArgumentNullException(nameof(analogGreen));
+            }
+
+            if (!analogBlue.HasValue)
+            {
+                throw new ArgumentNullException(nameof(analogBlue));
+            }
+
+            message += analogRed.Value.ToString() + "," + analogGreen.Value.ToString() + "," + analogBlue.Value.ToString();
+        }
+
+        var writeData = Encoding.ASCII.GetBytes(message);
+        stream.Write(writeData, 0, writeData.Length);
+
+        _tcpClient.Close();
     }
 }
