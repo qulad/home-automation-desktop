@@ -78,7 +78,7 @@ public static class Extensions
 
     private static IServiceCollection UseServices(this IServiceCollection services)
     {
-        services.AddSingleton<IRespApiService, RespApiService>();
+        services.AddSingleton<ITcpService, TcpService>();
 
         return services;
     }
