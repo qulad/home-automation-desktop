@@ -36,7 +36,7 @@ public class TcpService : ITcpService
         {
             bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
             var readData = Encoding.ASCII.GetString(readBuffer, 0, bytesRead);
-            
+
             if (readData == "exit")
             {
                 break;
@@ -69,7 +69,48 @@ public class TcpService : ITcpService
 
     public DeviceReadingDto GetSingleDevice(string ipAddress, int port, string mac)
     {
-        throw new System.NotImplementedException();
+        _tcpClient.Connect(ipAddress, port);
+
+        var stream = _tcpClient.GetStream();
+
+        var writeData = Encoding.ASCII.GetBytes("1" + mac);
+        stream.Write(writeData, 0, writeData.Length);
+
+        byte[] readBuffer = new byte[1024];
+        int bytesRead;
+
+        var deviceReading = new DeviceReadingDto();
+
+        while (true)
+        {
+            bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
+            var readData = Encoding.ASCII.GetString(readBuffer, 0, bytesRead);
+
+            if (readData == "exit")
+            {
+                break;
+            }
+
+            var datas = readData.Split(",").ToList();
+
+            deviceReading.MacAddress = datas[0];
+            deviceReading.DeviceType = Convert.ToInt32(datas[1]);
+
+            if (deviceReading.DeviceType == Digital)
+            {
+                deviceReading.DigitalSwitch = Convert.ToBoolean(datas[2]);
+            }
+            else
+            {
+                deviceReading.AnalogRed = Convert.ToInt32(datas[2]);
+                deviceReading.AnalogGreen = Convert.ToInt32(datas[3]);
+                deviceReading.AnalogBlue = Convert.ToInt32(datas[4]);
+            }
+        }
+
+        _tcpClient.Close();
+
+        return deviceReading;
     }
 
     public void SetSingleDevice(string ipAddress, int port, string mac, bool digitalSwitch, int analogRed, int analogGreen, int analogBlue)
