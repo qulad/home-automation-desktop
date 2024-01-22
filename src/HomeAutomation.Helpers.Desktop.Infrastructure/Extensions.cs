@@ -31,10 +31,13 @@ public static class Extensions
         services
             .AddTransient<IAddMultipleCommandHandler<AddMultipleLabels>, AddMultipleLabelsHandler>()
             .AddTransient<IAddSingleCommandHandler<AddSingleConnection>, AddSingleConnectionHandler>()
+            .AddTransient<IAddSingleCommandHandler<AddSingleDevice>, AddSingleDeviceHandler>()
             .AddTransient<IAddSingleCommandHandler<AddSingleLabel>, AddSingleLabelHandler>()
             .AddTransient<IDeleteSingleCommandHandler<DeleteSingleConnection>, DeleteSingleConnectionHandler>()
+            .AddTransient<IDeleteSingleCommandHandler<DeleteSingleDevice>, DeleteSingleDeviceHandler>()
             .AddTransient<IDeleteSingleCommandHandler<DeleteSingleLabel>, DeleteSingleLabelHandler>()
             .AddTransient<IUpdateSingleCommandHandler<UpdateSingleConnection, ConnectionEntity>, UpdateSingleConnectionHandler>()
+            .AddTransient<IUpdateSingleCommandHandler<UpdateSingleDevice, DeviceEntity>, UpdateSingleDeviceHandler>()
             .AddTransient<IUpdateSingleCommandHandler<UpdateSingleLabel, LabelEntity>, UpdateSingleLabelHandler>();
 
         return services;
@@ -45,10 +48,13 @@ public static class Extensions
         services
             .AddTransient<AddMultipleLabels>()
             .AddTransient<AddSingleConnection>()
+            .AddTransient<AddSingleDevice>()
             .AddTransient<AddSingleLabel>()
             .AddTransient<DeleteSingleConnection>()
+            .AddTransient<DeleteSingleDevice>()
             .AddTransient<DeleteSingleLabel>()
             .AddTransient<UpdateSingleConnection>()
+            .AddTransient<UpdateSingleDevice>()
             .AddTransient<UpdateSingleLabel>();
 
         return services;
@@ -58,8 +64,10 @@ public static class Extensions
     {
         services
             .AddTransient<GetMultipleConnections>()
+            .AddTransient<GetMultipleDevices>()
             .AddTransient<GetMultipleLabels>()
             .AddTransient<GetSingleConnection>()
+            .AddTransient<GetSingleDevice>()
             .AddTransient<GetSingleLabel>();
 
         return services;
@@ -69,8 +77,10 @@ public static class Extensions
     {
         services
             .AddTransient<IGetMultipleQueryHandler<GetMultipleConnections, ConnectionDto>, GetMultipleConnectionsHandler>()
+            .AddTransient<IGetMultipleQueryHandler<GetMultipleDevices, DeviceDto>, GetMultipleDevicesHandler>()
             .AddTransient<IGetMultipleQueryHandler<GetMultipleLabels, LabelDto>, GetMultipleLabelsHandler>()
             .AddTransient<IGetSingleQueryHandler<GetSingleConnection, ConnectionDto>, GetSingleConnectionHandler>()
+            .AddTransient<IGetSingleQueryHandler<GetSingleDevice, DeviceDto>, GetSingleDeviceHandler>()
             .AddTransient<IGetSingleQueryHandler<GetSingleLabel, LabelDto>, GetSingleLabelHandler>();
 
         return services;

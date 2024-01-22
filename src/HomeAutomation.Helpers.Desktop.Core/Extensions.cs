@@ -32,6 +32,7 @@ public static class Extensions
     {
         services
             .AddTransient<ConnectionEntity>()
+            .AddTransient<DeviceEntity>()
             .AddTransient<LabelEntity>();
 
         return services;
@@ -41,6 +42,7 @@ public static class Extensions
     {
         services
             .AddTransient<IConnectionRepository<ConnectionEntity, ConnectionDto>, ConnectionRepository>()
+            .AddTransient<IDeviceRepository<DeviceEntity, DeviceDto>, DeviceRepository>()
             .AddTransient<ILabelRepository<LabelEntity, LabelDto>, LabelRepository>();
 
         return services;

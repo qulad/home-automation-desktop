@@ -1,5 +1,6 @@
 using HomeAutomation.Helpers.Desktop.Application.Commands;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
+using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,7 +21,10 @@ public static class Extensions
     {
         services
             .AddTransient<ConnectionDto>()
+            .AddTransient<DeviceDto>()
             .AddTransient<LabelDto>();
+
+        services.AddTransient<DeviceReadingDto>();
 
         return services;
     }
