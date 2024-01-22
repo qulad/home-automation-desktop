@@ -21,10 +21,8 @@ public partial class MonitorPage : UserControl
         MessageBox.Show($"Bağlantı ismi: {connection.Name}");
     }
 
-    private void HomePageButtonClick(object sender, EventArgs e)
+    private void NoSelectedDeviceLabel_Click(object sender, EventArgs e)
     {
-        Hide();
 
-        _basePage.Show<HomePage>();
     }
 }
