@@ -9,6 +9,8 @@ public partial class MonitorPage : UserControl
 {
     private readonly BasePage _basePage;
 
+    private ConnectionDto _connection { get; set; }
+
     public MonitorPage(BasePage basePage)
     {
         _basePage = basePage;
@@ -19,10 +21,22 @@ public partial class MonitorPage : UserControl
     public void ReceiveConnection(ConnectionDto connection)
     {
         MessageBox.Show($"Bağlantı ismi: {connection.Name}");
+
+        _connection = connection;
+
+        LoadConnectionGroupBox();
     }
 
-    private void NoSelectedDeviceLabel_Click(object sender, EventArgs e)
+    private void HomePageButtonClick(object sender, EventArgs e)
     {
+        Hide();
 
+        _basePage.Show<HomePage>();
+    }
+
+    private void LoadConnectionGroupBox()
+    {
+        ConnectionIpAddressLabel.Text = _connection.IpAddress;
+        ConnectionPortLabel.Text = _connection.Port.ToString();
     }
 }
