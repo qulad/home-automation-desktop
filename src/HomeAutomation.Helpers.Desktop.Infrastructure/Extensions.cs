@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;
@@ -21,7 +22,8 @@ public static class Extensions
             .UseCommandHandlers()
             .UseCommands()
             .UseQueries()
-            .UseQueryHandlers();
+            .UseQueryHandlers()
+            .UseTcpClient();
 
         return services;
     }
@@ -89,6 +91,13 @@ public static class Extensions
     private static IServiceCollection UseServices(this IServiceCollection services)
     {
         services.AddSingleton<ITcpService, TcpService>();
+
+        return services;
+    }
+
+    private static IServiceCollection UseTcpClient(this IServiceCollection services)
+    {
+        services.AddTransient<TcpClient>();
 
         return services;
     }
