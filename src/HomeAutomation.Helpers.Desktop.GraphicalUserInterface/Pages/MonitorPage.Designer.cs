@@ -396,6 +396,7 @@ partial class MonitorPage
         SelectedDevicesSetDeviceButton.TabIndex = 10;
         SelectedDevicesSetDeviceButton.Text = "Ayarla";
         SelectedDevicesSetDeviceButton.UseVisualStyleBackColor = true;
+        SelectedDevicesSetDeviceButton.Click += SelectedDevicesSetDeviceButtonClick;
         // 
         // MonitorPage
         // 

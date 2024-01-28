@@ -1,12 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using HomeAutomation.Helpers.Desktop.Application.Commands;
 using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.Application.Services;
+using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
+using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
@@ -14,6 +18,7 @@ namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 public partial class MonitorPage : UserControl
 {
     private readonly BasePage _basePage;
+    private readonly ICommandSender _commandSender;
     private readonly IQuerySender _querySender;
     private readonly ITcpService _tcpService;
 
@@ -21,10 +26,12 @@ public partial class MonitorPage : UserControl
 
     public MonitorPage(
         BasePage basePage,
+        ICommandSender commandSender,
         IQuerySender querySender,
         ITcpService tcpService)
     {
         _basePage = basePage;
+        _commandSender = commandSender;
         _querySender = querySender;
         _tcpService = tcpService;
 
@@ -41,9 +48,124 @@ public partial class MonitorPage : UserControl
         LoadDevicesListBox();
     }
 
+    private void SelectedDevicesSetDeviceButtonClick(object sender, EventArgs e)
+    {
+        var macAddress = SelectedDeviceMacAddressLabel.Text;
+
+        var deviceName = SelectedDeviceNameLabel.Text;
+        var newDeviceName = SelectedDeviceNewNameTextBox.Text;
+
+        var newValues = new List<string>();
+
+        if (SelectedDeviceTypeLabel.Text == "Dijital")
+        {
+            var newDigitalValue = SelectedDigitalDeviceNewValueTextBox.Text;
+
+            if (string.IsNullOrEmpty(newDigitalValue))
+            {
+                MessageBox.Show("Lütfen dijital değerini giriniz!");
+
+                return;
+            }
+
+            newValues.Add(newDigitalValue);
+        }
+        else
+        {
+            var newAnalogRedValue = SelectedAnalogDeviceNewRedValueTextBox.Text;
+
+            if (string.IsNullOrEmpty(newAnalogRedValue))
+            {
+                MessageBox.Show("Lütfen analog kırmızı değerini giriniz!");
+
+                return;
+            }
+
+            newValues.Add(newAnalogRedValue);
+
+            var newAnalogGreenValue = SelectedAnalogDeviceNewGreenValueTextBox.Text;
+
+            if (string.IsNullOrEmpty(newAnalogGreenValue))
+            {
+                MessageBox.Show("Lütfen analog yeşil değerini giriniz!");
+
+                return;
+            }
+
+            newValues.Add(newAnalogGreenValue);
+
+            var newAnalogBlueValue = SelectedAnalogDeviceNewBlueValueTextBox.Text;
+
+            if (string.IsNullOrEmpty(newAnalogBlueValue))
+            {
+                MessageBox.Show("Lütfen analog mavi değerini giriniz!");
+
+                return;
+            }
+
+            newValues.Add(newAnalogBlueValue);
+        }
+
+        _tcpService.SetSingleDevice(
+            _connection.IpAddress,
+            _connection.Port,
+            macAddress,
+            SelectedDeviceTypeLabel.Text == "Dijital" ? DeviceTypes.Digital : DeviceTypes.Analog,
+            newValues[0] == "1",
+            newValues.Count == 3 ? Convert.ToInt32(newValues[0]) : 0,
+            newValues.Count == 3 ? Convert.ToInt32(newValues[1]) : 0,
+            newValues.Count == 3 ? Convert.ToInt32(newValues[2]) : 0);
+
+        if (string.IsNullOrEmpty(deviceName))
+        {
+            var command = new AddSingleDevice
+            {
+                MacAddress = macAddress,
+                Name = newDeviceName
+            };
+
+            _commandSender.SendAddSingle(command);
+        }
+        else
+        {
+            var query = new GetMultipleDevices();
+            var devices = _querySender.SendGetMultiple<GetMultipleDevices, DeviceDto>(query);
+
+            var device = devices.First(x => x.MacAddress == macAddress);
+
+            var command = new UpdateSingleDevice
+            {
+                Id = device.Id,
+                MacAddress = macAddress,
+                Name = newDeviceName
+            };
+
+            var entity = new DeviceEntity(device.Id)
+            {
+                MacAddress = macAddress,
+                Name = device.Name
+            };
+
+            _commandSender.SendUpdateSingle(command, entity);
+        }
+
+        SelectedDeviceNewNameTextBox.Text = string.Empty;
+        SelectedDigitalDeviceNewValueTextBox.Text = string.Empty;
+        SelectedAnalogDeviceNewRedValueTextBox.Text = string.Empty;
+        SelectedAnalogDeviceNewGreenValueTextBox.Text = string.Empty;
+        SelectedAnalogDeviceNewBlueValueTextBox.Text = string.Empty;
+
+        LoadConnectionGroupBox();
+        LoadDevicesListBox();
+        SelectDeviceButtonClick(sender, e);
+
+        MessageBox.Show("Değiştirildi");
+    }
+
     private void WriteSelectedDevice(string deviceName, DeviceReadingDto deviceReading)
     {
         SelectedDeviceMonitorGroupBox.Visible = true;
+        SelectedDeviceControlGroupBox.Visible = true;
 
         SelectedDeviceNameLabel.Text = deviceName;
         SelectedDeviceMacAddressLabel.Text = deviceReading.MacAddress;
@@ -60,6 +182,16 @@ public partial class MonitorPage : UserControl
 
             SelectedDigitalDeviceLabelLabel.Visible = true;
             SelectedDigitalDeviceValueLabel.Text = deviceReading.DigitalSwitch.ToString();
+
+            SelectedDigitalDeviceNewValueLabel.Visible = true;
+            SelectedDigitalDeviceNewValueTextBox.Visible = true;
+
+            SelectedAnalogDeviceNewRedValueLabel.Visible = false;
+            SelectedAnalogDeviceNewRedValueTextBox.Visible = false;
+            SelectedAnalogDeviceNewGreenValueLabel.Visible = false;
+            SelectedAnalogDeviceNewGreenValueTextBox.Visible = false;
+            SelectedAnalogDeviceNewBlueValueLabel.Visible = false;
+            SelectedAnalogDeviceNewBlueValueTextBox.Visible = false;
         }
         else
         {
@@ -72,6 +204,16 @@ public partial class MonitorPage : UserControl
             SelectedAnalogDeviceRedValueLabel.Text = deviceReading.AnalogRed.ToString();
             SelectedAnalogDeviceGreenValueLabel.Text = deviceReading.AnalogGreen.ToString();
             SelectedAnalogDeviceBlueValueLabel.Text = deviceReading.AnalogBlue.ToString();
+
+            SelectedDigitalDeviceNewValueLabel.Visible = false;
+            SelectedDigitalDeviceNewValueTextBox.Visible = false;
+
+            SelectedAnalogDeviceNewRedValueLabel.Visible = true;
+            SelectedAnalogDeviceNewRedValueTextBox.Visible = true;
+            SelectedAnalogDeviceNewGreenValueLabel.Visible = true;
+            SelectedAnalogDeviceNewGreenValueTextBox.Visible = true;
+            SelectedAnalogDeviceNewBlueValueLabel.Visible = true;
+            SelectedAnalogDeviceNewBlueValueTextBox.Visible = true;
         }
     }
 
@@ -98,8 +240,6 @@ public partial class MonitorPage : UserControl
         var deviceReading = _tcpService.GetSingleDevice(_connection.IpAddress, _connection.Port, selectedDeviceName);
 
         WriteSelectedDevice(selectedDeviceName, deviceReading);
-
-        SelectedDeviceControlGroupBox.Visible = true;
     }
 
     private void LoadDevicesListBox()
