@@ -113,6 +113,7 @@ partial class MonitorPage
         SelectDeviceButton.TabIndex = 8;
         SelectDeviceButton.Text = "Cihazı seç";
         SelectDeviceButton.UseVisualStyleBackColor = true;
+        SelectDeviceButton.Click += SelectDeviceButtonClick;
         // 
         // SelectedDeviceMonitorGroupBox
         // 
