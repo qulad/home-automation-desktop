@@ -10,7 +10,6 @@ using System;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Windows;
 using System.Threading.Tasks;
 using WindowsFormsLifetime;
-using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Helpers.Desktop;
 
