@@ -65,6 +65,7 @@ public partial class SelectConnectionPage
         Controls.Add(ConnectionsListBox);
         Name = "SelectConnectionPage";
         Size = new Size(800, 450);
+        VisibleChanged += LoadConnectionListBox;
         ResumeLayout(false);
     }
 }

@@ -21,11 +21,9 @@ public partial class SelectConnectionPage : UserControl
         _querySender = querySender;
 
         InitializeComponent();
-
-        LoadConnectionListBox();
     }
 
-    private void LoadConnectionListBox()
+    private void LoadConnectionListBox(object sender, EventArgs e)
     {
         ConnectionsListBox.Items.Clear();
 
@@ -44,7 +42,7 @@ public partial class SelectConnectionPage : UserControl
         {
             MessageBox.Show(SelectConnectionPageTexts.SelectConnection);
 
-            LoadConnectionListBox();
+            LoadConnectionListBox(sender, e);
 
             return;
         }
@@ -59,7 +57,7 @@ public partial class SelectConnectionPage : UserControl
         {
             MessageBox.Show(SelectConnectionPageTexts.ConnectionNotFound);
 
-            LoadConnectionListBox();
+            LoadConnectionListBox(sender, e);
 
             return;
         }
