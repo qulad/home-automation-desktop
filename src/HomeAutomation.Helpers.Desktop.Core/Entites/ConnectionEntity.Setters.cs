@@ -12,7 +12,7 @@ public partial class ConnectionEntity
 
     public void SetIpAddress(string ipAddress)
     {
-        if (!IsIpAddressValid(IpAddress))
+        if (!IsIpAddressValid(ipAddress))
         {
             throw new ArgumentException("Invalid ip address");
         }
@@ -37,7 +37,7 @@ public partial class ConnectionEntity
 
     private static bool IsIpAddressValid(string ipAddress)
     {
-        var ipAddressPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
+        var ipAddressPattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b";
         var ipAddressValid = Regex.IsMatch(ipAddress, ipAddressPattern);
 
         return ipAddressValid;

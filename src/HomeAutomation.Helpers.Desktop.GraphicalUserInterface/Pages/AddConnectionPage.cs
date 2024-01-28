@@ -51,6 +51,17 @@ public partial class AddConnectionPage : UserControl
             return;
         }
 
+        if (string.IsNullOrEmpty(ConnectionPortMaskedTextBox.Text))
+        {
+            MessageBox.Show(AddConnectionPageTexts.InvalidPort);
+
+            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+
+            return;
+        }
+
         var port = Convert.ToInt32(ConnectionPortMaskedTextBox.Text);
 
         if (!IsPortValid(port))
@@ -64,7 +75,7 @@ public partial class AddConnectionPage : UserControl
             return;
         }
 
-        var ipAddress = ConnectionIpAddressMaskedTextBox.Text;
+        var ipAddress = new string(ConnectionIpAddressMaskedTextBox.Text.ToCharArray().Where(x => !Char.IsWhiteSpace(x)).ToArray());
 
         if (!IsIpAddressValid(ipAddress))
         {
@@ -130,6 +141,8 @@ public partial class AddConnectionPage : UserControl
         ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
         ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
         ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+
+        MessageBox.Show("Bağlantı eklendi");
 
         LoadExistingLabelsCheckedListBox();
     }
