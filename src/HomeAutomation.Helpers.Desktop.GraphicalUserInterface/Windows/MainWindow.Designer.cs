@@ -12,6 +12,8 @@ public partial class MainWindow
         ClientSize = new Size(800, 450);
         Name = "HomePage";
         Text = "Akıllı Ev Otomasyon Sistemi Masaüstü Yardımcısı!";
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        MaximizeBox = false;
         ResumeLayout(false);
         PerformLayout();
     }
