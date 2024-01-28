@@ -1,9 +1,7 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
-using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.Application.Services;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
@@ -16,6 +14,8 @@ public partial class MonitorPage : UserControl
     private readonly BasePage _basePage;
     private readonly IQuerySender _querySender;
     private readonly ITcpService _tcpService;
+
+    private DeviceDto _selectedDevice;
 
     private ConnectionDto _connection { get; set; }
 
@@ -41,40 +41,6 @@ public partial class MonitorPage : UserControl
         LoadDevicesListBox();
     }
 
-    private void WriteSelectedDevice(string deviceName, DeviceReadingDto deviceReading)
-    {
-        SelectedDeviceMonitorGroupBox.Visible = true;
-
-        SelectedDeviceNameLabel.Text = deviceName;
-        SelectedDeviceMacAddressLabel.Text = deviceReading.MacAddress;
-        SelectedDeviceTypeLabel.Text = (deviceReading.DeviceType == DeviceTypes.Digital) ? "Dijital" : "Analog";
-
-        if (deviceReading.DeviceType == DeviceTypes.Digital)
-        {
-            SelectedAnalogDeviceValuesLabelLabel.Visible = false;
-            SelectedDigitalDeviceLabelLabel.Visible = true;
-
-            SelectedAnalogDeviceRedValueLabel.Text = string.Empty;
-            SelectedAnalogDeviceGreenValueLabel.Text = string.Empty;
-            SelectedAnalogDeviceBlueValueLabel.Text = string.Empty;
-
-            SelectedDigitalDeviceLabelLabel.Visible = true;
-            SelectedDigitalDeviceValueLabel.Text = deviceReading.DigitalSwitch.ToString();
-        }
-        else
-        {
-            SelectedDigitalDeviceLabelLabel.Visible = false;
-            SelectedAnalogDeviceValuesLabelLabel.Visible = true;
-
-            SelectedDigitalDeviceLabelLabel.Visible = false;
-            SelectedDigitalDeviceValueLabel.Text = string.Empty;
-
-            SelectedAnalogDeviceRedValueLabel.Text = deviceReading.AnalogRed.ToString();
-            SelectedAnalogDeviceGreenValueLabel.Text = deviceReading.AnalogGreen.ToString();
-            SelectedAnalogDeviceBlueValueLabel.Text = deviceReading.AnalogBlue.ToString();
-        }
-    }
-
     public void SelectDeviceButtonClick(object sender, EventArgs e)
     {
         var selectedDeviceName = (DevicesListBox.SelectedItem ?? "").ToString();
@@ -85,21 +51,17 @@ public partial class MonitorPage : UserControl
 
             return;
         }
-
+        
         var allDevicesQuery = new GetMultipleDevices();
 
         var allDevices = _querySender.SendGetMultiple<GetMultipleDevices, DeviceDto>(allDevicesQuery);
 
+        var device = new DeviceDto(Guid.Empty);
+
         if (allDevices.Select(x => x.Name).Contains(selectedDeviceName))
         {
-            selectedDeviceName = allDevices.First(x => x.Name == selectedDeviceName).MacAddress;
+
         }
-
-        var deviceReading = _tcpService.GetSingleDevice(_connection.IpAddress, _connection.Port, selectedDeviceName);
-
-        WriteSelectedDevice(selectedDeviceName, deviceReading);
-
-        SelectedDeviceControlGroupBox.Visible = true;
     }
 
     private void LoadDevicesListBox()

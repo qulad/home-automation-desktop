@@ -52,10 +52,11 @@ partial class MonitorPage
         SelectedDeviceNewNameTextBox = new TextBox();
         SelectedDeviceNewNameLabel = new Label();
         ConnectionGroupBox = new GroupBox();
-        ConnectionIpAddressLabelLabel = new Label();
-        ConnectionPortLabelLabel = new Label();
-        ConnectionIpAddressLabel = new Label();
         ConnectionPortLabel = new Label();
+        ConnectionIpAddressLabel = new Label();
+        ConnectionPortLabelLabel = new Label();
+        ConnectionIpAddressLabelLabel = new Label();
+        SelectedDevicesSetDeviceButton = new Button();
         SelectedDeviceMonitorGroupBox.SuspendLayout();
         SelectedDeviceControlGroupBox.SuspendLayout();
         ConnectionGroupBox.SuspendLayout();
@@ -63,9 +64,9 @@ partial class MonitorPage
         // 
         // HomePageButton
         // 
-        HomePageButton.Location = new Point(494, 353);
+        HomePageButton.Location = new Point(594, 15);
         HomePageButton.Name = "HomePageButton";
-        HomePageButton.Size = new Size(278, 83);
+        HomePageButton.Size = new Size(195, 83);
         HomePageButton.TabIndex = 3;
         HomePageButton.Text = "Ana sayfa";
         HomePageButton.UseVisualStyleBackColor = true;
@@ -90,7 +91,7 @@ partial class MonitorPage
         // 
         MonitorPageLabel.AutoSize = true;
         MonitorPageLabel.Font = new Font("Segoe UI", 32F);
-        MonitorPageLabel.Location = new Point(125, 15);
+        MonitorPageLabel.Location = new Point(24, 15);
         MonitorPageLabel.Name = "MonitorPageLabel";
         MonitorPageLabel.Size = new Size(564, 72);
         MonitorPageLabel.TabIndex = 6;
@@ -242,6 +243,7 @@ partial class MonitorPage
         // 
         // SelectedDeviceControlGroupBox
         // 
+        SelectedDeviceControlGroupBox.Controls.Add(SelectedDevicesSetDeviceButton);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedAnalogDeviceNewBlueValueLabel);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedAnalogDeviceNewGreenValueLabel);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedAnalogDeviceNewRedValueLabel);
@@ -252,9 +254,9 @@ partial class MonitorPage
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDigitalDeviceNewValueTextBox);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDeviceNewNameTextBox);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDeviceNewNameLabel);
-        SelectedDeviceControlGroupBox.Location = new Point(494, 90);
+        SelectedDeviceControlGroupBox.Location = new Point(489, 112);
         SelectedDeviceControlGroupBox.Name = "SelectedDeviceControlGroupBox";
-        SelectedDeviceControlGroupBox.Size = new Size(289, 257);
+        SelectedDeviceControlGroupBox.Size = new Size(289, 335);
         SelectedDeviceControlGroupBox.TabIndex = 10;
         SelectedDeviceControlGroupBox.TabStop = false;
         SelectedDeviceControlGroupBox.Text = "KontrolEt";
@@ -352,14 +354,21 @@ partial class MonitorPage
         ConnectionGroupBox.TabStop = false;
         ConnectionGroupBox.Text = "Bağlantı";
         // 
-        // ConnectionIpAddressLabelLabel
+        // ConnectionPortLabel
         // 
-        ConnectionIpAddressLabelLabel.AutoSize = true;
-        ConnectionIpAddressLabelLabel.Location = new Point(16, 28);
-        ConnectionIpAddressLabelLabel.Name = "ConnectionIpAddressLabelLabel";
-        ConnectionIpAddressLabelLabel.Size = new Size(84, 20);
-        ConnectionIpAddressLabelLabel.TabIndex = 0;
-        ConnectionIpAddressLabelLabel.Text = "Bağlantı ip:";
+        ConnectionPortLabel.AutoSize = true;
+        ConnectionPortLabel.Location = new Point(135, 75);
+        ConnectionPortLabel.Name = "ConnectionPortLabel";
+        ConnectionPortLabel.Size = new Size(0, 20);
+        ConnectionPortLabel.TabIndex = 3;
+        // 
+        // ConnectionIpAddressLabel
+        // 
+        ConnectionIpAddressLabel.AutoSize = true;
+        ConnectionIpAddressLabel.Location = new Point(151, 28);
+        ConnectionIpAddressLabel.Name = "ConnectionIpAddressLabel";
+        ConnectionIpAddressLabel.Size = new Size(0, 20);
+        ConnectionIpAddressLabel.TabIndex = 2;
         // 
         // ConnectionPortLabelLabel
         // 
@@ -370,21 +379,23 @@ partial class MonitorPage
         ConnectionPortLabelLabel.TabIndex = 1;
         ConnectionPortLabelLabel.Text = "Bağlantı port:";
         // 
-        // ConnectionIpAddressLabel
+        // ConnectionIpAddressLabelLabel
         // 
-        ConnectionIpAddressLabel.AutoSize = true;
-        ConnectionIpAddressLabel.Location = new Point(151, 28);
-        ConnectionIpAddressLabel.Name = "ConnectionIpAddressLabel";
-        ConnectionIpAddressLabel.Size = new Size(0, 20);
-        ConnectionIpAddressLabel.TabIndex = 2;
+        ConnectionIpAddressLabelLabel.AutoSize = true;
+        ConnectionIpAddressLabelLabel.Location = new Point(16, 28);
+        ConnectionIpAddressLabelLabel.Name = "ConnectionIpAddressLabelLabel";
+        ConnectionIpAddressLabelLabel.Size = new Size(84, 20);
+        ConnectionIpAddressLabelLabel.TabIndex = 0;
+        ConnectionIpAddressLabelLabel.Text = "Bağlantı ip:";
         // 
-        // ConnectionPortLabel
+        // SelectedDevicesSetDeviceButton
         // 
-        ConnectionPortLabel.AutoSize = true;
-        ConnectionPortLabel.Location = new Point(135, 75);
-        ConnectionPortLabel.Name = "ConnectionPortLabel";
-        ConnectionPortLabel.Size = new Size(0, 20);
-        ConnectionPortLabel.TabIndex = 3;
+        SelectedDevicesSetDeviceButton.Location = new Point(17, 260);
+        SelectedDevicesSetDeviceButton.Name = "SelectedDevicesSetDeviceButton";
+        SelectedDevicesSetDeviceButton.Size = new Size(261, 53);
+        SelectedDevicesSetDeviceButton.TabIndex = 10;
+        SelectedDevicesSetDeviceButton.Text = "Ayarla";
+        SelectedDevicesSetDeviceButton.UseVisualStyleBackColor = true;
         // 
         // MonitorPage
         // 
@@ -445,4 +456,5 @@ partial class MonitorPage
     private Label ConnectionIpAddressLabelLabel;
     private Label ConnectionIpAddressLabel;
     private Label ConnectionPortLabel;
+    private Button SelectedDevicesSetDeviceButton;
 }
