@@ -70,6 +70,7 @@ partial class MonitorPage
         HomePageButton.TabIndex = 3;
         HomePageButton.Text = "Ana sayfa";
         HomePageButton.UseVisualStyleBackColor = true;
+        HomePageButton.Click += HomePageButtonClick;
         // 
         // DevicesListBox
         // 
