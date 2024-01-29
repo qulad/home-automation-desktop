@@ -110,7 +110,7 @@ public class TcpService : ITcpService
             {
                 deviceReading.DeviceType = DeviceTypes.Digital;
 
-                deviceReading.DigitalSwitch = Convert.ToBoolean(datas[2]);
+                deviceReading.DigitalSwitch = datas[2] == "1";
             }
             else
             {

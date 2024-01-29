@@ -172,7 +172,7 @@ partial class MonitorPage
         // SelectedDeviceMacAddressLabel
         // 
         SelectedDeviceMacAddressLabel.AutoSize = true;
-        SelectedDeviceMacAddressLabel.Location = new Point(183, 75);
+        SelectedDeviceMacAddressLabel.Location = new Point(94, 72);
         SelectedDeviceMacAddressLabel.Name = "SelectedDeviceMacAddressLabel";
         SelectedDeviceMacAddressLabel.Size = new Size(0, 21);
         SelectedDeviceMacAddressLabel.TabIndex = 6;
@@ -180,7 +180,7 @@ partial class MonitorPage
         // SelectedDeviceNameLabel
         // 
         SelectedDeviceNameLabel.AutoSize = true;
-        SelectedDeviceNameLabel.Location = new Point(136, 36);
+        SelectedDeviceNameLabel.Location = new Point(107, 37);
         SelectedDeviceNameLabel.Name = "SelectedDeviceNameLabel";
         SelectedDeviceNameLabel.Size = new Size(0, 21);
         SelectedDeviceNameLabel.TabIndex = 5;

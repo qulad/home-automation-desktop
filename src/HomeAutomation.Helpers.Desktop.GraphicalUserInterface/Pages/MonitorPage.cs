@@ -226,18 +226,25 @@ public partial class MonitorPage : UserControl
 
         var allDevices = _querySender.SendGetMultiple<GetMultipleDevices, DeviceDto>(allDevicesQuery);
 
+        var name = string.Empty;
+
         if (allDevices.Select(x => x.Name).Contains(selectedDeviceName))
         {
-            selectedDeviceName = allDevices.First(x => x.Name == selectedDeviceName).MacAddress;
+            var device = allDevices.First(x => x.Name == selectedDeviceName);
+
+            selectedDeviceName = device.MacAddress;
+            name = device.Name;
         }
 
         var deviceReading = _tcpService.GetSingleDevice(_connection.IpAddress, _connection.Port, selectedDeviceName);
 
-        WriteSelectedDevice(selectedDeviceName, deviceReading);
+        WriteSelectedDevice(name, deviceReading);
     }
 
     private void LoadDevicesListBox()
     {
+        DevicesListBox.Items.Clear();
+
         var deviceReadings = _tcpService.GetAllDevices(_connection.IpAddress, _connection.Port);
 
         var deviceMacAddresses = deviceReadings.Select(x => x.MacAddress).ToList();
