@@ -69,7 +69,7 @@ partial class AddConnectionPage
         ExistingLabelsCheckedListBox.FormattingEnabled = true;
         ExistingLabelsCheckedListBox.Location = new Point(6, 21);
         ExistingLabelsCheckedListBox.Name = "ExistingLabelsCheckedListBox";
-        ExistingLabelsCheckedListBox.Size = new Size(376, 136);
+        ExistingLabelsCheckedListBox.Size = new Size(376, 119);
         ExistingLabelsCheckedListBox.TabIndex = 0;
         // 
         // ConnectionNameLabel
@@ -151,6 +151,7 @@ partial class AddConnectionPage
         // 
         AddConnectionButton.Anchor = AnchorStyles.None;
         AddConnectionButton.BackColor = Color.FromArgb(31, 31, 68);
+        AddConnectionButton.FlatStyle = FlatStyle.Flat;
         AddConnectionButton.Font = new Font("Century Gothic", 10.2F);
         AddConnectionButton.ForeColor = Color.Gainsboro;
         AddConnectionButton.Location = new Point(9, 371);

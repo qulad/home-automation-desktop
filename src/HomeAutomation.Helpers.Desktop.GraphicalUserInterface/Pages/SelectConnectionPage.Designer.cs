@@ -29,6 +29,7 @@ public partial class SelectConnectionPage
         // 
         SelectConnectionButton.Anchor = AnchorStyles.None;
         SelectConnectionButton.BackColor = Color.FromArgb(31, 31, 68);
+        SelectConnectionButton.FlatStyle = FlatStyle.Flat;
         SelectConnectionButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
         SelectConnectionButton.ForeColor = Color.Gainsboro;
         SelectConnectionButton.Location = new Point(264, 255);
