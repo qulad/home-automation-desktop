@@ -32,7 +32,7 @@ public partial class SelectConnectionPage
         SelectConnectionButton.FlatStyle = FlatStyle.Flat;
         SelectConnectionButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
         SelectConnectionButton.ForeColor = Color.Gainsboro;
-        SelectConnectionButton.Location = new Point(264, 255);
+        SelectConnectionButton.Location = new Point(511, 264);
         SelectConnectionButton.Name = "SelectConnectionButton";
         SelectConnectionButton.Size = new Size(160, 83);
         SelectConnectionButton.TabIndex = 3;
@@ -44,7 +44,7 @@ public partial class SelectConnectionPage
         // 
         ConnectionsListBox.Anchor = AnchorStyles.None;
         ConnectionsListBox.FormattingEnabled = true;
-        ConnectionsListBox.Location = new Point(144, 76);
+        ConnectionsListBox.Location = new Point(391, 85);
         ConnectionsListBox.Name = "ConnectionsListBox";
         ConnectionsListBox.Size = new Size(173, 124);
         ConnectionsListBox.TabIndex = 0;
