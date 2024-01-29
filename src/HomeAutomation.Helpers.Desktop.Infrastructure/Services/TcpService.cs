@@ -22,109 +22,123 @@ public class TcpService : ITcpService
 
     public List<DeviceReadingDto> GetAllDevices(string ipAddress, int port)
     {
-        var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
+        try
+        {            
+            var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-        tcpClient.Connect(ipAddress, port);
+            tcpClient.Connect(ipAddress, port);
 
-        var stream = tcpClient.GetStream();
+            var stream = tcpClient.GetStream();
 
-        var writeData = Encoding.UTF8.GetBytes("0");
-        stream.Write(writeData, 0, writeData.Length);
+            var writeData = Encoding.UTF8.GetBytes("0");
+            stream.Write(writeData, 0, writeData.Length);
 
-        byte[] readBuffer = new byte[1024];
-        int bytesRead;
+            byte[] readBuffer = new byte[1024];
+            int bytesRead;
 
-        var deviceReadings = new List<DeviceReadingDto>();
+            var deviceReadings = new List<DeviceReadingDto>();
 
-        while (true)
-        {
-            bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
-            var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
-
-            if (readData == "exit")
+            while (true)
             {
-                break;
+                bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
+                var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
+
+                if (readData == "exit")
+                {
+                    break;
+                }
+
+                var datas = readData.Split(",").ToList();
+
+                var deviceReading = new DeviceReadingDto
+                {
+                    MacAddress = datas[0]
+                };
+
+                if (datas[1] == Digital)
+                {
+                    deviceReading.DeviceType = DeviceTypes.Digital;
+
+                    deviceReading.DigitalSwitch = datas[2] == "1";
+                }
+                else
+                {
+                    deviceReading.DeviceType = DeviceTypes.Analog;
+
+                    deviceReading.AnalogRed = Convert.ToInt32(datas[2]);
+                    deviceReading.AnalogGreen = Convert.ToInt32(datas[3]);
+                    deviceReading.AnalogBlue = Convert.ToInt32(datas[4]);
+                }
+
+                deviceReadings.Add(deviceReading);
             }
 
-            var datas = readData.Split(",").ToList();
+            tcpClient.Close();
 
-            var deviceReading = new DeviceReadingDto
-            {
-                MacAddress = datas[0]
-            };
-
-            if (datas[1] == Digital)
-            {
-                deviceReading.DeviceType = DeviceTypes.Digital;
-
-                deviceReading.DigitalSwitch = datas[2] == "1";
-            }
-            else
-            {
-                deviceReading.DeviceType = DeviceTypes.Analog;
-
-                deviceReading.AnalogRed = Convert.ToInt32(datas[2]);
-                deviceReading.AnalogGreen = Convert.ToInt32(datas[3]);
-                deviceReading.AnalogBlue = Convert.ToInt32(datas[4]);
-            }
-
-            deviceReadings.Add(deviceReading);
+            return deviceReadings;
         }
-
-        tcpClient.Close();
-
-        return deviceReadings;
+        catch(Exception ex)
+        {
+            throw new ArgumentException(ex.Message);
+        }
     }
 
     public DeviceReadingDto GetSingleDevice(string ipAddress, int port, string mac)
     {
-        var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
-
-        tcpClient.Connect(ipAddress, port);
-
-        var stream = tcpClient.GetStream();
-
-        var writeData = Encoding.UTF8.GetBytes("1" + mac);
-        stream.Write(writeData, 0, writeData.Length);
-
-        byte[] readBuffer = new byte[1024];
-        int bytesRead;
-
-        var deviceReading = new DeviceReadingDto();
-
-        while (true)
+        try
         {
-            bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
-            var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
+            var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-            if (readData == "exit")
+            tcpClient.Connect(ipAddress, port);
+
+            var stream = tcpClient.GetStream();
+
+            var writeData = Encoding.UTF8.GetBytes("1" + mac);
+            stream.Write(writeData, 0, writeData.Length);
+
+            byte[] readBuffer = new byte[1024];
+            int bytesRead;
+
+            var deviceReading = new DeviceReadingDto();
+
+            while (true)
             {
-                break;
+                bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
+                var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
+
+                if (readData == "exit")
+                {
+                    break;
+                }
+
+                var datas = readData.Split(",").ToList();
+
+                deviceReading.MacAddress = datas[0];
+
+                if (datas[1] == Digital)
+                {
+                    deviceReading.DeviceType = DeviceTypes.Digital;
+
+                    deviceReading.DigitalSwitch = datas[2] == "1";
+                }
+                else
+                {
+                    deviceReading.DeviceType = DeviceTypes.Analog;
+
+                    deviceReading.AnalogRed = Convert.ToInt32(datas[2]);
+                    deviceReading.AnalogGreen = Convert.ToInt32(datas[3]);
+                    deviceReading.AnalogBlue = Convert.ToInt32(datas[4]);
+                }
             }
 
-            var datas = readData.Split(",").ToList();
+            tcpClient.Close();
 
-            deviceReading.MacAddress = datas[0];
-
-            if (datas[1] == Digital)
-            {
-                deviceReading.DeviceType = DeviceTypes.Digital;
-
-                deviceReading.DigitalSwitch = datas[2] == "1";
-            }
-            else
-            {
-                deviceReading.DeviceType = DeviceTypes.Analog;
-
-                deviceReading.AnalogRed = Convert.ToInt32(datas[2]);
-                deviceReading.AnalogGreen = Convert.ToInt32(datas[3]);
-                deviceReading.AnalogBlue = Convert.ToInt32(datas[4]);
-            }
+            return deviceReading;
         }
-
-        tcpClient.Close();
-
-        return deviceReading;
+        catch(Exception ex)
+        {
+            throw new ArgumentException(ex.Message);
+        }
     }
 
     public void SetSingleDevice(
@@ -137,53 +151,60 @@ public class TcpService : ITcpService
         int? analogGreen,
         int? analogBlue)
     {
-        var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
-
-        tcpClient.Connect(ipAddress, port);
-
-        var stream = tcpClient.GetStream();
-
-        var message = "2" + mac;
-
-        if (deviceType == DeviceTypes.Digital)
+        try
         {
-            if (!digitalSwitch.HasValue)
-            {
-                throw new ArgumentNullException(nameof(digitalSwitch));
-            }
+            var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-            if (digitalSwitch.Value)
+            tcpClient.Connect(ipAddress, port);
+
+            var stream = tcpClient.GetStream();
+
+            var message = "2" + mac;
+
+            if (deviceType == DeviceTypes.Digital)
             {
-                message += "1";
+                if (!digitalSwitch.HasValue)
+                {
+                    throw new ArgumentNullException(nameof(digitalSwitch));
+                }
+
+                if (digitalSwitch.Value)
+                {
+                    message += "1";
+                }
+                else
+                {
+                    message += "0";
+                }
             }
             else
             {
-                message += "0";
+                if (!analogRed.HasValue)
+                {
+                    throw new ArgumentNullException(nameof(analogRed));
+                }
+
+                if (!analogGreen.HasValue)
+                {
+                    throw new ArgumentNullException(nameof(analogGreen));
+                }
+
+                if (!analogBlue.HasValue)
+                {
+                    throw new ArgumentNullException(nameof(analogBlue));
+                }
+
+                message += analogRed.Value.ToString() + "," + analogGreen.Value.ToString() + "," + analogBlue.Value.ToString();
             }
+
+            var writeData = Encoding.UTF8.GetBytes(message);
+            stream.Write(writeData, 0, writeData.Length);
+
+            tcpClient.Close();
         }
-        else
+        catch(Exception ex)
         {
-            if (!analogRed.HasValue)
-            {
-                throw new ArgumentNullException(nameof(analogRed));
-            }
-
-            if (!analogGreen.HasValue)
-            {
-                throw new ArgumentNullException(nameof(analogGreen));
-            }
-
-            if (!analogBlue.HasValue)
-            {
-                throw new ArgumentNullException(nameof(analogBlue));
-            }
-
-            message += analogRed.Value.ToString() + "," + analogGreen.Value.ToString() + "," + analogBlue.Value.ToString();
+            throw new ArgumentException(ex.Message);
         }
-
-        var writeData = Encoding.UTF8.GetBytes(message);
-        stream.Write(writeData, 0, writeData.Length);
-
-        tcpClient.Close();
     }
 }

@@ -100,15 +100,24 @@ public partial class MonitorPage : UserControl
             newValues.Add(newAnalogBlueValue);
         }
 
-        _tcpService.SetSingleDevice(
-            _connection.IpAddress,
-            _connection.Port,
-            macAddress,
-            SelectedDeviceTypeLabel.Text,
-            newValues[0] == "1",
-            newValues.Count == 3 ? Convert.ToInt32(newValues[0]) : 0,
-            newValues.Count == 3 ? Convert.ToInt32(newValues[1]) : 0,
-            newValues.Count == 3 ? Convert.ToInt32(newValues[2]) : 0);
+        try
+        {
+            _tcpService.SetSingleDevice(
+                _connection.IpAddress,
+                _connection.Port,
+                macAddress,
+                SelectedDeviceTypeLabel.Text,
+                newValues[0] == "1",
+                newValues.Count == 3 ? Convert.ToInt32(newValues[0]) : 0,
+                newValues.Count == 3 ? Convert.ToInt32(newValues[1]) : 0,
+                newValues.Count == 3 ? Convert.ToInt32(newValues[2]) : 0);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occured, try again.\nError message: {ex.Message}");
+
+            return;
+        }
 
         if (string.IsNullOrEmpty(deviceName))
         {
@@ -214,36 +223,54 @@ public partial class MonitorPage : UserControl
             name = device.Name;
         }
 
-        var deviceReading = _tcpService.GetSingleDevice(_connection.IpAddress, _connection.Port, selectedDeviceName);
+        try
+        {
+            var deviceReading =
+                _tcpService.GetSingleDevice(
+                    _connection.IpAddress,
+                    _connection.Port,
+                    selectedDeviceName);
 
-        WriteSelectedDevice(name, deviceReading);
+            WriteSelectedDevice(name, deviceReading);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occured, try again.\nError message: {ex.Message}");
+        }
     }
 
     private void LoadDevicesListBox()
     {
-        DevicesListBox.Items.Clear();
-
-        var deviceReadings = _tcpService.GetAllDevices(_connection.IpAddress, _connection.Port);
-
-        var deviceMacAddresses = deviceReadings.Select(x => x.MacAddress).ToList();
-
-        var query = new GetMultipleDevices
+        try
         {
-            MacAddresses = deviceMacAddresses
-        };
+            DevicesListBox.Items.Clear();
 
-        var devices = _querySender.SendGetMultiple<GetMultipleDevices, DeviceDto>(query);
+            var deviceReadings = _tcpService.GetAllDevices(_connection.IpAddress, _connection.Port);
 
-        foreach (var device in deviceReadings)
+            var deviceMacAddresses = deviceReadings.Select(x => x.MacAddress).ToList();
+
+            var query = new GetMultipleDevices
+            {
+                MacAddresses = deviceMacAddresses
+            };
+
+            var devices = _querySender.SendGetMultiple<GetMultipleDevices, DeviceDto>(query);
+
+            foreach (var device in deviceReadings)
+            {
+                if (devices.Select(x => x.MacAddress).Contains(device.MacAddress))
+                {
+                    DevicesListBox.Items.Add(devices.Where(x => x.MacAddress == device.MacAddress).Select(x => x.Name).First().ToString());
+                }
+                else
+                {
+                    DevicesListBox.Items.Add(device.MacAddress);
+                }
+            }
+        }
+        catch (Exception ex)
         {
-            if (devices.Select(x => x.MacAddress).Contains(device.MacAddress))
-            {
-                DevicesListBox.Items.Add(devices.Where(x => x.MacAddress == device.MacAddress).Select(x => x.Name).First().ToString());
-            }
-            else
-            {
-                DevicesListBox.Items.Add(device.MacAddress);
-            }
+            MessageBox.Show($"An error occured, try again.\nError message: {ex.Message}");
         }
     }
 
