@@ -25,7 +25,7 @@ public class TcpService : ITcpService
 
         var stream = _tcpClient.GetStream();
 
-        var writeData = Encoding.ASCII.GetBytes("0");
+        var writeData = Encoding.UTF8.GetBytes("0");
         stream.Write(writeData, 0, writeData.Length);
 
         byte[] readBuffer = new byte[1024];
@@ -36,7 +36,7 @@ public class TcpService : ITcpService
         while (true)
         {
             bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
-            var readData = Encoding.ASCII.GetString(readBuffer, 0, bytesRead);
+            var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
 
             if (readData == "exit")
             {
@@ -79,7 +79,7 @@ public class TcpService : ITcpService
 
         var stream = _tcpClient.GetStream();
 
-        var writeData = Encoding.ASCII.GetBytes("1" + mac);
+        var writeData = Encoding.UTF8.GetBytes("1" + mac);
         stream.Write(writeData, 0, writeData.Length);
 
         byte[] readBuffer = new byte[1024];
@@ -90,7 +90,7 @@ public class TcpService : ITcpService
         while (true)
         {
             bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
-            var readData = Encoding.ASCII.GetString(readBuffer, 0, bytesRead);
+            var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
 
             if (readData == "exit")
             {
@@ -174,7 +174,7 @@ public class TcpService : ITcpService
             message += analogRed.Value.ToString() + "," + analogGreen.Value.ToString() + "," + analogBlue.Value.ToString();
         }
 
-        var writeData = Encoding.ASCII.GetBytes(message);
+        var writeData = Encoding.UTF8.GetBytes(message);
         stream.Write(writeData, 0, writeData.Length);
 
         _tcpClient.Close();
