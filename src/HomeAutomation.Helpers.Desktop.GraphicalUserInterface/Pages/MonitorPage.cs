@@ -120,28 +120,6 @@ public partial class MonitorPage : UserControl
 
             _commandSender.SendAddSingle(command);
         }
-        else
-        {
-            var query = new GetMultipleDevices();
-            var devices = _querySender.SendGetMultiple<GetMultipleDevices, DeviceDto>(query);
-
-            var device = devices.First(x => x.MacAddress == macAddress);
-
-            var command = new UpdateSingleDevice
-            {
-                Id = device.Id,
-                MacAddress = macAddress,
-                Name = newDeviceName
-            };
-
-            var entity = new DeviceEntity(device.Id)
-            {
-                MacAddress = macAddress,
-                Name = device.Name
-            };
-
-            _commandSender.SendUpdateSingle(command, entity);
-        }
 
         SelectedDeviceNewNameTextBox.Text = string.Empty;
         SelectedDigitalDeviceNewValueTextBox.Text = string.Empty;
