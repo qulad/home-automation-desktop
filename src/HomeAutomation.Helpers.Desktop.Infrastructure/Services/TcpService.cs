@@ -6,24 +6,27 @@ using System.Text;
 using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Infrastructure.Services;
 
 public class TcpService : ITcpService
 {
     private const string Digital = "0";
-    private readonly TcpClient _tcpClient;
+    private readonly IServiceProvider _serviceProvider;
 
-    public TcpService(TcpClient tcpClient)
+    public TcpService(IServiceProvider serviceProvider)
     {
-        _tcpClient = tcpClient;
+        _serviceProvider = serviceProvider;
     }
 
     public List<DeviceReadingDto> GetAllDevices(string ipAddress, int port)
     {
-        _tcpClient.Connect(ipAddress, port);
+        var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-        var stream = _tcpClient.GetStream();
+        tcpClient.Connect(ipAddress, port);
+
+        var stream = tcpClient.GetStream();
 
         var writeData = Encoding.UTF8.GetBytes("0");
         stream.Write(writeData, 0, writeData.Length);
@@ -68,16 +71,18 @@ public class TcpService : ITcpService
             deviceReadings.Add(deviceReading);
         }
 
-        _tcpClient.Close();
+        tcpClient.Close();
 
         return deviceReadings;
     }
 
     public DeviceReadingDto GetSingleDevice(string ipAddress, int port, string mac)
     {
-        _tcpClient.Connect(ipAddress, port);
+        var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-        var stream = _tcpClient.GetStream();
+        tcpClient.Connect(ipAddress, port);
+
+        var stream = tcpClient.GetStream();
 
         var writeData = Encoding.UTF8.GetBytes("1" + mac);
         stream.Write(writeData, 0, writeData.Length);
@@ -117,7 +122,7 @@ public class TcpService : ITcpService
             }
         }
 
-        _tcpClient.Close();
+        tcpClient.Close();
 
         return deviceReading;
     }
@@ -132,9 +137,11 @@ public class TcpService : ITcpService
         int? analogGreen,
         int? analogBlue)
     {
-        _tcpClient.Connect(ipAddress, port);
+        var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-        var stream = _tcpClient.GetStream();
+        tcpClient.Connect(ipAddress, port);
+
+        var stream = tcpClient.GetStream();
 
         var message = "2" + mac;
 
@@ -177,6 +184,6 @@ public class TcpService : ITcpService
         var writeData = Encoding.UTF8.GetBytes(message);
         stream.Write(writeData, 0, writeData.Length);
 
-        _tcpClient.Close();
+        tcpClient.Close();
     }
 }
