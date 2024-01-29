@@ -65,13 +65,6 @@ public partial class SelectConnectionPage : UserControl
 
         (ParentForm as MainWindow).SendConnectionToMonitorPage(selectedConnection);
 
-        _basePage.Show<MonitorPage>();
-    }
-
-    public void HomePageButtonClick(object sender, EventArgs e)
-    {
-        Hide();
-
-        _basePage.Show<HomePage>();
+        (ParentForm as MainWindow).OpenChildUserControl(_basePage.Get<MonitorPage>());
     }
 }

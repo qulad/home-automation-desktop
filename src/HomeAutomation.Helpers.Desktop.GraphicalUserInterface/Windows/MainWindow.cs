@@ -60,7 +60,7 @@ public partial class MainWindow : Form
         OpenChildUserControl(_basePage.Get<HomePage>());
     }
 
-    private void OpenChildUserControl(UserControl userControl)
+    public void OpenChildUserControl(UserControl userControl)
     {
         if (currentChildUserControl != null)
         {

@@ -260,6 +260,9 @@ public partial class MonitorPage : UserControl
                 DevicesListBox.Items.Add(device.MacAddress);
             }
         }
+
+        SelectedDeviceMonitorGroupBox.Visible = true;
+        SelectedDeviceControlGroupBox.Visible = true;
     }
 
     private void DevicesVerticalScrollBarScroll(object sender, ScrollEventArgs e)
