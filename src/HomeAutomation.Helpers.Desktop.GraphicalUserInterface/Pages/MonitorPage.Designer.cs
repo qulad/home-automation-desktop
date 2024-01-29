@@ -62,15 +62,15 @@ partial class MonitorPage
         // 
         DevicesListBox.Anchor = AnchorStyles.None;
         DevicesListBox.FormattingEnabled = true;
-        DevicesListBox.Location = new Point(27, 112);
+        DevicesListBox.Location = new Point(16, 154);
         DevicesListBox.Name = "DevicesListBox";
-        DevicesListBox.Size = new Size(150, 204);
+        DevicesListBox.Size = new Size(228, 204);
         DevicesListBox.TabIndex = 4;
         // 
         // DevicesVerticalScrollBar
         // 
         DevicesVerticalScrollBar.Anchor = AnchorStyles.None;
-        DevicesVerticalScrollBar.Location = new Point(151, 112);
+        DevicesVerticalScrollBar.Location = new Point(218, 154);
         DevicesVerticalScrollBar.Name = "DevicesVerticalScrollBar";
         DevicesVerticalScrollBar.Size = new Size(26, 204);
         DevicesVerticalScrollBar.TabIndex = 5;
@@ -82,7 +82,7 @@ partial class MonitorPage
         NoSelectedDeviceLabel.AutoSize = true;
         NoSelectedDeviceLabel.Font = new Font("Century Gothic", 10.2F);
         NoSelectedDeviceLabel.ForeColor = Color.Gainsboro;
-        NoSelectedDeviceLabel.Location = new Point(356, 182);
+        NoSelectedDeviceLabel.Location = new Point(423, 224);
         NoSelectedDeviceLabel.Name = "NoSelectedDeviceLabel";
         NoSelectedDeviceLabel.Size = new Size(130, 21);
         NoSelectedDeviceLabel.TabIndex = 7;
@@ -96,7 +96,7 @@ partial class MonitorPage
         SelectDeviceButton.FlatStyle = FlatStyle.Flat;
         SelectDeviceButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
         SelectDeviceButton.ForeColor = Color.Gainsboro;
-        SelectDeviceButton.Location = new Point(27, 351);
+        SelectDeviceButton.Location = new Point(94, 393);
         SelectDeviceButton.Name = "SelectDeviceButton";
         SelectDeviceButton.Size = new Size(137, 62);
         SelectDeviceButton.TabIndex = 8;
@@ -121,7 +121,7 @@ partial class MonitorPage
         SelectedDeviceMonitorGroupBox.Controls.Add(SelectedDeviceNameLabelLabel);
         SelectedDeviceMonitorGroupBox.Font = new Font("Century Gothic", 10.2F);
         SelectedDeviceMonitorGroupBox.ForeColor = Color.Gainsboro;
-        SelectedDeviceMonitorGroupBox.Location = new Point(205, 112);
+        SelectedDeviceMonitorGroupBox.Location = new Point(272, 154);
         SelectedDeviceMonitorGroupBox.Name = "SelectedDeviceMonitorGroupBox";
         SelectedDeviceMonitorGroupBox.Size = new Size(269, 217);
         SelectedDeviceMonitorGroupBox.TabIndex = 9;
@@ -248,7 +248,7 @@ partial class MonitorPage
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDeviceNewNameLabel);
         SelectedDeviceControlGroupBox.Font = new Font("Century Gothic", 10.2F);
         SelectedDeviceControlGroupBox.ForeColor = Color.Gainsboro;
-        SelectedDeviceControlGroupBox.Location = new Point(489, 112);
+        SelectedDeviceControlGroupBox.Location = new Point(556, 154);
         SelectedDeviceControlGroupBox.Name = "SelectedDeviceControlGroupBox";
         SelectedDeviceControlGroupBox.Size = new Size(289, 335);
         SelectedDeviceControlGroupBox.TabIndex = 10;
@@ -357,12 +357,13 @@ partial class MonitorPage
         ConnectionGroupBox.Controls.Add(ConnectionIpAddressLabelLabel);
         ConnectionGroupBox.Font = new Font("Century Gothic", 10.2F);
         ConnectionGroupBox.ForeColor = Color.Gainsboro;
-        ConnectionGroupBox.Location = new Point(209, 335);
+        ConnectionGroupBox.Location = new Point(276, 377);
         ConnectionGroupBox.Name = "ConnectionGroupBox";
         ConnectionGroupBox.Size = new Size(256, 112);
         ConnectionGroupBox.TabIndex = 11;
         ConnectionGroupBox.TabStop = false;
         ConnectionGroupBox.Text = "Connection";
+        ConnectionGroupBox.Visible = false;
         // 
         // ConnectionPortLabel
         // 
@@ -375,7 +376,7 @@ partial class MonitorPage
         // ConnectionIpAddressLabel
         // 
         ConnectionIpAddressLabel.AutoSize = true;
-        ConnectionIpAddressLabel.Location = new Point(151, 28);
+        ConnectionIpAddressLabel.Location = new Point(112, 28);
         ConnectionIpAddressLabel.Name = "ConnectionIpAddressLabel";
         ConnectionIpAddressLabel.Size = new Size(0, 21);
         ConnectionIpAddressLabel.TabIndex = 2;
@@ -411,7 +412,7 @@ partial class MonitorPage
         Controls.Add(DevicesVerticalScrollBar);
         Controls.Add(DevicesListBox);
         Name = "MonitorPage";
-        Size = new Size(800, 450);
+        Size = new Size(935, 535);
         SelectedDeviceMonitorGroupBox.ResumeLayout(false);
         SelectedDeviceMonitorGroupBox.PerformLayout();
         SelectedDeviceControlGroupBox.ResumeLayout(false);
