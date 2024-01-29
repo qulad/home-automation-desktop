@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
@@ -40,7 +39,7 @@ public partial class SelectConnectionPage : UserControl
 
         if (string.IsNullOrEmpty(selectedConnectionName))
         {
-            MessageBox.Show(SelectConnectionPageTexts.SelectConnection);
+            MessageBox.Show("Please select one connection!");
 
             LoadConnectionListBox(sender, e);
 
@@ -55,7 +54,7 @@ public partial class SelectConnectionPage : UserControl
 
         if (selectedConnection is null)
         {
-            MessageBox.Show(SelectConnectionPageTexts.ConnectionNotFound);
+            MessageBox.Show("Cannot find selected connection");
 
             LoadConnectionListBox(sender, e);
 

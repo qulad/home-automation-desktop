@@ -9,7 +9,6 @@ using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.Application.Services;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
-using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
 
@@ -17,7 +16,6 @@ namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 public partial class MonitorPage : UserControl
 {
-    private readonly BasePage _basePage;
     private readonly ICommandSender _commandSender;
     private readonly IQuerySender _querySender;
     private readonly ITcpService _tcpService;
@@ -25,12 +23,10 @@ public partial class MonitorPage : UserControl
     private ConnectionDto _connection { get; set; }
 
     public MonitorPage(
-        BasePage basePage,
         ICommandSender commandSender,
         IQuerySender querySender,
         ITcpService tcpService)
     {
-        _basePage = basePage;
         _commandSender = commandSender;
         _querySender = querySender;
         _tcpService = tcpService;
@@ -40,8 +36,6 @@ public partial class MonitorPage : UserControl
 
     public void ReceiveConnection(ConnectionDto connection)
     {
-        MessageBox.Show($"Bağlantı ismi: {connection.Name}");
-
         _connection = connection;
 
         LoadConnectionGroupBox();
@@ -57,13 +51,13 @@ public partial class MonitorPage : UserControl
 
         var newValues = new List<string>();
 
-        if (SelectedDeviceTypeLabel.Text == "Dijital")
+        if (SelectedDeviceTypeLabel.Text == DeviceTypes.Digital)
         {
             var newDigitalValue = SelectedDigitalDeviceNewValueTextBox.Text;
 
             if (string.IsNullOrEmpty(newDigitalValue))
             {
-                MessageBox.Show("Lütfen dijital değerini giriniz!");
+                MessageBox.Show("Please enter a digital value!");
 
                 return;
             }
@@ -76,7 +70,7 @@ public partial class MonitorPage : UserControl
 
             if (string.IsNullOrEmpty(newAnalogRedValue))
             {
-                MessageBox.Show("Lütfen analog kırmızı değerini giriniz!");
+                MessageBox.Show("Please enter analog red value!");
 
                 return;
             }
@@ -87,7 +81,7 @@ public partial class MonitorPage : UserControl
 
             if (string.IsNullOrEmpty(newAnalogGreenValue))
             {
-                MessageBox.Show("Lütfen analog yeşil değerini giriniz!");
+                MessageBox.Show("Please enter analog green value!");
 
                 return;
             }
@@ -98,7 +92,7 @@ public partial class MonitorPage : UserControl
 
             if (string.IsNullOrEmpty(newAnalogBlueValue))
             {
-                MessageBox.Show("Lütfen analog mavi değerini giriniz!");
+                MessageBox.Show("Please enter analog blue value!");
 
                 return;
             }
@@ -110,7 +104,7 @@ public partial class MonitorPage : UserControl
             _connection.IpAddress,
             _connection.Port,
             macAddress,
-            SelectedDeviceTypeLabel.Text == "Dijital" ? DeviceTypes.Digital : DeviceTypes.Analog,
+            SelectedDeviceTypeLabel.Text,
             newValues[0] == "1",
             newValues.Count == 3 ? Convert.ToInt32(newValues[0]) : 0,
             newValues.Count == 3 ? Convert.ToInt32(newValues[1]) : 0,
@@ -159,7 +153,7 @@ public partial class MonitorPage : UserControl
         LoadDevicesListBox();
         SelectDeviceButtonClick(sender, e);
 
-        MessageBox.Show("Değiştirildi");
+        MessageBox.Show("Changed!");
     }
 
     private void WriteSelectedDevice(string deviceName, DeviceReadingDto deviceReading)
@@ -169,7 +163,7 @@ public partial class MonitorPage : UserControl
 
         SelectedDeviceNameLabel.Text = deviceName;
         SelectedDeviceMacAddressLabel.Text = deviceReading.MacAddress;
-        SelectedDeviceTypeLabel.Text = (deviceReading.DeviceType == DeviceTypes.Digital) ? "Dijital" : "Analog";
+        SelectedDeviceTypeLabel.Text = deviceReading.DeviceType;
 
         if (deviceReading.DeviceType == DeviceTypes.Digital)
         {
@@ -223,7 +217,7 @@ public partial class MonitorPage : UserControl
 
         if (string.IsNullOrEmpty(selectedDeviceName))
         {
-            MessageBox.Show("Lütfen cihaz seçiniz!");
+            MessageBox.Show("Please select device!");
 
             return;
         }
@@ -271,13 +265,6 @@ public partial class MonitorPage : UserControl
     private void DevicesVerticalScrollBarScroll(object sender, ScrollEventArgs e)
     {
         DevicesListBox.TopIndex = DevicesVerticalScrollBar.Value;
-    }
-
-    private void HomePageButtonClick(object sender, EventArgs e)
-    {
-        Hide();
-
-        _basePage.Show<HomePage>();
     }
 
     private void LoadConnectionGroupBox()

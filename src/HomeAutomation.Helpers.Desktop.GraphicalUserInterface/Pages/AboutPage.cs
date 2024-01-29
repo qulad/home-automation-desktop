@@ -1,18 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
-using HomeAutomation.Helpers.Desktop.Application.Constants;
+﻿using System.Windows.Forms;
 using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 public partial class AboutPage : UserControl
 {
-    private readonly BasePage _basePage;
-
     public AboutPage(BasePage basePage)
     {
-        _basePage = basePage;
-
         InitializeComponent();
 
         LoadAboutLabelText();
@@ -20,13 +14,6 @@ public partial class AboutPage : UserControl
 
     private void LoadAboutLabelText()
     {
-        AboutLabel.Text = AboutPageTexts.AboutText;
-    }
-
-    private void HomePageButtonClick(object sender, EventArgs e)
-    {
-        Hide();
-
-        _basePage.Show<HomePage>();
+        AboutLabel.Text = "This app is a part of our graduation project.\nAhmet Ertuğrul KAYA and Eren AY";
     }
 }

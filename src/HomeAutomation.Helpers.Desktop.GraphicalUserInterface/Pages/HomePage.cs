@@ -1,38 +1,23 @@
 using System;
 using System.Windows.Forms;
-using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
 
 namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 public partial class HomePage : UserControl
 {
-    private readonly BasePage _basePage;
 
-    public HomePage(BasePage basePage)
+    public HomePage()
     {
-        _basePage = basePage;
-
         InitializeComponent();
     }
 
-    private void AboutButtonClick(object sender, EventArgs e)
+    private void HomePageLoad(object sender, EventArgs e)
     {
-        Hide();
-
-        _basePage.Show<AboutPage>();
+        TimeLabel.Text = DateTime.Now.ToString("HH:mm:ss");
     }
 
-    private void AddButtonClick(object sender, EventArgs e)
+    private void timer_Tick(object sender, EventArgs e)
     {
-        Hide();
-
-        _basePage.Show<AddConnectionPage>();
-    }
-
-    private void SelectConnectionButtonClick(object sender, EventArgs e)
-    {
-        Hide();
-
-        _basePage.Show<SelectConnectionPage>();
+        TimeLabel.Text = DateTime.Now.ToString("HH:mm:ss");
     }
 }

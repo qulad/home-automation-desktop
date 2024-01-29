@@ -8,8 +8,6 @@ partial class MonitorPage
 {
     private IContainer components = null;
 
-    private Button HomePageButton;
-
     protected override void Dispose(bool disposing)
     {
         if (disposing && (components != null))
@@ -21,10 +19,8 @@ partial class MonitorPage
 
     private void InitializeComponent()
     {
-        HomePageButton = new Button();
         DevicesListBox = new ListBox();
         DevicesVerticalScrollBar = new VScrollBar();
-        MonitorPageLabel = new Label();
         NoSelectedDeviceLabel = new Label();
         SelectDeviceButton = new Button();
         SelectedDeviceMonitorGroupBox = new GroupBox();
@@ -41,6 +37,7 @@ partial class MonitorPage
         SelectedDeviceMacAddressLabelLabel = new Label();
         SelectedDeviceNameLabelLabel = new Label();
         SelectedDeviceControlGroupBox = new GroupBox();
+        SelectedDevicesSetDeviceButton = new Button();
         SelectedAnalogDeviceNewBlueValueLabel = new Label();
         SelectedAnalogDeviceNewGreenValueLabel = new Label();
         SelectedAnalogDeviceNewRedValueLabel = new Label();
@@ -56,24 +53,14 @@ partial class MonitorPage
         ConnectionIpAddressLabel = new Label();
         ConnectionPortLabelLabel = new Label();
         ConnectionIpAddressLabelLabel = new Label();
-        SelectedDevicesSetDeviceButton = new Button();
         SelectedDeviceMonitorGroupBox.SuspendLayout();
         SelectedDeviceControlGroupBox.SuspendLayout();
         ConnectionGroupBox.SuspendLayout();
         SuspendLayout();
         // 
-        // HomePageButton
-        // 
-        HomePageButton.Location = new Point(594, 15);
-        HomePageButton.Name = "HomePageButton";
-        HomePageButton.Size = new Size(195, 83);
-        HomePageButton.TabIndex = 3;
-        HomePageButton.Text = "Ana sayfa";
-        HomePageButton.UseVisualStyleBackColor = true;
-        HomePageButton.Click += HomePageButtonClick;
-        // 
         // DevicesListBox
         // 
+        DevicesListBox.Anchor = AnchorStyles.None;
         DevicesListBox.FormattingEnabled = true;
         DevicesListBox.Location = new Point(27, 112);
         DevicesListBox.Name = "DevicesListBox";
@@ -82,43 +69,44 @@ partial class MonitorPage
         // 
         // DevicesVerticalScrollBar
         // 
+        DevicesVerticalScrollBar.Anchor = AnchorStyles.None;
         DevicesVerticalScrollBar.Location = new Point(151, 112);
         DevicesVerticalScrollBar.Name = "DevicesVerticalScrollBar";
         DevicesVerticalScrollBar.Size = new Size(26, 204);
         DevicesVerticalScrollBar.TabIndex = 5;
         DevicesVerticalScrollBar.Scroll += DevicesVerticalScrollBarScroll;
         // 
-        // MonitorPageLabel
-        // 
-        MonitorPageLabel.AutoSize = true;
-        MonitorPageLabel.Font = new Font("Segoe UI", 32F);
-        MonitorPageLabel.Location = new Point(24, 15);
-        MonitorPageLabel.Name = "MonitorPageLabel";
-        MonitorPageLabel.Size = new Size(564, 72);
-        MonitorPageLabel.TabIndex = 6;
-        MonitorPageLabel.Text = "Monitörle ve Kontol Et";
-        // 
         // NoSelectedDeviceLabel
         // 
+        NoSelectedDeviceLabel.Anchor = AnchorStyles.None;
         NoSelectedDeviceLabel.AutoSize = true;
+        NoSelectedDeviceLabel.Font = new Font("Century Gothic", 10.2F);
+        NoSelectedDeviceLabel.ForeColor = Color.Gainsboro;
         NoSelectedDeviceLabel.Location = new Point(356, 182);
         NoSelectedDeviceLabel.Name = "NoSelectedDeviceLabel";
-        NoSelectedDeviceLabel.Size = new Size(109, 20);
+        NoSelectedDeviceLabel.Size = new Size(130, 21);
         NoSelectedDeviceLabel.TabIndex = 7;
         NoSelectedDeviceLabel.Text = "Seçili cihaz yok";
+        NoSelectedDeviceLabel.Visible = false;
         // 
         // SelectDeviceButton
         // 
+        SelectDeviceButton.Anchor = AnchorStyles.None;
+        SelectDeviceButton.BackColor = Color.FromArgb(31, 31, 68);
+        SelectDeviceButton.FlatStyle = FlatStyle.Flat;
+        SelectDeviceButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        SelectDeviceButton.ForeColor = Color.Gainsboro;
         SelectDeviceButton.Location = new Point(27, 351);
         SelectDeviceButton.Name = "SelectDeviceButton";
-        SelectDeviceButton.Size = new Size(117, 62);
+        SelectDeviceButton.Size = new Size(137, 62);
         SelectDeviceButton.TabIndex = 8;
-        SelectDeviceButton.Text = "Cihazı seç";
-        SelectDeviceButton.UseVisualStyleBackColor = true;
+        SelectDeviceButton.Text = "Select device";
+        SelectDeviceButton.UseVisualStyleBackColor = false;
         SelectDeviceButton.Click += SelectDeviceButtonClick;
         // 
         // SelectedDeviceMonitorGroupBox
         // 
+        SelectedDeviceMonitorGroupBox.Anchor = AnchorStyles.None;
         SelectedDeviceMonitorGroupBox.Controls.Add(SelectedAnalogDeviceBlueValueLabel);
         SelectedDeviceMonitorGroupBox.Controls.Add(SelectedAnalogDeviceGreenValueLabel);
         SelectedDeviceMonitorGroupBox.Controls.Add(SelectedAnalogDeviceRedValueLabel);
@@ -131,12 +119,14 @@ partial class MonitorPage
         SelectedDeviceMonitorGroupBox.Controls.Add(SelectedDeviceTypeLabelLabel);
         SelectedDeviceMonitorGroupBox.Controls.Add(SelectedDeviceMacAddressLabelLabel);
         SelectedDeviceMonitorGroupBox.Controls.Add(SelectedDeviceNameLabelLabel);
+        SelectedDeviceMonitorGroupBox.Font = new Font("Century Gothic", 10.2F);
+        SelectedDeviceMonitorGroupBox.ForeColor = Color.Gainsboro;
         SelectedDeviceMonitorGroupBox.Location = new Point(205, 112);
         SelectedDeviceMonitorGroupBox.Name = "SelectedDeviceMonitorGroupBox";
         SelectedDeviceMonitorGroupBox.Size = new Size(269, 217);
         SelectedDeviceMonitorGroupBox.TabIndex = 9;
         SelectedDeviceMonitorGroupBox.TabStop = false;
-        SelectedDeviceMonitorGroupBox.Text = "Monitörle";
+        SelectedDeviceMonitorGroupBox.Text = "Monitor";
         SelectedDeviceMonitorGroupBox.Visible = false;
         // 
         // SelectedAnalogDeviceBlueValueLabel
@@ -144,7 +134,7 @@ partial class MonitorPage
         SelectedAnalogDeviceBlueValueLabel.AutoSize = true;
         SelectedAnalogDeviceBlueValueLabel.Location = new Point(189, 180);
         SelectedAnalogDeviceBlueValueLabel.Name = "SelectedAnalogDeviceBlueValueLabel";
-        SelectedAnalogDeviceBlueValueLabel.Size = new Size(0, 20);
+        SelectedAnalogDeviceBlueValueLabel.Size = new Size(0, 21);
         SelectedAnalogDeviceBlueValueLabel.TabIndex = 11;
         // 
         // SelectedAnalogDeviceGreenValueLabel
@@ -152,7 +142,7 @@ partial class MonitorPage
         SelectedAnalogDeviceGreenValueLabel.AutoSize = true;
         SelectedAnalogDeviceGreenValueLabel.Location = new Point(107, 175);
         SelectedAnalogDeviceGreenValueLabel.Name = "SelectedAnalogDeviceGreenValueLabel";
-        SelectedAnalogDeviceGreenValueLabel.Size = new Size(0, 20);
+        SelectedAnalogDeviceGreenValueLabel.Size = new Size(0, 21);
         SelectedAnalogDeviceGreenValueLabel.TabIndex = 10;
         // 
         // SelectedAnalogDeviceRedValueLabel
@@ -160,7 +150,7 @@ partial class MonitorPage
         SelectedAnalogDeviceRedValueLabel.AutoSize = true;
         SelectedAnalogDeviceRedValueLabel.Location = new Point(20, 178);
         SelectedAnalogDeviceRedValueLabel.Name = "SelectedAnalogDeviceRedValueLabel";
-        SelectedAnalogDeviceRedValueLabel.Size = new Size(0, 20);
+        SelectedAnalogDeviceRedValueLabel.Size = new Size(0, 21);
         SelectedAnalogDeviceRedValueLabel.TabIndex = 9;
         // 
         // SelectedDigitalDeviceValueLabel
@@ -168,7 +158,7 @@ partial class MonitorPage
         SelectedDigitalDeviceValueLabel.AutoSize = true;
         SelectedDigitalDeviceValueLabel.Location = new Point(169, 141);
         SelectedDigitalDeviceValueLabel.Name = "SelectedDigitalDeviceValueLabel";
-        SelectedDigitalDeviceValueLabel.Size = new Size(0, 20);
+        SelectedDigitalDeviceValueLabel.Size = new Size(0, 21);
         SelectedDigitalDeviceValueLabel.TabIndex = 8;
         // 
         // SelectedDeviceTypeLabel
@@ -176,7 +166,7 @@ partial class MonitorPage
         SelectedDeviceTypeLabel.AutoSize = true;
         SelectedDeviceTypeLabel.Location = new Point(131, 104);
         SelectedDeviceTypeLabel.Name = "SelectedDeviceTypeLabel";
-        SelectedDeviceTypeLabel.Size = new Size(0, 20);
+        SelectedDeviceTypeLabel.Size = new Size(0, 21);
         SelectedDeviceTypeLabel.TabIndex = 7;
         // 
         // SelectedDeviceMacAddressLabel
@@ -184,7 +174,7 @@ partial class MonitorPage
         SelectedDeviceMacAddressLabel.AutoSize = true;
         SelectedDeviceMacAddressLabel.Location = new Point(183, 75);
         SelectedDeviceMacAddressLabel.Name = "SelectedDeviceMacAddressLabel";
-        SelectedDeviceMacAddressLabel.Size = new Size(0, 20);
+        SelectedDeviceMacAddressLabel.Size = new Size(0, 21);
         SelectedDeviceMacAddressLabel.TabIndex = 6;
         // 
         // SelectedDeviceNameLabel
@@ -192,7 +182,7 @@ partial class MonitorPage
         SelectedDeviceNameLabel.AutoSize = true;
         SelectedDeviceNameLabel.Location = new Point(136, 36);
         SelectedDeviceNameLabel.Name = "SelectedDeviceNameLabel";
-        SelectedDeviceNameLabel.Size = new Size(0, 20);
+        SelectedDeviceNameLabel.Size = new Size(0, 21);
         SelectedDeviceNameLabel.TabIndex = 5;
         // 
         // SelectedAnalogDeviceValuesLabelLabel
@@ -200,9 +190,9 @@ partial class MonitorPage
         SelectedAnalogDeviceValuesLabelLabel.AutoSize = true;
         SelectedAnalogDeviceValuesLabelLabel.Location = new Point(14, 141);
         SelectedAnalogDeviceValuesLabelLabel.Name = "SelectedAnalogDeviceValuesLabelLabel";
-        SelectedAnalogDeviceValuesLabelLabel.Size = new Size(191, 20);
+        SelectedAnalogDeviceValuesLabelLabel.Size = new Size(186, 21);
         SelectedAnalogDeviceValuesLabelLabel.TabIndex = 4;
-        SelectedAnalogDeviceValuesLabelLabel.Text = "Seçili cihaz değerleri (RGB):";
+        SelectedAnalogDeviceValuesLabelLabel.Text = "Device values (RGB):";
         SelectedAnalogDeviceValuesLabelLabel.Visible = false;
         // 
         // SelectedDigitalDeviceLabelLabel
@@ -210,7 +200,7 @@ partial class MonitorPage
         SelectedDigitalDeviceLabelLabel.AutoSize = true;
         SelectedDigitalDeviceLabelLabel.Location = new Point(14, 141);
         SelectedDigitalDeviceLabelLabel.Name = "SelectedDigitalDeviceLabelLabel";
-        SelectedDigitalDeviceLabelLabel.Size = new Size(132, 20);
+        SelectedDigitalDeviceLabelLabel.Size = new Size(160, 21);
         SelectedDigitalDeviceLabelLabel.TabIndex = 3;
         SelectedDigitalDeviceLabelLabel.Text = "Seçili cihaz değeri:";
         SelectedDigitalDeviceLabelLabel.Visible = false;
@@ -220,30 +210,31 @@ partial class MonitorPage
         SelectedDeviceTypeLabelLabel.AutoSize = true;
         SelectedDeviceTypeLabelLabel.Location = new Point(14, 104);
         SelectedDeviceTypeLabelLabel.Name = "SelectedDeviceTypeLabelLabel";
-        SelectedDeviceTypeLabelLabel.Size = new Size(111, 20);
+        SelectedDeviceTypeLabelLabel.Size = new Size(118, 21);
         SelectedDeviceTypeLabelLabel.TabIndex = 2;
-        SelectedDeviceTypeLabelLabel.Text = "Seçili cihaz tipi:";
+        SelectedDeviceTypeLabelLabel.Text = "Device type:";
         // 
         // SelectedDeviceMacAddressLabelLabel
         // 
         SelectedDeviceMacAddressLabelLabel.AutoSize = true;
         SelectedDeviceMacAddressLabelLabel.Location = new Point(14, 72);
         SelectedDeviceMacAddressLabelLabel.Name = "SelectedDeviceMacAddressLabelLabel";
-        SelectedDeviceMacAddressLabelLabel.Size = new Size(161, 20);
+        SelectedDeviceMacAddressLabelLabel.Size = new Size(59, 21);
         SelectedDeviceMacAddressLabelLabel.TabIndex = 1;
-        SelectedDeviceMacAddressLabelLabel.Text = "Seçili cihaz mac adresi:";
+        SelectedDeviceMacAddressLabelLabel.Text = "MAC:";
         // 
         // SelectedDeviceNameLabelLabel
         // 
         SelectedDeviceNameLabelLabel.AutoSize = true;
         SelectedDeviceNameLabelLabel.Location = new Point(14, 36);
         SelectedDeviceNameLabelLabel.Name = "SelectedDeviceNameLabelLabel";
-        SelectedDeviceNameLabelLabel.Size = new Size(116, 20);
+        SelectedDeviceNameLabelLabel.Size = new Size(66, 21);
         SelectedDeviceNameLabelLabel.TabIndex = 0;
-        SelectedDeviceNameLabelLabel.Text = "Seçili cihaz ismi:";
+        SelectedDeviceNameLabelLabel.Text = "Name:";
         // 
         // SelectedDeviceControlGroupBox
         // 
+        SelectedDeviceControlGroupBox.Anchor = AnchorStyles.None;
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDevicesSetDeviceButton);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedAnalogDeviceNewBlueValueLabel);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedAnalogDeviceNewGreenValueLabel);
@@ -255,82 +246,97 @@ partial class MonitorPage
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDigitalDeviceNewValueTextBox);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDeviceNewNameTextBox);
         SelectedDeviceControlGroupBox.Controls.Add(SelectedDeviceNewNameLabel);
+        SelectedDeviceControlGroupBox.Font = new Font("Century Gothic", 10.2F);
+        SelectedDeviceControlGroupBox.ForeColor = Color.Gainsboro;
         SelectedDeviceControlGroupBox.Location = new Point(489, 112);
         SelectedDeviceControlGroupBox.Name = "SelectedDeviceControlGroupBox";
         SelectedDeviceControlGroupBox.Size = new Size(289, 335);
         SelectedDeviceControlGroupBox.TabIndex = 10;
         SelectedDeviceControlGroupBox.TabStop = false;
-        SelectedDeviceControlGroupBox.Text = "KontrolEt";
+        SelectedDeviceControlGroupBox.Text = "Control";
+        SelectedDeviceControlGroupBox.Visible = false;
+        // 
+        // SelectedDevicesSetDeviceButton
+        // 
+        SelectedDevicesSetDeviceButton.BackColor = Color.FromArgb(31, 31, 68);
+        SelectedDevicesSetDeviceButton.FlatStyle = FlatStyle.Flat;
+        SelectedDevicesSetDeviceButton.Location = new Point(17, 260);
+        SelectedDevicesSetDeviceButton.Name = "SelectedDevicesSetDeviceButton";
+        SelectedDevicesSetDeviceButton.Size = new Size(261, 53);
+        SelectedDevicesSetDeviceButton.TabIndex = 10;
+        SelectedDevicesSetDeviceButton.Text = "Apply new values";
+        SelectedDevicesSetDeviceButton.UseVisualStyleBackColor = false;
+        SelectedDevicesSetDeviceButton.Click += SelectedDevicesSetDeviceButtonClick;
         // 
         // SelectedAnalogDeviceNewBlueValueLabel
         // 
         SelectedAnalogDeviceNewBlueValueLabel.AutoSize = true;
         SelectedAnalogDeviceNewBlueValueLabel.Location = new Point(17, 217);
         SelectedAnalogDeviceNewBlueValueLabel.Name = "SelectedAnalogDeviceNewBlueValueLabel";
-        SelectedAnalogDeviceNewBlueValueLabel.Size = new Size(105, 20);
+        SelectedAnalogDeviceNewBlueValueLabel.Size = new Size(98, 21);
         SelectedAnalogDeviceNewBlueValueLabel.TabIndex = 9;
-        SelectedAnalogDeviceNewBlueValueLabel.Text = "Yeni değer (B):";
+        SelectedAnalogDeviceNewBlueValueLabel.Text = "Value Blue";
         // 
         // SelectedAnalogDeviceNewGreenValueLabel
         // 
         SelectedAnalogDeviceNewGreenValueLabel.AutoSize = true;
         SelectedAnalogDeviceNewGreenValueLabel.Location = new Point(11, 178);
         SelectedAnalogDeviceNewGreenValueLabel.Name = "SelectedAnalogDeviceNewGreenValueLabel";
-        SelectedAnalogDeviceNewGreenValueLabel.Size = new Size(106, 20);
+        SelectedAnalogDeviceNewGreenValueLabel.Size = new Size(121, 21);
         SelectedAnalogDeviceNewGreenValueLabel.TabIndex = 8;
-        SelectedAnalogDeviceNewGreenValueLabel.Text = "Yeni değer (G):";
+        SelectedAnalogDeviceNewGreenValueLabel.Text = "Value Green:";
         // 
         // SelectedAnalogDeviceNewRedValueLabel
         // 
         SelectedAnalogDeviceNewRedValueLabel.AutoSize = true;
         SelectedAnalogDeviceNewRedValueLabel.Location = new Point(12, 135);
         SelectedAnalogDeviceNewRedValueLabel.Name = "SelectedAnalogDeviceNewRedValueLabel";
-        SelectedAnalogDeviceNewRedValueLabel.Size = new Size(105, 20);
+        SelectedAnalogDeviceNewRedValueLabel.Size = new Size(102, 21);
         SelectedAnalogDeviceNewRedValueLabel.TabIndex = 7;
-        SelectedAnalogDeviceNewRedValueLabel.Text = "Yeni değer (R):";
+        SelectedAnalogDeviceNewRedValueLabel.Text = "Value Red:";
         // 
         // SelectedDigitalDeviceNewValueLabel
         // 
         SelectedDigitalDeviceNewValueLabel.AutoSize = true;
         SelectedDigitalDeviceNewValueLabel.Location = new Point(12, 91);
         SelectedDigitalDeviceNewValueLabel.Name = "SelectedDigitalDeviceNewValueLabel";
-        SelectedDigitalDeviceNewValueLabel.Size = new Size(82, 20);
+        SelectedDigitalDeviceNewValueLabel.Size = new Size(64, 21);
         SelectedDigitalDeviceNewValueLabel.TabIndex = 6;
-        SelectedDigitalDeviceNewValueLabel.Text = "Yeni değer:";
+        SelectedDigitalDeviceNewValueLabel.Text = "Value:";
         // 
         // SelectedAnalogDeviceNewBlueValueTextBox
         // 
         SelectedAnalogDeviceNewBlueValueTextBox.Location = new Point(153, 217);
         SelectedAnalogDeviceNewBlueValueTextBox.Name = "SelectedAnalogDeviceNewBlueValueTextBox";
-        SelectedAnalogDeviceNewBlueValueTextBox.Size = new Size(125, 27);
+        SelectedAnalogDeviceNewBlueValueTextBox.Size = new Size(125, 28);
         SelectedAnalogDeviceNewBlueValueTextBox.TabIndex = 5;
         // 
         // SelectedAnalogDeviceNewGreenValueTextBox
         // 
         SelectedAnalogDeviceNewGreenValueTextBox.Location = new Point(153, 173);
         SelectedAnalogDeviceNewGreenValueTextBox.Name = "SelectedAnalogDeviceNewGreenValueTextBox";
-        SelectedAnalogDeviceNewGreenValueTextBox.Size = new Size(125, 27);
+        SelectedAnalogDeviceNewGreenValueTextBox.Size = new Size(125, 28);
         SelectedAnalogDeviceNewGreenValueTextBox.TabIndex = 4;
         // 
         // SelectedAnalogDeviceNewRedValueTextBox
         // 
         SelectedAnalogDeviceNewRedValueTextBox.Location = new Point(153, 132);
         SelectedAnalogDeviceNewRedValueTextBox.Name = "SelectedAnalogDeviceNewRedValueTextBox";
-        SelectedAnalogDeviceNewRedValueTextBox.Size = new Size(125, 27);
+        SelectedAnalogDeviceNewRedValueTextBox.Size = new Size(125, 28);
         SelectedAnalogDeviceNewRedValueTextBox.TabIndex = 3;
         // 
         // SelectedDigitalDeviceNewValueTextBox
         // 
         SelectedDigitalDeviceNewValueTextBox.Location = new Point(153, 84);
         SelectedDigitalDeviceNewValueTextBox.Name = "SelectedDigitalDeviceNewValueTextBox";
-        SelectedDigitalDeviceNewValueTextBox.Size = new Size(125, 27);
+        SelectedDigitalDeviceNewValueTextBox.Size = new Size(125, 28);
         SelectedDigitalDeviceNewValueTextBox.TabIndex = 2;
         // 
         // SelectedDeviceNewNameTextBox
         // 
         SelectedDeviceNewNameTextBox.Location = new Point(153, 32);
         SelectedDeviceNewNameTextBox.Name = "SelectedDeviceNewNameTextBox";
-        SelectedDeviceNewNameTextBox.Size = new Size(125, 27);
+        SelectedDeviceNewNameTextBox.Size = new Size(125, 28);
         SelectedDeviceNewNameTextBox.TabIndex = 1;
         // 
         // SelectedDeviceNewNameLabel
@@ -338,29 +344,32 @@ partial class MonitorPage
         SelectedDeviceNewNameLabel.AutoSize = true;
         SelectedDeviceNewNameLabel.Location = new Point(17, 37);
         SelectedDeviceNewNameLabel.Name = "SelectedDeviceNewNameLabel";
-        SelectedDeviceNewNameLabel.Size = new Size(70, 20);
+        SelectedDeviceNewNameLabel.Size = new Size(66, 21);
         SelectedDeviceNewNameLabel.TabIndex = 0;
-        SelectedDeviceNewNameLabel.Text = "Yeni isim:";
+        SelectedDeviceNewNameLabel.Text = "Name:";
         // 
         // ConnectionGroupBox
         // 
+        ConnectionGroupBox.Anchor = AnchorStyles.None;
         ConnectionGroupBox.Controls.Add(ConnectionPortLabel);
         ConnectionGroupBox.Controls.Add(ConnectionIpAddressLabel);
         ConnectionGroupBox.Controls.Add(ConnectionPortLabelLabel);
         ConnectionGroupBox.Controls.Add(ConnectionIpAddressLabelLabel);
+        ConnectionGroupBox.Font = new Font("Century Gothic", 10.2F);
+        ConnectionGroupBox.ForeColor = Color.Gainsboro;
         ConnectionGroupBox.Location = new Point(209, 335);
         ConnectionGroupBox.Name = "ConnectionGroupBox";
         ConnectionGroupBox.Size = new Size(256, 112);
         ConnectionGroupBox.TabIndex = 11;
         ConnectionGroupBox.TabStop = false;
-        ConnectionGroupBox.Text = "Bağlantı";
+        ConnectionGroupBox.Text = "Connection";
         // 
         // ConnectionPortLabel
         // 
         ConnectionPortLabel.AutoSize = true;
         ConnectionPortLabel.Location = new Point(135, 75);
         ConnectionPortLabel.Name = "ConnectionPortLabel";
-        ConnectionPortLabel.Size = new Size(0, 20);
+        ConnectionPortLabel.Size = new Size(0, 21);
         ConnectionPortLabel.TabIndex = 3;
         // 
         // ConnectionIpAddressLabel
@@ -368,7 +377,7 @@ partial class MonitorPage
         ConnectionIpAddressLabel.AutoSize = true;
         ConnectionIpAddressLabel.Location = new Point(151, 28);
         ConnectionIpAddressLabel.Name = "ConnectionIpAddressLabel";
-        ConnectionIpAddressLabel.Size = new Size(0, 20);
+        ConnectionIpAddressLabel.Size = new Size(0, 21);
         ConnectionIpAddressLabel.TabIndex = 2;
         // 
         // ConnectionPortLabelLabel
@@ -376,42 +385,31 @@ partial class MonitorPage
         ConnectionPortLabelLabel.AutoSize = true;
         ConnectionPortLabelLabel.Location = new Point(19, 75);
         ConnectionPortLabelLabel.Name = "ConnectionPortLabelLabel";
-        ConnectionPortLabelLabel.Size = new Size(99, 20);
+        ConnectionPortLabelLabel.Size = new Size(48, 21);
         ConnectionPortLabelLabel.TabIndex = 1;
-        ConnectionPortLabelLabel.Text = "Bağlantı port:";
+        ConnectionPortLabelLabel.Text = "Port:";
         // 
         // ConnectionIpAddressLabelLabel
         // 
         ConnectionIpAddressLabelLabel.AutoSize = true;
         ConnectionIpAddressLabelLabel.Location = new Point(16, 28);
         ConnectionIpAddressLabelLabel.Name = "ConnectionIpAddressLabelLabel";
-        ConnectionIpAddressLabelLabel.Size = new Size(84, 20);
+        ConnectionIpAddressLabelLabel.Size = new Size(30, 21);
         ConnectionIpAddressLabelLabel.TabIndex = 0;
-        ConnectionIpAddressLabelLabel.Text = "Bağlantı ip:";
-        // 
-        // SelectedDevicesSetDeviceButton
-        // 
-        SelectedDevicesSetDeviceButton.Location = new Point(17, 260);
-        SelectedDevicesSetDeviceButton.Name = "SelectedDevicesSetDeviceButton";
-        SelectedDevicesSetDeviceButton.Size = new Size(261, 53);
-        SelectedDevicesSetDeviceButton.TabIndex = 10;
-        SelectedDevicesSetDeviceButton.Text = "Ayarla";
-        SelectedDevicesSetDeviceButton.UseVisualStyleBackColor = true;
-        SelectedDevicesSetDeviceButton.Click += SelectedDevicesSetDeviceButtonClick;
+        ConnectionIpAddressLabelLabel.Text = "IP:";
         // 
         // MonitorPage
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.FromArgb(34, 33, 75);
         Controls.Add(ConnectionGroupBox);
         Controls.Add(SelectedDeviceControlGroupBox);
         Controls.Add(SelectedDeviceMonitorGroupBox);
         Controls.Add(SelectDeviceButton);
         Controls.Add(NoSelectedDeviceLabel);
-        Controls.Add(MonitorPageLabel);
         Controls.Add(DevicesVerticalScrollBar);
         Controls.Add(DevicesListBox);
-        Controls.Add(HomePageButton);
         Name = "MonitorPage";
         Size = new Size(800, 450);
         SelectedDeviceMonitorGroupBox.ResumeLayout(false);
@@ -426,7 +424,6 @@ partial class MonitorPage
 
     private ListBox DevicesListBox;
     private VScrollBar DevicesVerticalScrollBar;
-    private Label MonitorPageLabel;
     private Label NoSelectedDeviceLabel;
     private Button SelectDeviceButton;
     private GroupBox SelectedDeviceMonitorGroupBox;

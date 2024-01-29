@@ -7,8 +7,6 @@ namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 public partial class SelectConnectionPage
 {
     private IContainer components = null;
-
-    private Button HomePageButton;
     private Button SelectConnectionButton;
     private ListBox ConnectionsListBox;
 
@@ -23,33 +21,27 @@ public partial class SelectConnectionPage
 
     private void InitializeComponent()
     {
-        HomePageButton = new Button();
         SelectConnectionButton = new Button();
         ConnectionsListBox = new ListBox();
         SuspendLayout();
         // 
-        // HomePageButton
-        // 
-        HomePageButton.Location = new Point(144, 278);
-        HomePageButton.Name = "HomePageButton";
-        HomePageButton.Size = new Size(160, 83);
-        HomePageButton.TabIndex = 3;
-        HomePageButton.Text = "Ana sayfa";
-        HomePageButton.UseVisualStyleBackColor = true;
-        HomePageButton.Click += HomePageButtonClick;
-        // 
         // SelectConnectionButton
         // 
-        SelectConnectionButton.Location = new Point(508, 247);
+        SelectConnectionButton.Anchor = AnchorStyles.None;
+        SelectConnectionButton.BackColor = Color.FromArgb(31, 31, 68);
+        SelectConnectionButton.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        SelectConnectionButton.ForeColor = Color.Gainsboro;
+        SelectConnectionButton.Location = new Point(264, 255);
         SelectConnectionButton.Name = "SelectConnectionButton";
         SelectConnectionButton.Size = new Size(160, 83);
         SelectConnectionButton.TabIndex = 3;
         SelectConnectionButton.Text = "Monitörle";
-        SelectConnectionButton.UseVisualStyleBackColor = true;
+        SelectConnectionButton.UseVisualStyleBackColor = false;
         SelectConnectionButton.Click += SelectConnectionButtonClick;
         // 
         // ConnectionsListBox
         // 
+        ConnectionsListBox.Anchor = AnchorStyles.None;
         ConnectionsListBox.FormattingEnabled = true;
         ConnectionsListBox.Location = new Point(144, 76);
         ConnectionsListBox.Name = "ConnectionsListBox";
@@ -60,7 +52,7 @@ public partial class SelectConnectionPage
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        Controls.Add(HomePageButton);
+        BackColor = Color.FromArgb(34, 33, 74);
         Controls.Add(SelectConnectionButton);
         Controls.Add(ConnectionsListBox);
         Name = "SelectConnectionPage";

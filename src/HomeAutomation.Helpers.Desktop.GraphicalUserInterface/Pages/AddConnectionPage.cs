@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using HomeAutomation.Helpers.Desktop.Application.Commands;
-using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
-using HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages.Base;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
 
@@ -15,7 +13,6 @@ namespace HomeAutomation.Helpers.Desktop.GraphicalUserInterface.Pages;
 
 public partial class AddConnectionPage : UserControl
 {
-    private readonly BasePage _basePage;
     private readonly ICommandSender _commandSender;
     private readonly IQuerySender _querySender;
 
@@ -23,11 +20,9 @@ public partial class AddConnectionPage : UserControl
     private const string PortPattern = @"^(?:0|6553[0-5]|655[0-2]\d|65[0-4]\d{2}|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3})$";
 
     public AddConnectionPage(
-        BasePage basePage,
         ICommandSender commandSender,
         IQuerySender querySender)
     {
-        _basePage = basePage;
         _commandSender = commandSender;
         _querySender = querySender;
 
@@ -42,22 +37,22 @@ public partial class AddConnectionPage : UserControl
 
         if (string.IsNullOrEmpty(connectionName))
         {
-            MessageBox.Show(AddConnectionPageTexts.EmptyConnectionName);
+            MessageBox.Show("Please enter a connection name!");
 
-            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionNameTextBox.Text = string.Empty;
+            ConnectionPortMaskedTextBox.Text = string.Empty;
+            ConnectionIpAddressMaskedTextBox.Text = string.Empty;
 
             return;
         }
 
         if (string.IsNullOrEmpty(ConnectionPortMaskedTextBox.Text))
         {
-            MessageBox.Show(AddConnectionPageTexts.InvalidPort);
+            MessageBox.Show("Invalid port!");
 
-            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionNameTextBox.Text = string.Empty;
+            ConnectionPortMaskedTextBox.Text = string.Empty;
+            ConnectionIpAddressMaskedTextBox.Text = string.Empty;
 
             return;
         }
@@ -66,11 +61,11 @@ public partial class AddConnectionPage : UserControl
 
         if (!IsPortValid(port))
         {
-            MessageBox.Show(AddConnectionPageTexts.InvalidPort);
+            MessageBox.Show("Invalid port!");
 
-            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionNameTextBox.Text = string.Empty;
+            ConnectionPortMaskedTextBox.Text = string.Empty;
+            ConnectionIpAddressMaskedTextBox.Text = string.Empty;
 
             return;
         }
@@ -79,11 +74,11 @@ public partial class AddConnectionPage : UserControl
 
         if (!IsIpAddressValid(ipAddress))
         {
-            MessageBox.Show(AddConnectionPageTexts.InvalidIpAddress);
+            MessageBox.Show("Invalid IP!");
 
-            ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
-            ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+            ConnectionNameTextBox.Text = string.Empty;
+            ConnectionPortMaskedTextBox.Text = string.Empty;
+            ConnectionIpAddressMaskedTextBox.Text = string.Empty;
 
             return;
         }
@@ -138,11 +133,11 @@ public partial class AddConnectionPage : UserControl
 
         _commandSender.SendAddSingle(addConnectionCommand);
 
-        ConnectionNameTextBox.Text = AddConnectionPageTexts.EmptyText;
-        ConnectionPortMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
-        ConnectionIpAddressMaskedTextBox.Text = AddConnectionPageTexts.EmptyText;
+        ConnectionNameTextBox.Text = string.Empty;
+        ConnectionPortMaskedTextBox.Text = string.Empty;
+        ConnectionIpAddressMaskedTextBox.Text = string.Empty;
 
-        MessageBox.Show("Bağlantı eklendi");
+        MessageBox.Show("Connection added!");
 
         LoadExistingLabelsCheckedListBox();
     }
@@ -160,22 +155,15 @@ public partial class AddConnectionPage : UserControl
         ExistingLabelsCheckedListBox.Items.AddRange(labelTexts);
     }
 
-    private void HomePageButtonClick(object sender, EventArgs e)
-    {
-        Hide();
-
-        _basePage.Show<HomePage>();
-    }
-
     private void AddNewLabelButtonClick(object sender, EventArgs e)
     {
         var labelText = NewLabelTextBox.Text;
 
         if (string.IsNullOrEmpty(labelText))
         {
-            MessageBox.Show(AddConnectionPageTexts.EmptyLabelName);
+            MessageBox.Show("New label name cannot be empty!");
 
-            NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
+            NewLabelTextBox.Text = string.Empty;
 
             return;
         }
@@ -186,25 +174,25 @@ public partial class AddConnectionPage : UserControl
 
         if (labels.Select(x => x.Text).Contains(labelText))
         {
-            MessageBox.Show(AddConnectionPageTexts.ExistingLabel);
+            MessageBox.Show("This label already exists!");
 
-            NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
+            NewLabelTextBox.Text = string.Empty;
 
             return;
         }
 
         if (NewLabelListBox.Items.Contains(labelText))
         {
-            MessageBox.Show(AddConnectionPageTexts.ExistingLabel);
+            MessageBox.Show("This label already exists!");
 
-            NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
+            NewLabelTextBox.Text = string.Empty;
 
             return;
         }
 
         NewLabelListBox.Items.Add(labelText);
 
-        NewLabelTextBox.Text = AddConnectionPageTexts.EmptyText;
+        NewLabelTextBox.Text = string.Empty;
     }
 
     private static bool IsIpAddressValid(string ipAddress)
