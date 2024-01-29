@@ -194,7 +194,7 @@ public class TcpService : ITcpService
                     throw new ArgumentNullException(nameof(analogBlue));
                 }
 
-                message += analogRed.Value.ToString() + "," + analogGreen.Value.ToString() + "," + analogBlue.Value.ToString();
+                message += analogRed.Value.ToString("000") + analogGreen.Value.ToString("000") + analogBlue.Value.ToString("000");
             }
 
             var writeData = Encoding.UTF8.GetBytes(message);
