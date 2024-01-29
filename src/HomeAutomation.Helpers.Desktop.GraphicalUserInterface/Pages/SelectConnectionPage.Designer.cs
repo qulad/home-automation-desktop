@@ -35,7 +35,7 @@ public partial class SelectConnectionPage
         SelectConnectionButton.Name = "SelectConnectionButton";
         SelectConnectionButton.Size = new Size(160, 83);
         SelectConnectionButton.TabIndex = 3;
-        SelectConnectionButton.Text = "Monitörle";
+        SelectConnectionButton.Text = "Monitor";
         SelectConnectionButton.UseVisualStyleBackColor = false;
         SelectConnectionButton.Click += SelectConnectionButtonClick;
         // 
