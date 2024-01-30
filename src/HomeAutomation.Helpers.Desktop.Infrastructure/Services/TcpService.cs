@@ -41,10 +41,10 @@ public class TcpService : ITcpService
 
             while (true)
             {
-                bytesRead = await stream.ReadAsync(readBuffer, 0, readBuffer.Length);
+                bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
                 var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
 
-                if (readData == "exit")
+                if (bytesRead == 21)
                 {
                     break;
                 }
