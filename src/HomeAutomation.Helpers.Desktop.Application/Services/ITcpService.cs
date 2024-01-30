@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 
@@ -6,9 +7,9 @@ namespace HomeAutomation.Helpers.Desktop.Application.Services;
 
 public interface ITcpService
 {
-    List<DeviceReadingDto> GetAllDevices(string ipAddress, int port);
-    DeviceReadingDto GetSingleDevice(string ipAddress, int port, string mac);
-    void SetSingleDevice(
+    Task<List<DeviceReadingDto>> GetAllDevicesAsync(string ipAddress, int port);
+    Task<DeviceReadingDto> GetSingleDeviceAsync(string ipAddress, int port, string mac);
+    Task SetSingleDeviceAsync(
         string ipAddress,
         int port,
         string mac,

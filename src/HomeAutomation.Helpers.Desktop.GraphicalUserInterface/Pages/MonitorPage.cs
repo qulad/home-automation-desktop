@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomeAutomation.Helpers.Desktop.Application.Commands;
 using HomeAutomation.Helpers.Desktop.Application.Constants;
@@ -34,15 +35,15 @@ public partial class MonitorPage : UserControl
         InitializeComponent();
     }
 
-    public void ReceiveConnection(ConnectionDto connection)
+    public async Task ReceiveConnection(ConnectionDto connection)
     {
         _connection = connection;
 
         LoadConnectionGroupBox();
-        LoadDevicesListBox();
+        await LoadDevicesListBox();
     }
 
-    private void SelectedDevicesSetDeviceButtonClick(object sender, EventArgs e)
+    private async void SelectedDevicesSetDeviceButtonClick(object sender, EventArgs e)
     {
         var macAddress = SelectedDeviceMacAddressLabel.Text;
 
@@ -102,7 +103,7 @@ public partial class MonitorPage : UserControl
 
         try
         {
-            _tcpService.SetSingleDevice(
+            await _tcpService.SetSingleDeviceAsync(
                 _connection.IpAddress,
                 _connection.Port,
                 macAddress,
@@ -137,7 +138,7 @@ public partial class MonitorPage : UserControl
         SelectedAnalogDeviceNewBlueValueTextBox.Text = string.Empty;
 
         LoadConnectionGroupBox();
-        LoadDevicesListBox();
+        await LoadDevicesListBox();
         SelectDeviceButtonClick(sender, e);
 
         MessageBox.Show("Changed!");
@@ -198,7 +199,7 @@ public partial class MonitorPage : UserControl
         }
     }
 
-    public void SelectDeviceButtonClick(object sender, EventArgs e)
+    public async void SelectDeviceButtonClick(object sender, EventArgs e)
     {
         var selectedDeviceName = (DevicesListBox.SelectedItem ?? "").ToString();
 
@@ -226,7 +227,7 @@ public partial class MonitorPage : UserControl
         try
         {
             var deviceReading =
-                _tcpService.GetSingleDevice(
+                await _tcpService.GetSingleDeviceAsync(
                     _connection.IpAddress,
                     _connection.Port,
                     selectedDeviceName);
@@ -239,13 +240,13 @@ public partial class MonitorPage : UserControl
         }
     }
 
-    private void LoadDevicesListBox()
+    private async Task LoadDevicesListBox()
     {
         try
         {
             DevicesListBox.Items.Clear();
 
-            var deviceReadings = _tcpService.GetAllDevices(_connection.IpAddress, _connection.Port);
+            var deviceReadings = await _tcpService.GetAllDevicesAsync(_connection.IpAddress, _connection.Port);
 
             var deviceMacAddresses = deviceReadings.Select(x => x.MacAddress).ToList();
 

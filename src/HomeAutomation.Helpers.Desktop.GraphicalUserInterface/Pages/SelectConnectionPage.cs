@@ -33,7 +33,7 @@ public partial class SelectConnectionPage : UserControl
         ConnectionsListBox.Items.AddRange(connectionNames);
     }
 
-    private void SelectConnectionButtonClick(object sender, EventArgs e)
+    private async void SelectConnectionButtonClick(object sender, EventArgs e)
     {
         var selectedConnectionName = (ConnectionsListBox.SelectedItem ?? "").ToString();
 
@@ -63,7 +63,7 @@ public partial class SelectConnectionPage : UserControl
 
         Hide();
 
-        (ParentForm as MainWindow).SendConnectionToMonitorPage(selectedConnection);
+        await (ParentForm as MainWindow).SendConnectionToMonitorPage(selectedConnection);
 
         (ParentForm as MainWindow).OpenChildUserControl(_basePage.Get<MonitorPage>());
     }

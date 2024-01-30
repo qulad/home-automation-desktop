@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Services;
@@ -20,18 +21,18 @@ public class TcpService : ITcpService
         _serviceProvider = serviceProvider;
     }
 
-    public List<DeviceReadingDto> GetAllDevices(string ipAddress, int port)
+    public async Task<List<DeviceReadingDto>> GetAllDevicesAsync(string ipAddress, int port)
     {
         try
         {            
             var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-            tcpClient.Connect(ipAddress, port);
+            await tcpClient.ConnectAsync(ipAddress, port);
 
             var stream = tcpClient.GetStream();
 
             var writeData = Encoding.UTF8.GetBytes("0");
-            stream.Write(writeData, 0, writeData.Length);
+            await stream.WriteAsync(writeData, 0, writeData.Length);
 
             byte[] readBuffer = new byte[1024];
             int bytesRead;
@@ -40,7 +41,7 @@ public class TcpService : ITcpService
 
             while (true)
             {
-                bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
+                bytesRead = await stream.ReadAsync(readBuffer, 0, readBuffer.Length);
                 var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
 
                 if (readData == "exit")
@@ -83,18 +84,18 @@ public class TcpService : ITcpService
         }
     }
 
-    public DeviceReadingDto GetSingleDevice(string ipAddress, int port, string mac)
+    public async Task<DeviceReadingDto> GetSingleDeviceAsync(string ipAddress, int port, string mac)
     {
         try
         {
             var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-            tcpClient.Connect(ipAddress, port);
+            await tcpClient.ConnectAsync(ipAddress, port);
 
             var stream = tcpClient.GetStream();
 
             var writeData = Encoding.UTF8.GetBytes("1" + mac);
-            stream.Write(writeData, 0, writeData.Length);
+            await stream.WriteAsync(writeData, 0, writeData.Length);
 
             byte[] readBuffer = new byte[1024];
             int bytesRead;
@@ -103,7 +104,7 @@ public class TcpService : ITcpService
 
             while (true)
             {
-                bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
+                bytesRead = await stream.ReadAsync(readBuffer, 0, readBuffer.Length);
                 var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
 
                 if (readData == "exit")
@@ -141,7 +142,7 @@ public class TcpService : ITcpService
         }
     }
 
-    public void SetSingleDevice(
+    public async Task SetSingleDeviceAsync(
         string ipAddress,
         int port,
         string mac,
@@ -155,7 +156,7 @@ public class TcpService : ITcpService
         {
             var tcpClient = _serviceProvider.GetRequiredService<TcpClient>();
 
-            tcpClient.Connect(ipAddress, port);
+            await tcpClient.ConnectAsync(ipAddress, port);
 
             var stream = tcpClient.GetStream();
 
@@ -198,7 +199,7 @@ public class TcpService : ITcpService
             }
 
             var writeData = Encoding.UTF8.GetBytes(message);
-            stream.Write(writeData, 0, writeData.Length);
+            await stream.WriteAsync(writeData, 0, writeData.Length);
 
             tcpClient.Close();
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
@@ -174,11 +175,11 @@ public partial class MainWindow : Form
         }
     }
 
-    public void SendConnectionToMonitorPage(ConnectionDto connection)
+    public async Task SendConnectionToMonitorPage(ConnectionDto connection)
     {
         var monitorPage = _basePage.Get<MonitorPage>() as MonitorPage;
 
-        monitorPage.ReceiveConnection(connection);
+        await monitorPage.ReceiveConnection(connection);
     }
 
     private void ShowPage(UserControl pageToShow)
