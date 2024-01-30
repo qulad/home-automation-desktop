@@ -44,7 +44,7 @@ public class TcpService : ITcpService
                 bytesRead = stream.Read(readBuffer, 0, readBuffer.Length);
                 var readData = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
 
-                if (bytesRead == 21)
+                if (bytesRead != 21)
                 {
                     break;
                 }
