@@ -108,7 +108,7 @@ public partial class MonitorPage : UserControl
                 _connection.Port,
                 macAddress,
                 SelectedDeviceTypeLabel.Text,
-                newValues[0] == "1",
+                newValues[0] == "True",
                 newValues.Count == 3 ? Convert.ToInt32(newValues[0]) : 0,
                 newValues.Count == 3 ? Convert.ToInt32(newValues[1]) : 0,
                 newValues.Count == 3 ? Convert.ToInt32(newValues[2]) : 0);
@@ -136,6 +136,7 @@ public partial class MonitorPage : UserControl
         SelectedAnalogDeviceNewRedValueTextBox.Text = string.Empty;
         SelectedAnalogDeviceNewGreenValueTextBox.Text = string.Empty;
         SelectedAnalogDeviceNewBlueValueTextBox.Text = string.Empty;
+        SelectedDigitalDeviceValueLabel.Text = newValues[0];
 
         LoadConnectionGroupBox();
         await LoadDevicesListBox();
