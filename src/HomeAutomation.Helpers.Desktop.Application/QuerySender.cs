@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using HomeAutomation.Helpers.Desktop.Application.Commands;
-using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.Base;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.Application.Queries.Handlers;

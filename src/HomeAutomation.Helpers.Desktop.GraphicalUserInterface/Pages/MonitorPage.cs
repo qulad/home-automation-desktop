@@ -9,7 +9,6 @@ using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 using HomeAutomation.Helpers.Desktop.Application.Queries;
 using HomeAutomation.Helpers.Desktop.Application.Services;
-using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Commands;
 using HomeAutomation.Helpers.Desktop.Infrastructure.Queries;
 

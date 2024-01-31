@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.Base;
-
 namespace HomeAutomation.Helpers.Desktop.Application.Commands;
 
 public interface ICommandSender

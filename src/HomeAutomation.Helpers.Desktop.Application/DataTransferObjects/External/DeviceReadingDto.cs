@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 
 public class DeviceReadingDto

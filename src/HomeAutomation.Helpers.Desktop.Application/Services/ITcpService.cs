@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HomeAutomation.Helpers.Desktop.Application.Constants;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.External;
 
 namespace HomeAutomation.Helpers.Desktop.Application.Services;

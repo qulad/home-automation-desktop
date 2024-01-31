@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using HomeAutomation.Helpers.Desktop.Application.Commands;
 using HomeAutomation.Helpers.Desktop.Application.Commands.Handlers;
-using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects.Base;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomation.Helpers.Desktop.Application;

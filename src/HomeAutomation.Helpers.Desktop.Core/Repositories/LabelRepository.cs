@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using HomeAutomation.Helpers.Desktop.Application.DataTransferObjects;
 using HomeAutomation.Helpers.Desktop.Application.Repositories;
-using HomeAutomation.Helpers.Desktop.Application.Repositories.Base;
 using HomeAutomation.Helpers.Desktop.Core.Context;
 using HomeAutomation.Helpers.Desktop.Core.Entities;
 using HomeAutomation.Helpers.Desktop.Core.Repositories.Base;
